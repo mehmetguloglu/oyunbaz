@@ -35,7 +35,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.oyunbaz.app",
@@ -65,7 +67,7 @@
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/4c6495bc-9dfb-4f41-8a5b-565f2a3af586"
+      "url": "https://u.expo.dev/a4f152d2-7c22-4554-9a7d-2b24343de86b"
     }
   },
   "react-native-google-mobile-ads": {

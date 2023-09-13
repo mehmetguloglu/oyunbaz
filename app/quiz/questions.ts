@@ -1737,12 +1737,12 @@ const questions = [
     },
   ],
   //DAĞITILACAK SORULAR
-  [],
+  // [],
 ];
-console.log(questions[0].length, "1. Seviye Soruları");
-console.log(questions[1].length, "2. Seviye Soruları");
-console.log(questions[2].length, "3. Seviye Soruları");
-console.log(questions[3].length, "4. Seviye Soruları");
-console.log(questions[4].length, "Dağıtılacak Sorular");
+// console.log(questions[0].length, "1. Seviye Soruları");
+// console.log(questions[1].length, "2. Seviye Soruları");
+// console.log(questions[2].length, "3. Seviye Soruları");
+// console.log(questions[3].length, "4. Seviye Soruları");
+// console.log(questions[4].length, "Dağıtılacak Sorular");
 
 export default questions;

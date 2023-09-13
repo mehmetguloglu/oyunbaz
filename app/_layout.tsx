@@ -1,17 +1,10 @@
 import { Suspense, useEffect, useMemo } from "react";
-import { SafeAreaView, useColorScheme, View } from "react-native";
+import { Pressable, SafeAreaView, useColorScheme } from "react-native";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import {
-  Image,
-  PortalHost,
-  TamaguiProvider,
-  Text,
-  Theme,
-  Stack as StackT,
-} from "tamagui";
+import { TamaguiProvider, Text, Theme, View } from "tamagui";
 import * as Updates from "expo-updates";
 import StorageKeys from "../utils/storage-keys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -28,14 +21,11 @@ export default function Layout() {
   async function onFetchUpdateAsync() {
     try {
       const update = await Updates.checkForUpdateAsync();
-      console.log(update);
       if (update.isAvailable) {
         await Updates.fetchUpdateAsync();
         await Updates.reloadAsync();
       }
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   }
 
   const storeReviewOpen = async () => {
@@ -77,7 +67,7 @@ export default function Layout() {
     <TamaguiProvider config={config}>
       <Suspense
         fallback={
-          <View f={1} ai="center" jc="center">
+          <View f={1} backgroundColor={"red"} ai="center" jc="center">
             <Text>Loading...</Text>
           </View>
         }
@@ -92,48 +82,8 @@ export default function Layout() {
               <Stack.Screen
                 name="index"
                 options={{
-                  headerShown: true,
+                  headerShown: false,
                   headerTitleAlign: "center",
-                  header: () => (
-                    <>
-                      <SafeAreaView
-                        style={{
-                          backgroundColor: "#fff",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          flexDirection: "row",
-                        }}
-                      >
-                        <Image
-                          source={require("../assets/icon.png")}
-                          style={{ width: 40, height: 40 }}
-                        />
-                        <Text ml={10} fow={"800"} fos={18}>
-                          Oyunbaz
-                        </Text>
-                      </SafeAreaView>
-                      <View
-                        style={{
-                          width: "100%",
-                          height: 1,
-                          // backgroundColor: "gray",
-                          shadowColor: "#000",
-                          shadowOffset: {
-                            width: 0,
-                            height: 2,
-                          },
-                          shadowOpacity: 0.25,
-                          shadowRadius: 3.84,
-
-                          elevation: 5,
-                        }}
-                      />
-                    </>
-                  ),
-                  headerTitleStyle: {
-                    fontSize: 20,
-                    fontWeight: "700",
-                  },
                 }}
               />
               <Stack.Screen
@@ -162,6 +112,12 @@ export default function Layout() {
               />
               <Stack.Screen
                 name="who-am-i"
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name="sudoku"
                 options={{
                   headerShown: false,
                 }}

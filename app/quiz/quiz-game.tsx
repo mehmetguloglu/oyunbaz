@@ -6,7 +6,6 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  Platform,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { Stack, XStack, YStack, Text, Button } from "tamagui";
@@ -38,16 +37,23 @@ const Quiz = () => {
     ) {
       showQuestions.current = [];
     }
-    let random = Math.floor(
-      Math.random() * questions[Math.floor(questionCount / 4)].length
-    );
+    let newQuestionCount = questionCount + 1;
+    if (questionCount == 15) {
+      newQuestionCount = 1;
+    }
+    let random;
+
     do {
       random = Math.floor(
-        Math.random() * questions[Math.floor(questionCount / 4)].length
+        Math.random() * questions[Math.floor(newQuestionCount / 4)].length
       );
-    } while (showQuestions.current.includes(random));
+    } while (
+      showQuestions.current.includes(random) ||
+      random >= questions[Math.floor(newQuestionCount / 4)].length
+    );
 
     setQuestionIndex(random);
+
     showQuestions.current = [...showQuestions.current, random];
   };
 
@@ -89,6 +95,9 @@ const Quiz = () => {
   };
   const tryAgainButton = () => {
     setQuestionCount(0);
+    setQuestionIndex(
+      Math.floor(Math.random() * questions[Math.floor(1 / 4)].length)
+    );
     setCorrect(0);
     setWrong(0);
     showQuestions.current = [];
@@ -385,7 +394,7 @@ const Quiz = () => {
 
                         setSelected(4);
                         setIsFinished(false);
-                      }, 300);
+                      }, 4000);
                     }}
                   />
                 </Stack>

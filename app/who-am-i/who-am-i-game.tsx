@@ -230,6 +230,21 @@ const WhoAmI = () => {
             <XStack>
               <Button
                 onPress={() => {
+                  setScoreModal(false);
+                  setTimeout(() => {
+                    router.push("/");
+                  }, 500);
+                }}
+                mr={5}
+                f={1}
+                boc={"#0092cc"}
+              >
+                <Text fow={"500"} fos={16} color={"#0092cc"}>
+                  Çıkış
+                </Text>
+              </Button>
+              <Button
+                onPress={() => {
                   scoreModalStart();
                 }}
                 ml={5}

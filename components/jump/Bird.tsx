@@ -37,21 +37,12 @@ export default (world, color, pos, size) => {
     size.width,
     size.height,
     {
-      // isStatic: true,
-      // inertia: Infinity, // setting inertia to infinty will prevent rotation upon collision
-      // rotationSpeed: 31,
+
       label: "Bird",
     }
   );
   Matter.World.add(world, initialBird);
-  // function updateRotation() {
-  //   Matter.Body.setAngle(
-  //     initialBird,
-  //     initialBird.angle + initialBird.rotationSpeed
-  //   );
-  //   requestAnimationFrame(updateRotation);
-  // }
-  // window.requestAnimationFrame(updateRotation);
+
   return {
     body: initialBird,
     color,
