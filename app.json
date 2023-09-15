@@ -35,9 +35,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.oyunbaz.app",
@@ -70,6 +68,9 @@
       "fallbackToCacheTimeout": 2000,
       "checkAutomatically": "ON_LOAD",
       "url": "https://u.expo.dev/a4f152d2-7c22-4554-9a7d-2b24343de86b"
+    },
+    "experiments": {
+      "typedRoutes": true
     }
   },
   "react-native-google-mobile-ads": {

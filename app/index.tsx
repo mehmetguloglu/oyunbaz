@@ -12,7 +12,9 @@ import {
   Share,
   Platform,
   Linking,
+  Vibration,
 } from "react-native";
+import { Image } from "expo-image";
 import {
   Stack,
   XStack,
@@ -21,7 +23,6 @@ import {
   Button,
   ScrollView,
   View,
-  Image,
   Spinner,
 } from "tamagui";
 import {
@@ -32,20 +33,10 @@ import {
 } from "@expo/vector-icons";
 import * as StoreReview from "expo-store-review";
 import * as WebBrowser from "expo-web-browser";
-import {
-  RewardedAd,
-  TestIds,
-  RewardedAdEventType,
-  BannerAd,
-  BannerAdSize,
-} from "react-native-google-mobile-ads";
 import { getRewardedAds } from "../bussiness/actions/getAds";
-
-const adBannerId = __DEV__
-  ? TestIds.BANNER
-  : Platform.OS == "android"
-  ? "ca-app-pub-8545961952430100/2689132775"
-  : "ca-app-pub-8545961952430100/8725973801";
+import ImageButtonSquare from "../components/home/ImageButtonSquare";
+import ImageButtonReactangle from "../components/home/ImageButtonReactangle";
+import BannerAds from "../components/google-ads/BannerAds";
 
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
@@ -86,287 +77,132 @@ const HomeScreen = () => {
       StoreReview.requestReview();
     }
   };
+
   return (
     <>
       <StatusBar hidden={true} />
 
-      {!showModal ? (
-        <>
-          <Stack f={1} bg={"white"}>
-            <SafeAreaView style={{ flex: 1 }}>
-              <XStack
+      <>
+        <Stack f={1} bg={"white"}>
+          <SafeAreaView style={{ flex: 1 }}>
+            {/* HEADER */}
+            <XStack
+              ai="center"
+              mt={Platform.OS == "android" ? 15 : 0}
+              mb={15}
+              mx={15}
+            >
+              <Button
+                p={0}
+                br={50}
+                width={42}
+                height={42}
                 ai="center"
-                mt={Platform.OS == "android" ? 15 : 0}
-                mb={15}
-                mx={15}
+                jc="center"
+                right={0}
+                zIndex={1}
+                pos="absolute"
+                bg={"white"}
+                onPress={() => {
+                  setShowModal(!showModal);
+                }}
               >
-                <Button
-                  p={0}
-                  br={50}
-                  width={42}
-                  height={42}
-                  ai="center"
-                  jc="center"
-                  right={0}
-                  zIndex={1}
-                  pos="absolute"
-                  bg={"white"}
-                  onPress={() => {
-                    setShowModal(!showModal);
-                  }}
-                >
-                  <Entypo name="info-with-circle" size={24} color="#5c5752" />
-                </Button>
-                <XStack ai="center" jc="center" f={1}>
-                  <Image
-                    source={require("../assets/icon.png")}
-                    style={{ width: 42, height: 42, marginRight: 10 }}
+                <Entypo name="info-with-circle" size={24} color="#5c5752" />
+              </Button>
+              <XStack ai="center" jc="center" f={1}>
+                <Image
+                  source={require("../assets/icon.png")}
+                  style={{ width: 42, height: 42, marginRight: 10 }}
+                />
+                <Text ta="center" fow={"800"} fos={18}>
+                  Oyunbaz
+                </Text>
+              </XStack>
+            </XStack>
+            {/* BODY */}
+            <ScrollView f={1} bg={"white"}>
+              <XStack mt={15} jc="space-between">
+                <Stack mr={5} ml={15} f={1} ai="center">
+                  <ImageButtonSquare
+                    bgcolor={"#EEAFC0a0"}
+                    onPress={() => router.push("/banned-words/banned-game")}
+                    source={require("../assets/home-page/bannedWord.png")}
+                    text={"Yasaklı Kelimeler"}
                   />
-                  <Text ta="center" fow={"800"} fos={18}>
-                    Oyunbaz
-                  </Text>
-                </XStack>
+                </Stack>
+
+                <YStack ml={5} mr={15} f={1} ai="center">
+                  <Stack mb={width * 0.02}>
+                    <ImageButtonReactangle
+                      bgcolor={"#000000a0"}
+                      onPress={() => router.push("/roll-dice")}
+                      source={require("../assets//home-page/cube.png")}
+                      text={"Zar At"}
+                    />
+                  </Stack>
+                  <Stack mt={width * 0.02}>
+                    <ImageButtonReactangle
+                      bgcolor={"#000000a0"}
+                      onPress={() => router.push("/hangman")}
+                      source={require("../assets//home-page/hangman.png")}
+                      text={"Adam Asmaca"}
+                    />
+                  </Stack>
+                </YStack>
               </XStack>
 
-              <ScrollView f={1} bg={"white"}>
-                <XStack mt={15} jc="space-between">
-                  <Stack mr={5} ml={15} f={1} ai="center">
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.44,
-                      }}
-                      borderRadius={20}
-                      resizeMode="cover"
-                      source={require("../assets/home-page/bannedWord.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/banned-words/")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack br={20} bg={"#EEAFC0a0"}>
-                            <Text
-                              p={12}
-                              ta="center"
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Yasaklı Kelimeler
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                  </Stack>
+              <XStack mt={15} jc="space-between">
+                <Stack mr={5} ml={15} f={1} ai="center">
+                  <ImageButtonSquare
+                    bgcolor={"#7D4628a0"}
+                    onPress={() => router.push("/quiz")}
+                    source={require("../assets/home-page/quiz.png")}
+                    text={"Cahilmetre"}
+                  />
+                </Stack>
 
-                  <YStack ml={5} mr={15} f={1} ai="center">
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.2,
-                        marginBottom: width * 0.02,
-                      }}
-                      borderRadius={10}
-                      resizeMode="cover"
-                      source={require("../assets//home-page/cube.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/roll-dice")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack bg={"#000000a0"} br={20}>
-                            <Text
-                              p={16}
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Zar At
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.2,
-                        marginTop: width * 0.02,
-                      }}
-                      borderRadius={10}
-                      resizeMode="cover"
-                      source={require("../assets//home-page/hangman.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/hangman")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack bg={"#000000a0"} br={20}>
-                            <Text
-                              p={16}
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Adam Asmaca
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                  </YStack>
-                </XStack>
+                <Stack ml={5} mr={15} f={1} ai="center">
+                  <ImageButtonSquare
+                    bgcolor={"#46422Da0"}
+                    onPress={() => router.push("/who-am-i")}
+                    source={require("../assets/home-page/whoami.png")}
+                    text={"Ben Kimim"}
+                  />
+                </Stack>
+              </XStack>
 
-                <XStack mt={15} jc="space-between">
-                  <Stack mr={5} ml={15} f={1} ai="center">
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.44,
-                      }}
-                      borderRadius={20}
-                      resizeMode="cover"
-                      source={require("../assets/home-page/quiz.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/quiz")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack br={20} bg={"#7D4628a0"}>
-                            <Text
-                              p={12}
-                              ta="center"
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Cahilmetre
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                  </Stack>
+              <XStack mt={15} jc="space-between">
+                <Stack mr={5} ml={15} f={1} ai="center">
+                  <ImageButtonSquare
+                    bgcolor={"#5C6D89a0"}
+                    onPress={() => router.push("/sudoku")}
+                    source={require("../assets/home-page/sudoku.png")}
+                    text={"Sudoku"}
+                  />
+                </Stack>
 
-                  <Stack ml={5} mr={15} f={1} ai="center">
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.44,
-                      }}
-                      borderRadius={20}
-                      resizeMode="cover"
-                      source={require("../assets/home-page/whoami.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/who-am-i")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack br={20} bg={"#46422Da0"}>
-                            <Text
-                              p={12}
-                              ta="center"
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Ben Kimim?
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                  </Stack>
-                </XStack>
+                <Stack ml={5} mr={15} f={1} ai="center">
+                  <ImageButtonSquare
+                    bgcolor={"#5A6902a0"}
+                    onPress={() => router.push("/jump")}
+                    source={require("../assets/home-page/jump.png")}
+                    text={"Top Sektir"}
+                  />
+                </Stack>
+              </XStack>
+            </ScrollView>
+            {/* BANNER ADS */}
+            <Stack pt={10}>
+              <BannerAds />
+            </Stack>
+          </SafeAreaView>
+        </Stack>
+      </>
 
-                <XStack mt={15} jc="space-between">
-                  <Stack mr={5} ml={15} f={1} ai="center">
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.44,
-                      }}
-                      borderRadius={20}
-                      resizeMode="cover"
-                      source={require("../assets/home-page/sudoku.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/sudoku")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack br={20} bg={"#5C6D89a0"}>
-                            <Text
-                              p={12}
-                              ta="center"
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Sudoku
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                  </Stack>
-
-                  <Stack ml={5} mr={15} f={1} ai="center">
-                    <ImageBackground
-                      style={{
-                        width: width * 0.44,
-                        height: width * 0.44,
-                      }}
-                      borderRadius={20}
-                      resizeMode="cover"
-                      source={require("../assets/home-page/jump.png")}
-                    >
-                      <XStack f={1}>
-                        <Pressable
-                          onPress={() => router.push("/jump")}
-                          style={{ flex: 1, justifyContent: "flex-end" }}
-                        >
-                          <Stack br={20} bg={"#5A6902a0"}>
-                            <Text
-                              p={12}
-                              ta="center"
-                              color={"white"}
-                              fontSize={16}
-                              fontWeight={"700"}
-                            >
-                              Top Sektir
-                            </Text>
-                          </Stack>
-                        </Pressable>
-                      </XStack>
-                    </ImageBackground>
-                  </Stack>
-                </XStack>
-              </ScrollView>
-              <Stack pt={10}>
-                <BannerAd
-                  unitId={adBannerId}
-                  size={`${width}x${height > 1000 ? height / 18 : height / 12}`}
-                  requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                  }}
-                />
-              </Stack>
-            </SafeAreaView>
-          </Stack>
-        </>
-      ) : null}
-
-      <Modal animationType="fade" transparent={true} visible={showModal}>
+      <Modal animationType="slide" transparent={true} visible={showModal}>
         <SafeAreaView style={styles.centeredView}>
           <View style={styles.modalView}>
-            {/* HEADER */}
+            {/* MODAL HEADER */}
             <XStack ai="center" mt={Platform.OS == "android" ? 15 : 0} mb={15}>
               <Button
                 backgroundColor={"white"}
@@ -435,7 +271,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
               </XStack>
-
+              {/* RATİNG */}
               <XStack mt={15} ai="center">
                 <Text f={1} color={"#5c5752"}>
                   Uygulamamızı beğendin mi?{" "}
@@ -464,7 +300,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
               </XStack>
-
+              {/* SHARE */}
               <XStack mt={15} ai="center">
                 <Text f={1} color={"#5c5752"}>
                   Oyunu paylaş, geliştiricilerimize destek ol ve arkadaşlarınla
@@ -496,7 +332,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
               </XStack>
-
+              {/* CONTACT MAİL */}
               <XStack mt={15} ai="center">
                 <Text f={1} color={"#5c5752"}>
                   Görüşlerinizi önemsiyoruz. Görüş, Öneri ve Şikayetlerinizi
@@ -526,7 +362,7 @@ const HomeScreen = () => {
                   </Text>
                 </Pressable>
               </XStack>
-
+              {/* WATCH ADS */}
               <XStack mt={15} ai="center">
                 <Text f={1} color={isLoaded ? "#054582" : "#5c5752"}>
                   Uygulamamızı beğendiysen reklam izleyerek bize destek
@@ -567,6 +403,10 @@ const HomeScreen = () => {
                   </Text>
                 </Button>
               </XStack>
+              {/* BANNER ADS */}
+              <Stack pt={10}>
+                <BannerAds />
+              </Stack>
             </ScrollView>
           </View>
         </SafeAreaView>
