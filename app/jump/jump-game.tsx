@@ -1,22 +1,38 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { SafeAreaView, TouchableOpacity, View } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import entities from "./entities";
 import Physics from "./physics";
 import { YStack, Text, Stack } from "tamagui";
 import ExitButton from "../../components/ExitButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import StorageKeys from "../../utils/storage-keys";
 
 export default function App() {
   const [running, setRunning] = useState(false);
   const [gameEngine, setGameEngine] = useState(null);
   const [currentPoints, setCurrentPoints] = useState(0);
-  let r = Math.floor(Math.random() * 256);
-  let g = Math.floor(Math.random() * 256);
-  let b = Math.floor(Math.random() * 256);
-  useEffect(() => {
-    setRunning(false);
-  }, []);
+  const [maxPoint, setMaxPoint] = useState(0);
+  const getMaxCount = async () => {
+    let maxCount = await AsyncStorage.getItem(StorageKeys.JUMPER_MAX_COUNT);
+    if (!maxCount) {
+      maxCount = "0";
+    }
+    if (currentPoints > Number(maxCount)) {
+      await AsyncStorage.setItem(
+        StorageKeys.JUMPER_MAX_COUNT,
+        currentPoints.toString()
+      );
+    }
+    currentPoints > Number(maxCount)
+      ? setMaxPoint(currentPoints)
+      : setMaxPoint(Number(maxCount));
+  };
+  useMemo(() => {
+    getMaxCount();
+  }, [running]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ExitButton />
@@ -63,6 +79,25 @@ export default function App() {
             opacity: 0.9,
           }}
         >
+          <YStack
+            my={15}
+            p={12}
+            br={12}
+            mx={3}
+            ai="center"
+            borderWidth={2}
+            boc={"#a67c00"}
+            position="absolute"
+            top={0}
+          >
+            <Text fow={"600"} color={"#a67c00"}>
+              Rekor
+            </Text>
+            <Text mt={4} fow={"600"} color={"#a67c00"} fos={18}>
+              {maxPoint}
+            </Text>
+            <Stack mt={5} br={6} py={6} px={6} bg={"#bf9b30"}></Stack>
+          </YStack>
           {currentPoints != 0 ? (
             <YStack
               my={15}
@@ -82,7 +117,6 @@ export default function App() {
               <Stack mt={5} br={3} py={2} px={6} bg={"#557273"}></Stack>
             </YStack>
           ) : null}
-
           <TouchableOpacity
             style={{
               backgroundColor: "#77a0a1",

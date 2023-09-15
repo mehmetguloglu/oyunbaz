@@ -1,6 +1,6 @@
-import { Link, useRouter } from "expo-router";
+import { Link, useFocusEffect, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Dimensions,
   ImageBackground,
@@ -22,6 +22,7 @@ import {
   ScrollView,
   View,
   Image,
+  Spinner,
 } from "tamagui";
 import {
   Ionicons,
@@ -31,13 +32,27 @@ import {
 } from "@expo/vector-icons";
 import * as StoreReview from "expo-store-review";
 import * as WebBrowser from "expo-web-browser";
-// import * as Linking from "expo-linking";
+import {
+  RewardedAd,
+  TestIds,
+  RewardedAdEventType,
+  BannerAd,
+  BannerAdSize,
+} from "react-native-google-mobile-ads";
+import { getRewardedAds } from "../bussiness/actions/getAds";
+
+const adBannerId = __DEV__
+  ? TestIds.BANNER
+  : Platform.OS == "android"
+  ? "ca-app-pub-8545961952430100/2689132775"
+  : "ca-app-pub-8545961952430100/8725973801";
 
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [result, setResult] = useState(null);
+  const { isLoaded, isShowing, show } = getRewardedAds();
 
   const _handlePressButtonAsync = async () => {
     let result = await WebBrowser.openBrowserAsync("https://onelink.to/baqs7k");
@@ -47,7 +62,9 @@ const HomeScreen = () => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        url: "https://apps.apple.com/tr/app/oyunbaz/id6465395235?l=tr",
+        title: "Oyunbaz",
+        message: "Oyunbaz",
+        url: "https://onelink.to/baqs7k",
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -69,7 +86,6 @@ const HomeScreen = () => {
       StoreReview.requestReview();
     }
   };
-
   return (
     <>
       <StatusBar hidden={true} />
@@ -333,6 +349,15 @@ const HomeScreen = () => {
                   </Stack>
                 </XStack>
               </ScrollView>
+              <Stack pt={10}>
+                <BannerAd
+                  unitId={adBannerId}
+                  size={`${width}x${height > 1000 ? height / 18 : height / 12}`}
+                  requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,
+                  }}
+                />
+              </Stack>
             </SafeAreaView>
           </Stack>
         </>
@@ -500,6 +525,47 @@ const HomeScreen = () => {
                     İletişim
                   </Text>
                 </Pressable>
+              </XStack>
+
+              <XStack mt={15} ai="center">
+                <Text f={1} color={isLoaded ? "#054582" : "#5c5752"}>
+                  Uygulamamızı beğendiysen reklam izleyerek bize destek
+                  olabilirsin!
+                </Text>
+
+                <Button
+                  width={90}
+                  height={90}
+                  bg={"white"}
+                  borderWidth={1}
+                  p={0}
+                  boc={isLoaded ? "#054582" : "gray"}
+                  br={20}
+                  ml={5}
+                  fd="column"
+                  onPress={() => {
+                    if (isLoaded) show();
+                  }}
+                  disabled={!isLoaded}
+                >
+                  {isLoaded ? (
+                    <FontAwesome
+                      name="play-circle"
+                      size={22}
+                      color={isLoaded ? "#054582" : "gray"}
+                    />
+                  ) : (
+                    <Spinner color="#054582" />
+                  )}
+                  <Text
+                    ta="center"
+                    fos={13}
+                    mt={0}
+                    color={isLoaded ? "#054582" : "gray"}
+                  >
+                    Reklam İzle
+                  </Text>
+                </Button>
               </XStack>
             </ScrollView>
           </View>

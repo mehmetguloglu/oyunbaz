@@ -99,6 +99,7 @@ const SudokuGame = () => {
                                 duration: 3,
                                 preset: "error",
                                 title: "Hatalı Hamle!",
+                                haptic: "warning",
                               });
                             }
                           }

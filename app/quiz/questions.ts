@@ -19,7 +19,8 @@ const questions = [
       answer: 2,
     },
     {
-      question: "Dünyanın ilk haritasını çizen ünlü Türk denizcisi kimdir?",
+      question:
+        "Günümüze kalan, Amerika kıtasını gösteren en eski haritalardan birini çizen ünlü Türk denizcisi ve Osmanlı Kaptan-ı Deryası kimdir?",
       options: ["Piri Reis", "Barbaros Hayrettin", "Kemal Reis", "Oruç Reis"],
       answer: 0,
     },
@@ -51,18 +52,20 @@ const questions = [
       answer: 3,
     },
     {
-      question: "Messi’nin memleketi neresidir?",
+      question:
+        "Yedi Ballon d'Or ve altı Altın Ayakkabı kazanarak iki ödülde de rekor kıran 2020 yılında Ballon d'Or Rüya Takımı'na seçilen Lionel Messi’nin doğum yeri neresidir?",
       options: ["Arjantin", "Portekiz", "İspanya", "Brezilya"],
       answer: 0,
     },
     {
-      question: "Basketbolda 3 adımdan fazla atılan adıma ne denir?",
+      question:
+        "Basketbolda topun iki el ile sektirilmesi, topu sürerken tutup ardından topun tekrar sektirilmesi, topu sektirmeden 3 adım atılması veya topun ayağa çarpması hangi oyun ihlali olarak adlandırılır?",
       options: ["Serbest atış", "Faul", "Dışarı çıkış", "Steps"],
       answer: 3,
     },
     {
       question:
-        "Tiyatroda oyuncuların yaptığı uzun ve etkileyici konuşmaya ne denir?",
+        "Tiyatroda oyuncuların yaptığı uzun ve etkileyici konuşmaya ne ad verilir?",
       options: ["Replik", "Sufle", "Düblaj", "Tirad"],
       answer: 3,
     },
@@ -72,12 +75,13 @@ const questions = [
       answer: 3,
     },
     {
-      question: "Tesla'nın CEO'su kimdir?",
+      question:
+        "SpaceX uzay şirketinin kurucusu, CEO'su ve mühendislik ile tasarım ofisleri şefi, Tesla otomotiv şirketinin CEO'su ve ürün mimarı, The Boring Company şirketinin kurucusu, Neuralink, Starlink ile OpenAI'nin kurucu ortağı ve ayrıca ilk eş başkanı kimdir?",
       options: ["Jeff Bezos", "Elon Musk", "Bill Gates", "Tony Stark"],
       answer: 1,
     },
     {
-      question: "iPhone hangi şirket tarafından yaratılmıştır?",
+      question: "IPhone cep telefonu hangi şirket tarafından yaratılmıştır?",
       options: ["Apple", "Intel", "Amazon", "Microsoft"],
       answer: 0,
     },
@@ -97,16 +101,16 @@ const questions = [
       answer: 0,
     },
     {
-      question: "Türkiye'nin en büyük şehri hangisidir?",
+      question:
+        "Türkiye'nin nufus bakımından en büyük ikinci şehri hangisidir?",
       options: ["Ankara", "İstanbul", "İzmir", "Antalya"],
-      answer: 1,
+      answer: 0,
     },
     {
       question: "Hangi Osmanlı padişahı 'Kanuni' olarak bilinir?",
       options: ["I. Mehmed", "IV. Murad", "I. Süleyman", "II. Selim"],
       answer: 2,
     },
-
     {
       question: "Hangi enstrüman yaylı bir müzik aletidir?",
       options: ["Keman", "Flüt", "Trompet", "Davul"],
@@ -120,15 +124,19 @@ const questions = [
     },
     {
       question: "Hangi tarihi yapı İstanbul'da bulunmaktadır?",
-      options: ["Machu Picchu", "Kolezyum", "Ayasofya", "Stonehenge"],
+      options: ["Machu Picchu", "Kolezyum", "Ayasofya", "Selimiye"],
       answer: 2,
+    },
+    {
+      question: "Hangi tarihi yapı İstanbul'da bulunmamaktadır?",
+      options: ["Sultan Ahmet", "Süleymaniye", "Ayasofya", "Selimiye"],
+      answer: 3,
     },
     {
       question: "Hangi hayvanın yavrusuna 'kuzu' denir?",
       options: ["Koyun", "Kaplan", "Tavuk", "Köpek"],
       answer: 0,
     },
-
     {
       question: "Hangi meyve turunçgil ailesindendir?",
       options: ["Elma", "Portakal", "Muz", "Kiraz"],
@@ -139,7 +147,6 @@ const questions = [
       options: ["Almanya", "Fransa", "İtalya", "İspanya"],
       answer: 1,
     },
-    ,
     {
       question: "Türkiye'nin kaç bölgesi vardır?",
       options: ["5", "6", "7", "8"],
@@ -160,13 +167,11 @@ const questions = [
       options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
       answer: 3,
     },
-
     {
       question: "Hangi ülke Asya kıtasındadır?",
       options: ["Almanya", "Brezilya", "Çin", "Avustralya"],
       answer: 2,
     },
-
     {
       question: "Hangi elementin sembolü 'Au' dur?",
       options: ["Oksijen", "Altın", "Argon", "Alüminyum"],
@@ -182,13 +187,11 @@ const questions = [
       ],
       answer: 1,
     },
-
     {
       question: "Hangi elementin kimyasal sembolü 'H' dir?",
       options: ["Helium", "Hidrojen", "Hafniyum", "Holmiyum"],
       answer: 1,
     },
-
     {
       question: "Türkiye'nin hangi şehri, lavanta bahçeleri ile ünlüdür?",
       options: ["Isparta", "Ankara", "Trabzon", "Eskişehir"],
@@ -214,7 +217,6 @@ const questions = [
       ],
       answer: 1,
     },
-
     {
       question: "Hangi gezegen Güneş Sistemi'nde en büyüktür?",
       options: ["Mars", "Jüpiter", "Venüs", "Satürn"],
@@ -241,11 +243,7 @@ const questions = [
       ],
       answer: 0,
     },
-    {
-      question: "Hangi gezegen 'Kızıl Gezegen' olarak da adlandırılır?",
-      options: ["Mars", "Jüpiter", "Venüs", "Plüton"],
-      answer: 0,
-    },
+
     {
       question: "Hangi hayvan uçabilen bir memelidir?",
       options: ["Köpek", "Yarasa", "Kaplan", "Zebra"],
@@ -273,7 +271,6 @@ const questions = [
 
       answer: 1,
     },
-
     {
       question: "Dünyanın en büyük okyanusu hangisidir?",
       options: [
@@ -284,13 +281,18 @@ const questions = [
       ],
       answer: 2,
     },
-
     {
-      question: "Türkiye'nin en uzun nehri hangisidir?",
+      question:
+        "Türkiye sınırları içerisinde doğup güney sınırımızdan ülke dışına çıktıktan sonra Basra Körfezine dökülen, toplam uzunluğu 2800 km olan, Türkiye sınırlarından geçen en uzun nehir hangisidir?",
       options: ["Fırat", "Dicle", "Yeşilırmak", "Sakarya"],
       answer: 0,
     },
-
+    {
+      question:
+        "Türkiye sınırları içerisinde bulunan en uzun nehir hangisidir?",
+      options: ["Fırat", "Dicle", "Yeşilırmak", "Kızılırmak"],
+      answer: 3,
+    },
     {
       question: "Hangi yazar 'Savaş ve Barış' adlı eseri yazmıştır?",
       options: [
@@ -301,18 +303,9 @@ const questions = [
       ],
       answer: 0,
     },
+
     {
-      question: "Hangi yazar 'Madam Bovary' adlı eseri yazmıştır?",
-      options: [
-        "Gustave Flaubert",
-        "Victor Hugo",
-        "Émile Zola",
-        "Albert Camus",
-      ],
-      answer: 0,
-    },
-    {
-      question: "Hangi yazar 'Anna Karenina' adlı eseri yazmıştır?",
+      question: "Anna Karenina' adlı eseri yazan ünlü Rus yazar hangisidir?",
       options: [
         "Leo Tolstoy",
         "Fyodor Dostoevsky",
@@ -351,7 +344,6 @@ const questions = [
       options: ["Hidrojen", "Oksijen", "Demir", "Gümüş"],
       answer: 2,
     },
-
     {
       question: "Hangi yıl İkinci Dünya Savaşı sona ermiştir?",
       options: ["1939", "1945", "1949", "1955"],
@@ -362,7 +354,6 @@ const questions = [
       options: ["A", "B", "AB", "0"],
       answer: 3,
     },
-
     {
       question:
         "Hangi spor dalında 'vurush', 'ippon' gibi terimler kullanılır?",
@@ -379,7 +370,6 @@ const questions = [
       ],
       answer: 2,
     },
-
     {
       question: "Kim tarafından genel görelilik teorisi formüle edilmiştir?",
       options: [
@@ -390,7 +380,6 @@ const questions = [
       ],
       answer: 1,
     },
-
     {
       question: "Kim tarafından 'Evrim Teorisi' ortaya atılmıştır?",
       options: [
@@ -401,7 +390,6 @@ const questions = [
       ],
       answer: 0,
     },
-
     {
       question: "Hangi yazar 'Dönüşüm' adlı eseri yazmıştır?",
       options: [
@@ -412,7 +400,6 @@ const questions = [
       ],
       answer: 0,
     },
-
     {
       question: "Hangi yazar 'Yüzüklerin Efendisi' serisini yazmıştır?",
       options: [
@@ -444,12 +431,7 @@ const questions = [
 
       answer: 1,
     },
-    {
-      question:
-        "Hangi gezegenin adı Roma mitolojisinde savaş tanrısıyla ilişkilidir?",
-      options: ["Mars", "Venüs", "Jüpiter", "Neptün"],
-      answer: 0,
-    },
+
     {
       question: "Hangi yazar 'Sineklerin Tanrısı' adlı eseri yazmıştır?",
       options: [
@@ -538,6 +520,27 @@ const questions = [
       question: "Hangi ülkenin bayrağında beyaz renk yer almaz?",
       options: ["Fransa", "Almanya", "Türkiye", "Yunanistan"],
       answer: 1,
+    },
+    {
+      question:
+        "Hangi gezegenin adı Roma mitolojisinde savaş tanrısıyla ilişkilidir?",
+      options: ["Mars", "Venüs", "Jüpiter", "Neptün"],
+      answer: 0,
+    },
+    {
+      question: "Hangi yazar 'Madam Bovary' adlı eseri yazmıştır?",
+      options: [
+        "Gustave Flaubert",
+        "Victor Hugo",
+        "Émile Zola",
+        "Albert Camus",
+      ],
+      answer: 0,
+    },
+    {
+      question: "Hangi gezegen 'Kızıl Gezegen' olarak da adlandırılır?",
+      options: ["Mars", "Jüpiter", "Venüs", "Plüton"],
+      answer: 0,
     },
     {
       question: "Din kurallarına göre idare edilen yönetim biçimi hangisidir?",
