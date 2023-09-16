@@ -7,7 +7,7 @@ declare module "expo-router" {
   export * from 'expo-router/build';
 
   // prettier-ignore
-  type StaticRoutes = `/` | `/.DS_Store` | `/..swp` | `/_layout` | `/animation/_layout` | `/animation/animation-game` | `/banned-words/Word` | `/banned-words/_layout` | `/banned-words/banned-game` | `/hangman/_layout` | `/hangman/hangman-game` | `/jump/_layout` | `/jump/entities/` | `/jump/jump-game` | `/jump/physics` | `/quiz/_layout` | `/quiz/questions` | `/quiz/quiz-game` | `/roll-dice/_layout` | `/roll-dice/dice-game` | `/sudoku/_layout` | `/sudoku/board` | `/sudoku/sudoku-game` | `/who-am-i/WhoAmIData` | `/who-am-i/_layout` | `/who-am-i/who-am-i-game`;
+  type StaticRoutes = `/` | `/.DS_Store` | `/_layout` | `/animation/_layout` | `/animation/animation-game` | `/banned-words/Word` | `/banned-words/_layout` | `/banned-words/banned-game` | `/hangman/_layout` | `/hangman/hangman-game` | `/jump/_layout` | `/jump/entities/` | `/jump/jump-game` | `/jump/physics` | `/quiz/_layout` | `/quiz/questions` | `/quiz/quiz-game` | `/roll-dice/_layout` | `/roll-dice/dice-game` | `/sudoku/_layout` | `/sudoku/board` | `/sudoku/sudoku-game` | `/who-am-i/WhoAmIData` | `/who-am-i/_layout` | `/who-am-i/who-am-i-game`;
   // prettier-ignore
   type DynamicRoutes<T extends string> = never;
   // prettier-ignore

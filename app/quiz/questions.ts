@@ -1505,7 +1505,7 @@ const questions = [
     {
       question:
         "Dünya Hayvanları Koruma Federasyonu, 1931 yılında Floransa'da toplanarak dünya üzerinde yok olma tehdidi altında bulunan hayvan türlerine dikkat çekmek amacıyla hangi günü Hayvanları Koruma Günü olarak ilan etmiştir?",
-      options: ["20 Mayıs", "15 Temmuz", "4 Eylül", "10 Aralık"],
+      options: ["20 Mayıs", "15 Temmuz", "4 Ekim", "10 Aralık"],
       answer: 2,
     },
     {

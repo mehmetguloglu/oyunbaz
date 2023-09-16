@@ -14,6 +14,7 @@ import CountdownTimer from "../../components/CountdownTimer";
 import ExitButton from "../../components/ExitButton";
 import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
+import BannerAds from "../../components/google-ads/BannerAds";
 const { width, height } = Dimensions.get("window");
 const Quiz = () => {
   const router = useRouter();
@@ -90,7 +91,7 @@ const Quiz = () => {
           setSelected(4);
           setIsFinished(false);
         }
-      }, 4000);
+      }, 3000);
     } else setSelected(index);
   };
   const tryAgainButton = () => {
@@ -394,7 +395,7 @@ const Quiz = () => {
 
                         setSelected(4);
                         setIsFinished(false);
-                      }, 4000);
+                      }, 3000);
                     }}
                   />
                 </Stack>
@@ -575,6 +576,9 @@ const Quiz = () => {
           <ExitButton />
         </SafeAreaView>
       ) : null}
+      <Stack bg={"#dacfc3"} py={20}>
+        <BannerAds />
+      </Stack>
     </>
   );
 };

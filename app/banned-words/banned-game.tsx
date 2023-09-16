@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import ExitButton from "./../../components/ExitButton";
+import BannerAds from "../../components/google-ads/BannerAds";
 const { width, height } = Dimensions.get("window");
 const BannedWordsGame = () => {
   const router = useRouter();
@@ -378,7 +379,7 @@ const BannedWordsGame = () => {
       {!openModal && !scoreModal ? (
         <>
           <ExitButton />
-          <Stack bg={"white"} f={1} ai="center" jc="center">
+          <Stack bg={"white"} pt={40} f={1} ai="center" jc="center">
             <CountdownTimer
               fos={24}
               sow={8}
@@ -445,6 +446,7 @@ const BannedWordsGame = () => {
                 </Text>
               </YStack>
             </YStack>
+
             <XStack mx={15} jc="space-between">
               <YStack mr={4} f={1}>
                 <Button
@@ -527,6 +529,9 @@ const BannedWordsGame = () => {
                 </Stack>
               </YStack>
             </XStack>
+          </Stack>
+          <Stack bg={"white"} py={20}>
+            <BannerAds />
           </Stack>
         </>
       ) : null}

@@ -192,9 +192,9 @@ const HomeScreen = () => {
               </XStack>
             </ScrollView>
             {/* BANNER ADS */}
-            <Stack pt={10}>
+            {/* <Stack pt={10}>
               <BannerAds />
-            </Stack>
+            </Stack> */}
           </SafeAreaView>
         </Stack>
       </>
@@ -416,6 +416,7 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
+
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,

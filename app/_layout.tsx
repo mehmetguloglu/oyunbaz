@@ -1,5 +1,5 @@
-import { Suspense, useEffect, useMemo } from "react";
-import { Pressable, SafeAreaView, useColorScheme } from "react-native";
+import { Suspense, useMemo } from "react";
+import { useColorScheme } from "react-native";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -10,6 +10,8 @@ import StorageKeys from "../utils/storage-keys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as StoreReview from "expo-store-review";
 import config from "../tamagui.config";
+import { Provider } from "react-redux";
+import { store } from "../bussiness/redux-store";
 
 export default function Layout() {
   const colorScheme = useColorScheme();
@@ -64,69 +66,72 @@ export default function Layout() {
     storeReviewOpen();
   }, []);
   return (
-    <TamaguiProvider config={config}>
-      <Suspense
-        fallback={
-          <View f={1} backgroundColor={"red"} ai="center" jc="center">
-            <Text>Loading...</Text>
-          </View>
-        }
-      >
-        <Theme name={colorScheme}>
-          <ThemeProvider
-            value={colorScheme === "light" ? DefaultTheme : DefaultTheme}
-          >
-            <Stack
-              screenOptions={{ headerShown: false, gestureEnabled: false }}
+    <Provider store={store}>
+      <TamaguiProvider config={config}>
+        <Suspense
+          fallback={
+            <View f={1} backgroundColor={"red"} ai="center" jc="center">
+              <Text>Loading...</Text>
+            </View>
+          }
+        >
+          <Theme name={colorScheme}>
+            <ThemeProvider
+              value={colorScheme === "light" ? DefaultTheme : DefaultTheme}
             >
-              <Stack.Screen
-                name="index"
-                options={{
-                  headerShown: false,
-                  headerTitleAlign: "center",
-                }}
-              />
-              <Stack.Screen
-                name="banned-words"
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="hangman"
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="quiz"
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="roll-dice"
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="who-am-i"
-                options={{
-                  headerShown: false,
-                }}
-              />
-              <Stack.Screen
-                name="sudoku"
-                options={{
-                  headerShown: false,
-                }}
-              />
-            </Stack>
-          </ThemeProvider>
-        </Theme>
-      </Suspense>
-      <StatusBar />
-    </TamaguiProvider>
+              <Stack
+                initialRouteName="index"
+                screenOptions={{ headerShown: false, gestureEnabled: false }}
+              >
+                <Stack.Screen
+                  name="index"
+                  options={{
+                    headerShown: false,
+                    headerTitleAlign: "center",
+                  }}
+                />
+                <Stack.Screen
+                  name="banned-words"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="hangman"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="quiz"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="roll-dice"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="who-am-i"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="sudoku"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+              </Stack>
+            </ThemeProvider>
+          </Theme>
+        </Suspense>
+        <StatusBar />
+      </TamaguiProvider>
+    </Provider>
   );
 }

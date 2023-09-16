@@ -13,6 +13,7 @@ import ExitButton from "../../components/ExitButton";
 import board from "./board";
 import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
+import BannerAds from "../../components/google-ads/BannerAds";
 
 const { width, height } = Dimensions.get("screen");
 const SudokuGame = () => {
@@ -39,7 +40,7 @@ const SudokuGame = () => {
         >
           <ExitButton />
 
-          <Stack f={1} ai="center" jc="center">
+          <Stack mt={40} f={1} ai="center" jc="center">
             <Text fos={26} fow={"700"}>
               {wrong}
             </Text>
@@ -238,6 +239,9 @@ const SudokuGame = () => {
           </View>
         </View>
       </Modal>
+      <Stack bg={"white"} py={20}>
+        <BannerAds />
+      </Stack>
     </>
   );
 };

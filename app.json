@@ -70,7 +70,7 @@
       "url": "https://u.expo.dev/a4f152d2-7c22-4554-9a7d-2b24343de86b"
     },
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": false
     }
   },
   "react-native-google-mobile-ads": {

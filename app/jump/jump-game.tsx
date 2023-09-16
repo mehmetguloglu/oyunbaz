@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect, useMemo } from "react";
-import { SafeAreaView, TouchableOpacity, View } from "react-native";
+import { Pressable, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { GameEngine } from "react-native-game-engine";
 import entities from "./entities";
 import Physics from "./physics";
@@ -8,8 +8,15 @@ import { YStack, Text, Stack } from "tamagui";
 import ExitButton from "../../components/ExitButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import StorageKeys from "../../utils/storage-keys";
+import { useAppDispatch, useAppSelector } from "../../bussiness/hooks";
+import { setDeveloperMode } from "../../bussiness/reducers/developerModeReducer";
+import * as Burnt from "burnt";
 
 export default function App() {
+  const dispatch = useAppDispatch();
+  const { developerMode } = useAppSelector(
+    (state) => state.developerModeReducer
+  );
   const [running, setRunning] = useState(false);
   const [gameEngine, setGameEngine] = useState(null);
   const [currentPoints, setCurrentPoints] = useState(0);
@@ -32,6 +39,22 @@ export default function App() {
   useMemo(() => {
     getMaxCount();
   }, [running]);
+  let developerModeCount = 0;
+  const _handleDeveloperCount = () => {
+    developerModeCount++;
+  };
+
+  const _handleDeveloperMode = () => {
+    if (developerModeCount > 10) {
+      dispatch(setDeveloperMode(true));
+      Burnt.toast({
+        title: "Geliştirici modu açıldı",
+        preset: "done",
+        duration: 1,
+        haptic: "success",
+      });
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -79,16 +102,29 @@ export default function App() {
             opacity: 0.9,
           }}
         >
-          <YStack
-            my={15}
-            p={12}
-            br={12}
-            mx={3}
-            ai="center"
-            borderWidth={2}
-            boc={"#a67c00"}
-            position="absolute"
-            top={0}
+          <Pressable
+            onLongPress={() => _handleDeveloperMode()}
+            onPress={() => _handleDeveloperCount()}
+            style={{
+              marginVertical: 15,
+              padding: 12,
+              borderRadius: 12,
+              marginHorizontal: 3,
+              alignItems: "center",
+              borderWidth: 2,
+              borderColor: "#a67c00",
+              position: "absolute",
+              top: 0,
+            }}
+            // my={15}
+            // p={12}
+            // br={12}
+            // mx={3}
+            // ai="center"
+            // borderWidth={2}
+            // boc={"#a67c00"}
+            // position="absolute"
+            // top={0}
           >
             <Text fow={"600"} color={"#a67c00"}>
               Rekor
@@ -97,7 +133,7 @@ export default function App() {
               {maxPoint}
             </Text>
             <Stack mt={5} br={6} py={6} px={6} bg={"#bf9b30"}></Stack>
-          </YStack>
+          </Pressable>
           {currentPoints != 0 ? (
             <YStack
               my={15}
