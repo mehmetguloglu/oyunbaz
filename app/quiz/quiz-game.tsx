@@ -574,11 +574,11 @@ const Quiz = () => {
             </Stack>
           </YStack>
           <ExitButton />
+          <Stack bg={"#dacfc3"} pt={20}>
+            <BannerAds />
+          </Stack>
         </SafeAreaView>
       ) : null}
-      <Stack bg={"#dacfc3"} py={20}>
-        <BannerAds />
-      </Stack>
     </>
   );
 };
@@ -589,6 +589,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#dacfc3",
   },
   modalView: {
     padding: 20,

@@ -232,182 +232,168 @@ const HomeScreen = () => {
               </XStack>
             </XStack>
             {/* BODY */}
-            <ScrollView bg={"white"} mx={15}>
-              {/* UPDATE */}
-              <XStack ai="center">
-                <Text f={1} color={"#5c5752"}>
-                  Uygulamamızdaki tüm veriler düzenli olarak güncelleniyor. Oyun
-                  zevkini en üst düzeyde yaşamak için uygulamayı güncellemeyi
-                  unutma!
-                </Text>
-
-                <Pressable
-                  style={{
-                    width: 90,
-                    height: 90,
-                    backgroundColor: "white",
-                    borderWidth: 1,
-                    borderColor: "#1870e2",
-                    marginLeft: 5,
-                    flexDirection: "column",
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 10,
-                  }}
-                  onPress={() => _handlePressButtonAsync()}
-                >
-                  {Platform.OS == "android" ? (
-                    <FontAwesome5
-                      name="google-play"
-                      size={22}
-                      color="#1870e2"
-                    />
-                  ) : (
-                    <FontAwesome5 name="app-store" size={24} color="#1870e2" />
-                  )}
-                  <Text mt={10} color={"#1870e2"}>
-                    Güncelle
+            <ScrollView bg={"white"}>
+              <YStack bg={"white"} mx={15}>
+                {/* UPDATE */}
+                <XStack ai="center">
+                  <Text f={1} color={"#5c5752"}>
+                    Uygulamamızdaki tüm veriler düzenli olarak güncelleniyor.
+                    Oyun zevkini en üst düzeyde yaşamak için uygulamayı
+                    güncellemeyi unutma!
                   </Text>
-                </Pressable>
-              </XStack>
-              {/* RATİNG */}
-              <XStack mt={15} ai="center">
-                <Text f={1} color={"#5c5752"}>
-                  Uygulamamızı beğendin mi?{" "}
-                  {Platform.OS == "android" ? "Google Play" : "App"} Store'da
-                  uygulamamızı değerlendir!
-                </Text>
 
-                <Pressable
-                  style={{
-                    width: 90,
-                    height: 90,
-                    backgroundColor: "white",
-                    borderWidth: 1,
-                    borderColor: "orange",
-                    marginLeft: 5,
-                    flexDirection: "column",
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onPress={() => storeReviewOpen()}
-                >
-                  <FontAwesome name="star" size={22} color="orange" />
-                  <Text fos={13} mt={10} color={"#5c5752"}>
-                    Değerlendir
-                  </Text>
-                </Pressable>
-              </XStack>
-              {/* SHARE */}
-              <XStack mt={15} ai="center">
-                <Text f={1} color={"#5c5752"}>
-                  Oyunu paylaş, geliştiricilerimize destek ol ve arkadaşlarınla
-                  birlikte oynamanın keyfini çıkar!
-                </Text>
-
-                <Pressable
-                  style={{
-                    width: 90,
-                    height: 90,
-                    backgroundColor: "white",
-                    borderWidth: 1,
-                    borderColor: "green",
-                    marginLeft: 5,
-                    flexDirection: "column",
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onPress={() => onShare()}
-                >
-                  <FontAwesome
-                    name="share-alt-square"
-                    size={24}
-                    color="green"
-                  />
-                  <Text fos={13} mt={10} color={"#5c5752"}>
-                    Paylaş
-                  </Text>
-                </Pressable>
-              </XStack>
-              {/* CONTACT MAİL */}
-              <XStack mt={15} ai="center">
-                <Text f={1} color={"#5c5752"}>
-                  Görüşlerinizi önemsiyoruz. Görüş, Öneri ve Şikayetlerinizi
-                  bildirmek için bizimle iletişime geçin.
-                </Text>
-
-                <Pressable
-                  style={{
-                    width: 90,
-                    height: 90,
-                    backgroundColor: "white",
-                    borderWidth: 1,
-                    borderColor: "black",
-                    marginLeft: 5,
-                    flexDirection: "column",
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onPress={() => {
-                    Linking.openURL("mailto:av.mehmetguloglu@gmail.com");
-                  }}
-                >
-                  <Entypo name="mail" size={21} color="black" />
-                  <Text fos={13} mt={5} color="black">
-                    İletişim
-                  </Text>
-                </Pressable>
-              </XStack>
-              {/* WATCH ADS */}
-              <XStack mt={15} ai="center">
-                <Text f={1} color={isLoaded ? "#054582" : "#5c5752"}>
-                  Uygulamamızı beğendiysen reklam izleyerek bize destek
-                  olabilirsin!
-                </Text>
-
-                <Button
-                  width={90}
-                  height={90}
-                  bg={"white"}
-                  borderWidth={1}
-                  p={0}
-                  boc={isLoaded ? "#054582" : "gray"}
-                  br={20}
-                  ml={5}
-                  fd="column"
-                  onPress={() => {
-                    if (isLoaded) show();
-                  }}
-                  disabled={!isLoaded}
-                >
-                  {isLoaded ? (
-                    <FontAwesome
-                      name="play-circle"
-                      size={22}
-                      color={isLoaded ? "#054582" : "gray"}
-                    />
-                  ) : (
-                    <Spinner color="#054582" />
-                  )}
-                  <Text
-                    ta="center"
-                    fos={13}
-                    mt={0}
-                    color={isLoaded ? "#054582" : "gray"}
+                  <Button
+                    width={90}
+                    height={90}
+                    bg={"white"}
+                    borderWidth={1}
+                    p={0}
+                    boc={"#1870e2"}
+                    br={20}
+                    ml={5}
+                    fd="column"
+                    onPress={() => _handlePressButtonAsync()}
                   >
-                    Reklam İzle
+                    {Platform.OS == "android" ? (
+                      <FontAwesome5
+                        name="google-play"
+                        size={22}
+                        color="#1870e2"
+                      />
+                    ) : (
+                      <FontAwesome5
+                        name="app-store"
+                        size={24}
+                        color="#1870e2"
+                      />
+                    )}
+                    <Text color={"#1870e2"}>Güncelle</Text>
+                  </Button>
+                </XStack>
+                {/* RATİNG */}
+                <XStack mt={15} ai="center">
+                  <Text f={1} color={"#5c5752"}>
+                    Uygulamamızı beğendin mi?{" "}
+                    {Platform.OS == "android" ? "Google Play" : "App"} Store'da
+                    uygulamamızı değerlendir!
                   </Text>
-                </Button>
-              </XStack>
+
+                  <Button
+                    width={90}
+                    height={90}
+                    bg={"white"}
+                    borderWidth={1}
+                    p={0}
+                    boc={"orange"}
+                    br={20}
+                    ml={5}
+                    fd="column"
+                    onPress={() => storeReviewOpen()}
+                  >
+                    <FontAwesome name="star" size={22} color="orange" />
+                    <Text fos={13} color={"#5c5752"}>
+                      Değerlendir
+                    </Text>
+                  </Button>
+                </XStack>
+                {/* SHARE */}
+                <XStack mt={15} ai="center">
+                  <Text f={1} color={"#5c5752"}>
+                    Oyunu paylaş, geliştiricilerimize destek ol ve
+                    arkadaşlarınla birlikte oynamanın keyfini çıkar!
+                  </Text>
+
+                  <Button
+                    width={90}
+                    height={90}
+                    bg={"white"}
+                    borderWidth={1}
+                    p={0}
+                    boc={"green"}
+                    br={20}
+                    ml={5}
+                    fd="column"
+                    onPress={() => onShare()}
+                  >
+                    <FontAwesome
+                      name="share-alt-square"
+                      size={24}
+                      color="green"
+                    />
+                    <Text color={"#5c5752"}>Paylaş</Text>
+                  </Button>
+                </XStack>
+                {/* CONTACT MAİL */}
+                <XStack mt={15} ai="center">
+                  <Text f={1} color={"#5c5752"}>
+                    Görüşlerinizi önemsiyoruz. Görüş, Öneri ve Şikayetlerinizi
+                    bildirmek için bizimle iletişime geçin.
+                  </Text>
+
+                  <Button
+                    width={90}
+                    height={90}
+                    bg={"white"}
+                    borderWidth={1}
+                    p={0}
+                    boc={"black"}
+                    br={20}
+                    ml={5}
+                    fd="column"
+                    onPress={() => {
+                      Linking.openURL("mailto:av.mehmetguloglu@gmail.com");
+                    }}
+                  >
+                    <Entypo name="mail" size={21} color="black" />
+                    <Text color="black">İletişim</Text>
+                  </Button>
+                </XStack>
+                {/* WATCH ADS */}
+                <XStack mt={15} ai="center">
+                  <Text f={1} color={isLoaded ? "#054582" : "#5c5752"}>
+                    Uygulamamızı beğendiysen reklam izleyerek bize destek
+                    olabilirsin!
+                  </Text>
+
+                  <Button
+                    width={90}
+                    height={90}
+                    bg={"white"}
+                    borderWidth={1}
+                    p={0}
+                    boc={isLoaded ? "#054582" : "gray"}
+                    br={20}
+                    ml={5}
+                    fd="column"
+                    onPress={() => {
+                      if (isLoaded) show();
+                    }}
+                    disabled={!isLoaded}
+                  >
+                    {isLoaded ? (
+                      <FontAwesome
+                        name="play-circle"
+                        size={22}
+                        color={isLoaded ? "#054582" : "gray"}
+                      />
+                    ) : (
+                      <Spinner color="#054582" />
+                    )}
+                    <Text
+                      ta="center"
+                      fos={13}
+                      color={isLoaded ? "#054582" : "gray"}
+                    >
+                      Reklam İzle
+                    </Text>
+                  </Button>
+                </XStack>
+              </YStack>
+              {/* BANNER ADS */}
+              <Stack mt={15}>
+                <BannerAds />
+              </Stack>
             </ScrollView>
-            {/* BANNER ADS */}
-            <Stack pt={10}>
-              <BannerAds />
-            </Stack>
           </View>
         </SafeAreaView>
       </Modal>

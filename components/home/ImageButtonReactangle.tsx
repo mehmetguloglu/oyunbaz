@@ -2,7 +2,7 @@ import { Pressable, Dimensions } from "react-native";
 import React from "react";
 import { router } from "expo-router";
 import { XStack, Text, Stack } from "tamagui";
-import { Image } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -11,11 +11,12 @@ const ImageButtonReactangle = ({ source, onPress, text, bgcolor }) => {
     "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
   return (
-    <Image
+    <ImageBackground
       style={{
         width: width * 0.44,
         height: width * 0.2,
         borderRadius: 10,
+        overflow: "hidden",
       }}
       placeholder={blurhash}
       contentFit="cover"
@@ -34,7 +35,7 @@ const ImageButtonReactangle = ({ source, onPress, text, bgcolor }) => {
           </Stack>
         </Pressable>
       </XStack>
-    </Image>
+    </ImageBackground>
   );
 };
 

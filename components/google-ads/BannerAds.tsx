@@ -1,5 +1,5 @@
 import { Dimensions, Platform } from "react-native";
-import React from "react";
+import React, { memo } from "react";
 import { BannerAd, TestIds } from "react-native-google-mobile-ads";
 import { useAppSelector } from "../../bussiness/hooks";
 
@@ -9,6 +9,7 @@ const BannerAds = () => {
   const { developerMode } = useAppSelector(
     (state) => state.developerModeReducer
   );
+  const calcHeight = (height > 1000 ? height / 18 : height / 12).toFixed(0);
   const adBannerId =
     __DEV__ || developerMode
       ? TestIds.BANNER
@@ -19,7 +20,7 @@ const BannerAds = () => {
   return (
     <BannerAd
       unitId={adBannerId}
-      size={`${width}x${height > 1000 ? height / 18 : height / 12}`}
+      size={`${width.toFixed(0)}x${calcHeight}`}
       requestOptions={{
         requestNonPersonalizedAdsOnly: true,
       }}
@@ -27,4 +28,4 @@ const BannerAds = () => {
   );
 };
 
-export default BannerAds;
+export default memo(BannerAds);
