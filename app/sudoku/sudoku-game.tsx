@@ -14,7 +14,7 @@ import board from "./board";
 import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
-
+// adding
 const { width, height } = Dimensions.get("screen");
 const SudokuGame = () => {
   const router = useRouter();
