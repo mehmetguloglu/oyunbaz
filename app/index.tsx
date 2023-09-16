@@ -403,11 +403,11 @@ const HomeScreen = () => {
                   </Text>
                 </Button>
               </XStack>
-              {/* BANNER ADS */}
-              <Stack pt={10}>
-                <BannerAds />
-              </Stack>
             </ScrollView>
+            {/* BANNER ADS */}
+            <Stack pt={10}>
+              <BannerAds />
+            </Stack>
           </View>
         </SafeAreaView>
       </Modal>

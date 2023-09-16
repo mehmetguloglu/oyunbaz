@@ -1,6 +1,10 @@
 {
   "devices": [
     {
+      "installationId": "DB80CBFB-3EC2-4341-BAE5-613CDF8316EB",
+      "lastUsed": 1694869127508
+    },
+    {
       "installationId": "A276A52B-10B5-45DF-A80A-D97800AB332B",
       "lastUsed": 1694809980940
     },
@@ -23,10 +27,6 @@
     {
       "installationId": "23D7966C-170D-4895-8CD0-A5729A447947",
       "lastUsed": 1694775153796
-    },
-    {
-      "installationId": "DB80CBFB-3EC2-4341-BAE5-613CDF8316EB",
-      "lastUsed": 1694729129987
     },
     {
       "installationId": "7bc7bcd2-1498-4582-9f5d-70d431bd87a8",

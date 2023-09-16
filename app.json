@@ -26,7 +26,7 @@
     "name": "Oyunbaz",
     "slug": "oyunbaz",
     "scheme": "oyunbaz",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -39,14 +39,14 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.oyunbaz.app",
-      "buildNumber": "1.0.2"
+      "buildNumber": "1.0.3"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 2,
+      "versionCode": 3,
       "package": "com.oyunbaz.app"
     },
     "web": {
