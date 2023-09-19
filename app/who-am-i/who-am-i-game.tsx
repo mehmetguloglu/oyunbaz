@@ -16,6 +16,7 @@ import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
+import { buttonBlue, modalMaxWidth } from "../../utils/colors";
 
 const WhoAmI = () => {
   const router = useRouter();
@@ -94,7 +95,7 @@ const WhoAmI = () => {
               <SelectDropdown
                 data={seconds}
                 buttonStyle={{
-                  backgroundColor: "#0092cc",
+                  backgroundColor: buttonBlue,
                   borderRadius: 20,
                 }}
                 defaultButtonText={"120 Saniye"}
@@ -119,7 +120,7 @@ const WhoAmI = () => {
                   fontWeight: "bold",
                 }}
                 selectedRowStyle={{
-                  backgroundColor: "#0092cc",
+                  backgroundColor: buttonBlue,
                 }}
                 onSelect={(selectedItem, index) => {
                   {
@@ -154,10 +155,10 @@ const WhoAmI = () => {
                   }}
                   mr={5}
                   f={1}
-                  boc={"#0092cc"}
+                  boc={buttonBlue}
                   borderWidth={1}
                 >
-                  <Text fow={"500"} fos={16} color={"#0092cc"}>
+                  <Text fow={"500"} fos={16} color={buttonBlue}>
                     Çıkış
                   </Text>
                 </Button>
@@ -167,7 +168,7 @@ const WhoAmI = () => {
                   }}
                   ml={5}
                   f={1}
-                  bg={"#0092cc"}
+                  bg={buttonBlue}
                 >
                   <Text fow={"500"} fos={16} color={"white"}>
                     Başla
@@ -242,9 +243,9 @@ const WhoAmI = () => {
                   }}
                   mr={5}
                   f={1}
-                  boc={"#0092cc"}
+                  boc={buttonBlue}
                 >
-                  <Text fow={"500"} fos={16} color={"#0092cc"}>
+                  <Text fow={"500"} fos={16} color={buttonBlue}>
                     Çıkış
                   </Text>
                 </Button>
@@ -254,7 +255,7 @@ const WhoAmI = () => {
                   }}
                   ml={5}
                   f={1}
-                  bg={"#0092cc"}
+                  bg={buttonBlue}
                 >
                   <Text fow={"500"} fos={16} color={"white"}>
                     Başla
@@ -396,6 +397,7 @@ const styles = StyleSheet.create({
   modalView: {
     padding: 20,
     margin: 20,
+    maxWidth: modalMaxWidth,
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",

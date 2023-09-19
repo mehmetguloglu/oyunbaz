@@ -15,6 +15,7 @@ import ExitButton from "../../components/ExitButton";
 import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
+import { buttonBlue, modalMaxWidth, quizGameBG } from "../../utils/colors";
 const { width, height } = Dimensions.get("window");
 const Quiz = () => {
   const router = useRouter();
@@ -159,10 +160,10 @@ const Quiz = () => {
                 }}
                 mr={5}
                 f={1}
-                boc={"#837c75"}
+                boc={buttonBlue}
                 borderWidth={1}
               >
-                <Text fow={"500"} fos={16} color={"#837c75"}>
+                <Text fow={"500"} fos={16} color={buttonBlue}>
                   Çıkış
                 </Text>
               </Button>
@@ -172,7 +173,7 @@ const Quiz = () => {
                 }}
                 ml={5}
                 f={1}
-                bg={"#aea69c"}
+                bg={buttonBlue}
               >
                 <Text fow={"500"} fos={16} color={"white"}>
                   Başla
@@ -333,9 +334,9 @@ const Quiz = () => {
                 mr={5}
                 f={1}
                 borderWidth={1}
-                boc={"#0092cc"}
+                boc={buttonBlue}
               >
-                <Text fow={"500"} fos={16} color={"#0092cc"}>
+                <Text fow={"500"} fos={16} color={buttonBlue}>
                   Çıkış
                 </Text>
               </Button>
@@ -345,7 +346,7 @@ const Quiz = () => {
                 }}
                 ml={5}
                 f={1}
-                bg={"#0092cc"}
+                bg={buttonBlue}
               >
                 <Text fow={"500"} fos={16} color={"white"}>
                   Tekrar Oyna
@@ -360,7 +361,7 @@ const Quiz = () => {
           style={{
             flex: 1,
             justifyContent: "flex-end",
-            backgroundColor: "#dacfc3",
+            backgroundColor: quizGameBG,
           }}
         >
           {/* Question */}
@@ -590,7 +591,7 @@ const Quiz = () => {
             </Stack>
           </YStack>
           <ExitButton />
-          <Stack bg={"#dacfc3"} pt={20}>
+          <Stack>
             <BannerAds />
           </Stack>
         </SafeAreaView>
@@ -605,11 +606,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#dacfc3",
   },
   modalView: {
     padding: 20,
     margin: 20,
+    maxWidth: modalMaxWidth,
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",

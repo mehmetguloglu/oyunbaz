@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button, XStack, YStack, Text, Image, Stack } from "tamagui";
 import ExitButton from "../../components/ExitButton";
 import BannerAds from "../../components/google-ads/BannerAds";
+import { buttonBlue } from "../../utils/colors";
 const { width, height } = Dimensions.get("screen");
 const RollDice = () => {
   const [dice1, setDice1] = useState(6);
@@ -67,8 +68,8 @@ const RollDice = () => {
             ml={8}
           />
         </XStack>
-        <Button size={"$7"} borderWidth={1} boc={"green"} onPress={roll}>
-          <Text fos={21} fow={"600"} color={"green"}>
+        <Button size={"$7"} borderWidth={1} boc={buttonBlue} onPress={roll}>
+          <Text fos={21} fow={"600"} color={buttonBlue}>
             Zar At!
           </Text>
         </Button>

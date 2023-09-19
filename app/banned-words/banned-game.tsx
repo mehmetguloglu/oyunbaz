@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import Word from "./Word";
 import CountdownTimer from "./../../components/CountdownTimer";
 import { Stack, YStack, Text, Separator, XStack, Button } from "tamagui";
@@ -11,10 +11,13 @@ import {
   ScrollView,
   Dimensions,
   Platform,
+  SafeAreaView,
+  Animated,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import ExitButton from "./../../components/ExitButton";
 import BannerAds from "../../components/google-ads/BannerAds";
+import { buttonBlue, buttonRed, modalMaxWidth } from "../../utils/colors";
 const { width, height } = Dimensions.get("window");
 const BannedWordsGame = () => {
   const router = useRouter();
@@ -37,6 +40,7 @@ const BannedWordsGame = () => {
   const [blueScore, setBlueScore] = useState(0);
   const [redScore, setRedScore] = useState(0);
   const [time, setTime] = useState(120);
+
   const randomWord = () => {
     if (showWords.current.length == Word.length) {
       showWords.current = [];
@@ -87,452 +91,458 @@ const BannedWordsGame = () => {
   };
   return (
     <>
-      <Modal animationType="none" transparent={false} visible={openModal}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text fos={18} mb={8} fow={"700"}>
-              Yasaklı Kelimeler
-            </Text>
-            <YStack mb={15}>
-              <ScrollView
-                style={{ maxHeight: height * 0.25 }}
-                showsVerticalScrollIndicator={false}
-              >
-                <Text>
-                  Nasıl Oynanır?{"\n"}
-                  1- Katılımcılar,{" "}
-                  <Text color={"#0092cc"} fow={"500"}>
-                    Mavi
-                  </Text>{" "}
-                  ve{" "}
-                  <Text color={"#f02626"} fow={"500"}>
-                    Kırmızı
-                  </Text>{" "}
-                  olmak üzere iki farklı takıma ayrılırlar. Oyuna Mavi takım
-                  başlar. {"\n"}
-                  2- Her tur için ne kadar süre verileceği, aşağıda yer alan
-                  zamanlayıcı ile belirlenmelidir. {"\n"}
-                  3- Mavi takımdan seçilecek ilk oyuncu, yani "İpucu Verici,"
-                  ekranda görünen ana kelimeyi takım arkadaşlarına açıklamaya
-                  çalışır. Ancak, ekranın alt kısmında belirtilen yasaklı
-                  kelimeleri kullanmak kesinlikle yasaktır. Takım arkadaşları,
-                  İpucu Verici'nin sunduğu açıklamalardan hareketle kelimeyi
-                  tahmin etmeye çalışır. {"\n"}
-                  4- Her turda, belirtilen süre zarfında maksimum sayıda
-                  kelimeyi tamamlamayı hedefleyin. Doğru tahmin başına
-                  takımınıza bir puan eklenir.{"\n"}
-                  5- Eğer İpucu Verici, yasaklı kelimelerden herhangi birini
-                  kullanırsa, "Hata" butonuna tıklanmalı ve bir sonraki kelimeye
-                  geçilmelidir. {"\n"}
-                  6- Zamanlayıcı'nın süresi dolduğunda, oyun sırası diğer takıma
-                  geçer. Her yeni turda, farklı bir katılımcı "İpucu Verici"
-                  rolünü üstlenir.
-                  {"\n"}
-                  7- Her turun sonunda takımların puanları gösterilir. En yüksek
-                  puanı toplayan takım, oyunun galibi olarak ilan edilir.
-                </Text>
-              </ScrollView>
-            </YStack>
-            <SelectDropdown
-              data={seconds}
-              buttonStyle={{
-                backgroundColor: "#0092cc",
-                borderRadius: 20,
-              }}
-              defaultButtonText={"120 Saniye"}
-              renderDropdownIcon={() => {
-                return <Feather name="chevron-down" size={24} color="white" />;
-              }}
-              dropdownStyle={{
-                backgroundColor: "gray",
-                borderRadius: 20,
-              }}
-              rowTextStyle={{
-                color: "white",
-                fontSize: 14,
-                fontWeight: "bold",
-              }}
-              dropdownIconPosition={"right"}
-              buttonTextStyle={{
-                color: "white",
-                fontSize: 15,
-                fontWeight: "bold",
-              }}
-              selectedRowStyle={{
-                backgroundColor: "#0092cc",
-              }}
-              onSelect={(selectedItem, index) => {
-                {
-                  index == 1
-                    ? setTime(90)
-                    : index == 2
-                    ? setTime(120)
-                    : index == 3
-                    ? setTime(150)
-                    : index == 4
-                    ? setTime(180)
-                    : index == 5
-                    ? setTime(240)
-                    : setTime(60);
-                }
-              }}
-              buttonTextAfterSelection={(selectedItem, index) => {
-                return selectedItem;
-              }}
-              rowTextForSelection={(item, index) => {
-                return item;
-              }}
-            />
-            <XStack my={18}>
-              <Text fow={"700"} fos={16} color={"#0092cc"}>
-                Mavi
+      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+        <Modal animationType="slide" transparent={false} visible={openModal}>
+          <View style={[styles.centeredView]}>
+            <View style={styles.modalView}>
+              <Text fos={18} mb={8} fow={"700"}>
+                Yasaklı Kelimeler
               </Text>
-              <Text fos={16}> takım anlatacak.</Text>
-            </XStack>
-            <XStack>
-              <Button
-                onPress={() => {
-                  setOpenModal(false);
-                  setTimeout(() => {
-                    router.push("/");
-                  }, 500);
-                }}
-                mr={5}
-                f={1}
-                boc={"#0092cc"}
-                borderWidth={1}
-              >
-                <Text fow={"500"} fos={16} color={"#0092cc"}>
-                  Çıkış
-                </Text>
-              </Button>
-              <Button
-                onPress={() => {
-                  setOpenModal(false);
-                }}
-                ml={5}
-                f={1}
-                bg={"#0092cc"}
-              >
-                <Text fow={"500"} fos={16} color={"white"}>
-                  Başla
-                </Text>
-              </Button>
-            </XStack>
-          </View>
-        </View>
-      </Modal>
-      <Modal animationType="slide" transparent={false} visible={scoreModal}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text fos={21} mb={8} fow={"700"}>
-              Skor
-            </Text>
-
-            <YStack my={18}>
-              <XStack>
-                <YStack
-                  p={12}
-                  br={12}
-                  mr={4}
-                  ai="center"
-                  borderWidth={2}
-                  boc={"green"}
+              <YStack mb={15}>
+                <ScrollView
+                  style={{ maxHeight: height * 0.25 }}
+                  showsVerticalScrollIndicator={false}
                 >
-                  <Text fow={"600"} color={"green"}>
-                    Doğru Sayısı
+                  <Text>
+                    Nasıl Oynanır?{"\n"}
+                    1- Katılımcılar,{" "}
+                    <Text color={buttonBlue} fow={"500"}>
+                      Mavi
+                    </Text>{" "}
+                    ve{" "}
+                    <Text color={buttonRed} fow={"500"}>
+                      Kırmızı
+                    </Text>{" "}
+                    olmak üzere iki farklı takıma ayrılırlar. Oyuna Mavi takım
+                    başlar. {"\n"}
+                    2- Her tur için ne kadar süre verileceği, aşağıda yer alan
+                    zamanlayıcı ile belirlenmelidir. {"\n"}
+                    3- Mavi takımdan seçilecek ilk oyuncu, yani "İpucu Verici,"
+                    ekranda görünen ana kelimeyi takım arkadaşlarına açıklamaya
+                    çalışır. Ancak, ekranın alt kısmında belirtilen yasaklı
+                    kelimeleri kullanmak kesinlikle yasaktır. Takım arkadaşları,
+                    İpucu Verici'nin sunduğu açıklamalardan hareketle kelimeyi
+                    tahmin etmeye çalışır. {"\n"}
+                    4- Her turda, belirtilen süre zarfında maksimum sayıda
+                    kelimeyi tamamlamayı hedefleyin. Doğru tahmin başına
+                    takımınıza bir puan eklenir.{"\n"}
+                    5- Eğer İpucu Verici, yasaklı kelimelerden herhangi birini
+                    kullanırsa, "Hata" butonuna tıklanmalı ve bir sonraki
+                    kelimeye geçilmelidir. {"\n"}
+                    6- Zamanlayıcı'nın süresi dolduğunda, oyun sırası diğer
+                    takıma geçer. Her yeni turda, farklı bir katılımcı "İpucu
+                    Verici" rolünü üstlenir.
+                    {"\n"}
+                    7- Her turun sonunda takımların puanları gösterilir. En
+                    yüksek puanı toplayan takım, oyunun galibi olarak ilan
+                    edilir.
                   </Text>
-                  <Text mt={4} fow={"600"} color={"green"} fos={18}>
-                    {correct}
-                  </Text>
-                </YStack>
-                <YStack
-                  p={12}
-                  br={12}
-                  ml={4}
-                  ai="center"
-                  borderWidth={2}
-                  boc={"orangered"}
-                >
-                  <Text fow={"600"} color={"orangered"}>
-                    Hata Sayısı
-                  </Text>
-                  <Text mt={4} fow={"600"} color={"orangered"} fos={18}>
-                    {wrong}
-                  </Text>
-                </YStack>
-              </XStack>
-              <YStack my={8} overflow="hidden" ai="center">
-                <XStack position="absolute" ai="center">
-                  <Text
-                    mt={8}
-                    fos={16}
-                    fow={"800"}
-                    color={"#0092cc"}
-                    zIndex={1}
-                    f={1}
-                    ta="right"
-                    mr={4}
-                  >
-                    TOPLAM
-                  </Text>
-                  <Text
-                    mt={8}
-                    fos={16}
-                    fow={"800"}
-                    color={"#f02626"}
-                    zIndex={1}
-                    f={1}
-                    ta="left"
-                    ml={4}
-                  >
-                    SKOR
-                  </Text>
-                </XStack>
-                <XStack>
-                  <Stack
-                    borderTopWidth={2}
-                    borderBottomWidth={2}
-                    borderLeftWidth={2}
-                    boc={"#0092cc"}
-                    borderTopLeftRadius={20}
-                    borderBottomLeftRadius={20}
-                    p={12}
-                    pt={32}
-                    f={1}
-                    ai="center"
-                    jc="center"
-                  >
-                    <Text fow={"800"} color={"#0092cc"} fos={21}>
-                      {blueScore}
-                    </Text>
-                  </Stack>
-                  <Stack
-                    borderTopWidth={2}
-                    borderBottomWidth={2}
-                    borderRightWidth={2}
-                    boc={"#f02626"}
-                    borderTopRightRadius={20}
-                    borderBottomRightRadius={20}
-                    p={12}
-                    pt={32}
-                    f={1}
-                    ai="center"
-                    jc="center"
-                  >
-                    <Text fow={"800"} color={"#f02626"} fos={21}>
-                      {redScore}
-                    </Text>
-                  </Stack>
-                </XStack>
+                </ScrollView>
               </YStack>
-
-              <XStack ai="center" jc="center">
-                <Text
-                  fow={"700"}
-                  fos={16}
-                  color={team == "Mavi" ? "#0092cc" : "#f02626"}
-                >
-                  {team}
+              <SelectDropdown
+                data={seconds}
+                buttonStyle={{
+                  backgroundColor: buttonBlue,
+                  borderRadius: 20,
+                }}
+                defaultButtonText={"120 Saniye"}
+                renderDropdownIcon={() => {
+                  return (
+                    <Feather name="chevron-down" size={24} color="white" />
+                  );
+                }}
+                dropdownStyle={{
+                  backgroundColor: "gray",
+                  borderRadius: 20,
+                }}
+                rowTextStyle={{
+                  color: "white",
+                  fontSize: 14,
+                  fontWeight: "bold",
+                }}
+                dropdownIconPosition={"right"}
+                buttonTextStyle={{
+                  color: "white",
+                  fontSize: 15,
+                  fontWeight: "bold",
+                }}
+                selectedRowStyle={{
+                  backgroundColor: buttonBlue,
+                }}
+                onSelect={(selectedItem, index) => {
+                  {
+                    index == 1
+                      ? setTime(90)
+                      : index == 2
+                      ? setTime(120)
+                      : index == 3
+                      ? setTime(150)
+                      : index == 4
+                      ? setTime(180)
+                      : index == 5
+                      ? setTime(240)
+                      : setTime(60);
+                  }
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                  return selectedItem;
+                }}
+                rowTextForSelection={(item, index) => {
+                  return item;
+                }}
+              />
+              <XStack my={18}>
+                <Text fow={"700"} fos={16} color={buttonBlue}>
+                  Mavi
                 </Text>
                 <Text fos={16}> takım anlatacak.</Text>
               </XStack>
-            </YStack>
-            <XStack>
-              <Button
-                onPress={() => {
-                  setScoreModal(false);
-                  setTimeout(() => {
-                    router.push("/");
-                  }, 500);
-                }}
-                mr={5}
-                f={1}
-                boc={team == "Mavi" ? "#0092cc" : "#f02626"}
-                borderWidth={1}
-              >
-                <Text
-                  fow={"500"}
-                  fos={16}
-                  color={team == "Mavi" ? "#0092cc" : "#f02626"}
+              <XStack zIndex={5}>
+                <Button
+                  onPress={() => {
+                    setOpenModal(false);
+                    setTimeout(() => {
+                      router.push("/");
+                    }, 500);
+                  }}
+                  mr={5}
+                  f={1}
+                  boc={buttonBlue}
+                  borderWidth={1}
                 >
-                  Çıkış
-                </Text>
-              </Button>
-              <Button
-                onPress={() => {
-                  scoreModalStart();
-                }}
-                ml={5}
-                f={1}
-                bg={team == "Mavi" ? "#0092cc" : "#f02626"}
-              >
-                <Text fow={"500"} fos={16} color={"white"}>
-                  Başla
-                </Text>
-              </Button>
-            </XStack>
+                  <Text fow={"500"} fos={16} color={buttonBlue}>
+                    Çıkış
+                  </Text>
+                </Button>
+                <Button
+                  onPress={() => {
+                    setOpenModal(false);
+                  }}
+                  ml={5}
+                  f={1}
+                  bg={buttonBlue}
+                >
+                  <Text fow={"500"} fos={16} color={"white"}>
+                    Başla
+                  </Text>
+                </Button>
+              </XStack>
+            </View>
           </View>
-        </View>
-      </Modal>
-      {!openModal && !scoreModal ? (
-        <>
-          <ExitButton />
-          <Stack bg={"white"} pt={40} f={1} ai="center" jc="center">
-            <CountdownTimer
-              fos={24}
-              sow={8}
-              size={100}
-              second={time}
-              onComplete={() => {
-                handleOnComplete();
-              }}
-            />
-            <YStack
-              width={"90%"}
-              bg={"white"}
-              m={15}
-              br={20}
-              shadowColor={"#000"}
-              shadowOffset={{
-                width: 0,
-                height: 12,
-              }}
-              shadowOpacity={0.58}
-              shadowRadius={16.0}
-              elevation={Platform.OS == "android" ? 24 : 0}
-              pb={10}
-            >
-              <Stack
-                borderTopLeftRadius={20}
-                borderTopRightRadius={20}
-                width={"100%"}
-                bg={team == "Mavi" ? "#0092cc" : "#f02626"}
-                p={15}
-                ai="center"
+        </Modal>
+        <Modal animationType="slide" transparent={false} visible={scoreModal}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text fos={21} mb={8} fow={"700"}>
+                Skor
+              </Text>
+
+              <YStack my={18}>
+                <XStack>
+                  <YStack
+                    p={12}
+                    br={12}
+                    mr={4}
+                    ai="center"
+                    borderWidth={2}
+                    boc={"green"}
+                  >
+                    <Text fow={"600"} color={"green"}>
+                      Doğru Sayısı
+                    </Text>
+                    <Text mt={4} fow={"600"} color={"green"} fos={18}>
+                      {correct}
+                    </Text>
+                  </YStack>
+                  <YStack
+                    p={12}
+                    br={12}
+                    ml={4}
+                    ai="center"
+                    borderWidth={2}
+                    boc={"orangered"}
+                  >
+                    <Text fow={"600"} color={"orangered"}>
+                      Hata Sayısı
+                    </Text>
+                    <Text mt={4} fow={"600"} color={"orangered"} fos={18}>
+                      {wrong}
+                    </Text>
+                  </YStack>
+                </XStack>
+                <YStack my={8} overflow="hidden" ai="center">
+                  <XStack position="absolute" ai="center">
+                    <Text
+                      mt={8}
+                      fos={16}
+                      fow={"800"}
+                      color={buttonBlue}
+                      zIndex={1}
+                      f={1}
+                      ta="right"
+                      mr={4}
+                    >
+                      TOPLAM
+                    </Text>
+                    <Text
+                      mt={8}
+                      fos={16}
+                      fow={"800"}
+                      color={buttonRed}
+                      zIndex={1}
+                      f={1}
+                      ta="left"
+                      ml={4}
+                    >
+                      SKOR
+                    </Text>
+                  </XStack>
+                  <XStack>
+                    <Stack
+                      borderTopWidth={2}
+                      borderBottomWidth={2}
+                      borderLeftWidth={2}
+                      boc={buttonBlue}
+                      borderTopLeftRadius={20}
+                      borderBottomLeftRadius={20}
+                      p={12}
+                      pt={32}
+                      f={1}
+                      ai="center"
+                      jc="center"
+                    >
+                      <Text fow={"800"} color={buttonBlue} fos={21}>
+                        {blueScore}
+                      </Text>
+                    </Stack>
+                    <Stack
+                      borderTopWidth={2}
+                      borderBottomWidth={2}
+                      borderRightWidth={2}
+                      boc={buttonRed}
+                      borderTopRightRadius={20}
+                      borderBottomRightRadius={20}
+                      p={12}
+                      pt={32}
+                      f={1}
+                      ai="center"
+                      jc="center"
+                    >
+                      <Text fow={"800"} color={buttonRed} fos={21}>
+                        {redScore}
+                      </Text>
+                    </Stack>
+                  </XStack>
+                </YStack>
+
+                <XStack ai="center" jc="center">
+                  <Text
+                    fow={"700"}
+                    fos={16}
+                    color={team == "Mavi" ? buttonBlue : buttonRed}
+                  >
+                    {team}
+                  </Text>
+                  <Text fos={16}> takım anlatacak.</Text>
+                </XStack>
+              </YStack>
+              <XStack>
+                <Button
+                  onPress={() => {
+                    setScoreModal(false);
+                    setTimeout(() => {
+                      router.push("/");
+                    }, 500);
+                  }}
+                  mr={5}
+                  f={1}
+                  boc={team == "Mavi" ? buttonBlue : buttonRed}
+                  borderWidth={1}
+                >
+                  <Text
+                    fow={"500"}
+                    fos={16}
+                    color={team == "Mavi" ? buttonBlue : buttonRed}
+                  >
+                    Çıkış
+                  </Text>
+                </Button>
+                <Button
+                  onPress={() => {
+                    scoreModalStart();
+                  }}
+                  ml={5}
+                  f={1}
+                  bg={team == "Mavi" ? buttonBlue : buttonRed}
+                >
+                  <Text fow={"500"} fos={16} color={"white"}>
+                    Başla
+                  </Text>
+                </Button>
+              </XStack>
+            </View>
+          </View>
+        </Modal>
+        {!openModal && !scoreModal ? (
+          <>
+            <Stack bg={"white"} f={1} ai="center" jc="center">
+              <CountdownTimer
+                fos={24}
+                sow={8}
+                size={100}
+                second={time}
+                onComplete={() => {
+                  handleOnComplete();
+                }}
+              />
+              <YStack
+                width={"90%"}
+                maxWidth={766}
+                bg={"white"}
+                m={15}
+                br={20}
+                shadowColor={"#000"}
+                shadowOffset={{
+                  width: 0,
+                  height: 12,
+                }}
+                shadowOpacity={0.58}
+                shadowRadius={16.0}
+                elevation={Platform.OS == "android" ? 24 : 0}
+                pb={10}
               >
-                <Text ta="center" color={"white"} fow={"600"} fontSize={21}>
-                  {Word[index].spokenWord}
-                </Text>
-              </Stack>
-              <Separator
-                my={1}
-                borderColor={team == "Mavi" ? "#0092cc" : "#f02626"}
-              />
-              <Separator
-                my={0}
-                borderColor={team == "Mavi" ? "#0092cc" : "#f02626"}
-              />
-              <Separator
-                my={1}
-                borderColor={team == "Mavi" ? "#0092cc" : "#f02626"}
-              />
-              <YStack>
-                <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                  {Word[index].forbiddenWords[0]}
-                </Text>
-                <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                  {Word[index].forbiddenWords[1]}
-                </Text>
-                <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                  {Word[index].forbiddenWords[2]}
-                </Text>
-                <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                  {Word[index].forbiddenWords[3]}
-                </Text>
-                <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                  {Word[index].forbiddenWords[4]}
-                </Text>
-              </YStack>
-            </YStack>
-            <XStack mx={15} jc="space-between">
-              <YStack mr={4} f={1}>
-                <Button
-                  onPress={falseButtonPress}
-                  bg={"red"}
-                  fd="column"
-                  size={"$6"}
-                  p={0}
-                  shadowColor={"#000"}
-                  shadowOffset={{
-                    width: 0,
-                    height: 2,
-                  }}
-                  shadowOpacity={0.25}
-                  shadowRadius={3.84}
-                  elevation={Platform.OS == "android" ? 5 : 0}
-                >
-                  <FontAwesome name="times" size={32} color="white" />
-                </Button>
-                <Stack br={10} my={6} bg={"red"}>
-                  <Text p={3} ta="center" color={"white"} fos={12}>
-                    Hata Sayısı: {wrong}
-                  </Text>
-                </Stack>
-              </YStack>
-
-              <YStack f={1} mx={4}>
-                <Button
-                  onPress={passButtonPress}
-                  bg={pas == 0 ? "gray" : "$yellow8Light"}
-                  fd="column"
-                  size={"$6"}
-                  p={0}
-                  disabled={pas == 0}
-                  shadowColor={"#000"}
-                  shadowOffset={{
-                    width: 0,
-                    height: 2,
-                  }}
-                  shadowOpacity={0.25}
-                  shadowRadius={3.84}
-                  elevation={Platform.OS == "android" ? 5 : 0}
-                >
-                  <FontAwesome5 name="exchange-alt" size={32} color="white" />
-                </Button>
                 <Stack
-                  p={3}
-                  br={10}
-                  my={6}
-                  bg={pas == 0 ? "gray" : "$yellow8Light"}
+                  borderTopLeftRadius={20}
+                  borderTopRightRadius={20}
+                  width={"100%"}
+                  bg={team == "Mavi" ? buttonBlue : buttonRed}
+                  p={15}
+                  ai="center"
                 >
-                  <Text ta="center" color={"white"} fos={12}>
-                    Kalan Pas: {pas}
+                  <Text ta="center" color={"white"} fow={"600"} fontSize={21}>
+                    {Word[index].spokenWord}
                   </Text>
                 </Stack>
+                <Separator
+                  my={1}
+                  borderColor={team == "Mavi" ? buttonBlue : buttonRed}
+                />
+                <Separator
+                  my={0}
+                  borderColor={team == "Mavi" ? buttonBlue : buttonRed}
+                />
+                <Separator
+                  my={1}
+                  borderColor={team == "Mavi" ? buttonBlue : buttonRed}
+                />
+                <YStack>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[0]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[1]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[2]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[3]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[4]}
+                  </Text>
+                </YStack>
               </YStack>
+              <XStack mx={15} jc="center">
+                <YStack maxWidth={250} mr={4} f={1}>
+                  <Button
+                    onPress={falseButtonPress}
+                    bg={"red"}
+                    fd="column"
+                    size={"$6"}
+                    p={0}
+                    shadowColor={"#000"}
+                    shadowOffset={{
+                      width: 0,
+                      height: 2,
+                    }}
+                    shadowOpacity={0.25}
+                    shadowRadius={3.84}
+                    elevation={Platform.OS == "android" ? 5 : 0}
+                  >
+                    <FontAwesome name="times" size={32} color="white" />
+                  </Button>
+                  <Stack br={10} my={6} bg={"red"}>
+                    <Text p={3} ta="center" color={"white"} fos={12}>
+                      Hata Sayısı: {wrong}
+                    </Text>
+                  </Stack>
+                </YStack>
 
-              <YStack ml={4} f={1}>
-                <Button
-                  onPress={trueButtonPress}
-                  bg={"$green9Light"}
-                  fd="column"
-                  size={"$6"}
-                  p={0}
-                  shadowColor={"#000"}
-                  shadowOffset={{
-                    width: 0,
-                    height: 2,
-                  }}
-                  shadowOpacity={0.25}
-                  shadowRadius={3.84}
-                  elevation={Platform.OS == "android" ? 5 : 0}
-                >
-                  <Feather name="check" size={42} color="white" />
-                </Button>
-                <Stack br={10} p={3} my={6} bg={"$green9Light"}>
-                  <Text ta="center" color={"white"} fos={12}>
-                    Doğru Sayısı {correct}
-                  </Text>
-                </Stack>
-              </YStack>
-            </XStack>
-            <Stack bg={"white"} py={20}>
-              <BannerAds />
+                <YStack maxWidth={250} f={1} mx={4}>
+                  <Button
+                    onPress={passButtonPress}
+                    bg={pas == 0 ? "gray" : "$yellow8Light"}
+                    fd="column"
+                    size={"$6"}
+                    p={0}
+                    disabled={pas == 0}
+                    shadowColor={"#000"}
+                    shadowOffset={{
+                      width: 0,
+                      height: 2,
+                    }}
+                    shadowOpacity={0.25}
+                    shadowRadius={3.84}
+                    elevation={Platform.OS == "android" ? 5 : 0}
+                  >
+                    <FontAwesome5 name="exchange-alt" size={32} color="white" />
+                  </Button>
+                  <Stack
+                    p={3}
+                    br={10}
+                    my={6}
+                    bg={pas == 0 ? "gray" : "$yellow8Light"}
+                  >
+                    <Text ta="center" color={"white"} fos={12}>
+                      Kalan Pas: {pas}
+                    </Text>
+                  </Stack>
+                </YStack>
+
+                <YStack maxWidth={250} ml={4} f={1}>
+                  <Button
+                    onPress={trueButtonPress}
+                    bg={"$green9Light"}
+                    fd="column"
+                    size={"$6"}
+                    p={0}
+                    shadowColor={"#000"}
+                    shadowOffset={{
+                      width: 0,
+                      height: 2,
+                    }}
+                    shadowOpacity={0.25}
+                    shadowRadius={3.84}
+                    elevation={Platform.OS == "android" ? 5 : 0}
+                  >
+                    <Feather name="check" size={42} color="white" />
+                  </Button>
+                  <Stack br={10} p={3} my={6} bg={"$green9Light"}>
+                    <Text ta="center" color={"white"} fos={12}>
+                      Doğru Sayısı {correct}
+                    </Text>
+                  </Stack>
+                </YStack>
+              </XStack>
             </Stack>
-          </Stack>
-        </>
-      ) : null}
+            {/* <Stack bg={"white"}>
+              <BannerAds />
+            </Stack> */}
+            <ExitButton />
+          </>
+        ) : null}
+      </SafeAreaView>
     </>
   );
 };
@@ -547,6 +557,7 @@ const styles = StyleSheet.create({
   modalView: {
     padding: 20,
     margin: 20,
+    maxWidth: modalMaxWidth,
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",

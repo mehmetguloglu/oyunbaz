@@ -14,7 +14,8 @@ import board from "./board";
 import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
-// adding
+import { buttonBlue } from "../../utils/colors";
+
 const { width, height } = Dimensions.get("screen");
 const SudokuGame = () => {
   const router = useRouter();
@@ -120,7 +121,7 @@ const SudokuGame = () => {
                 {buttons[0].map((item) => {
                   return (
                     <Button
-                      bg={item == selectedButton ? "#425D8C" : "white"}
+                      bg={item == selectedButton ? buttonBlue : "white"}
                       key={item}
                       mx={4}
                       shadowColor={"#000"}
@@ -145,7 +146,7 @@ const SudokuGame = () => {
                 {buttons[1].map((item) => {
                   return (
                     <Button
-                      bg={item == selectedButton ? "#425D8C" : "white"}
+                      bg={item == selectedButton ? buttonBlue : "white"}
                       key={item}
                       mx={4}
                       shadowColor={"#000"}
@@ -211,10 +212,10 @@ const SudokuGame = () => {
                 }}
                 mr={5}
                 f={1}
-                boc={"#0092cc"}
+                boc={buttonBlue}
                 borderWidth={1}
               >
-                <Text fow={"500"} fos={16} color={"#0092cc"}>
+                <Text fow={"500"} fos={16} color={buttonBlue}>
                   Çıkış
                 </Text>
               </Button>
@@ -229,7 +230,7 @@ const SudokuGame = () => {
                 }}
                 ml={5}
                 f={1}
-                bg={"#0092cc"}
+                bg={buttonBlue}
               >
                 <Text fow={"500"} fos={16} color={"white"}>
                   Tekrar Oyna

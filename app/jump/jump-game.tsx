@@ -17,6 +17,7 @@ export default function App() {
   const { developerMode } = useAppSelector(
     (state) => state.developerModeReducer
   );
+
   const [running, setRunning] = useState(false);
   const [gameEngine, setGameEngine] = useState(null);
   const [currentPoints, setCurrentPoints] = useState(0);
@@ -116,15 +117,6 @@ export default function App() {
               position: "absolute",
               top: 0,
             }}
-            // my={15}
-            // p={12}
-            // br={12}
-            // mx={3}
-            // ai="center"
-            // borderWidth={2}
-            // boc={"#a67c00"}
-            // position="absolute"
-            // top={0}
           >
             <Text fow={"600"} color={"#a67c00"}>
               Rekor

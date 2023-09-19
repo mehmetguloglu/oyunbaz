@@ -1,6 +1,6 @@
-import { Link, useFocusEffect, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
   ImageBackground,
@@ -37,7 +37,6 @@ import { getRewardedAds } from "../bussiness/actions/getAds";
 import ImageButtonSquare from "../components/home/ImageButtonSquare";
 import ImageButtonReactangle from "../components/home/ImageButtonReactangle";
 import BannerAds from "../components/google-ads/BannerAds";
-import * as Sentry from "sentry-expo";
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
   const router = useRouter();
@@ -125,7 +124,7 @@ const HomeScreen = () => {
                 <Stack mr={5} ml={15} f={1} ai="center">
                   <ImageButtonSquare
                     bgcolor={"#EEAFC0a0"}
-                    onPress={() => router.push("/banned-words/banned-game")}
+                    onPress={() => router.push("/banned-words")}
                     source={require("../assets/home-page/bannedWord.png")}
                     text={"Yasaklı Kelimeler"}
                   />
@@ -414,13 +413,5 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
 });
