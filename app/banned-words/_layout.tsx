@@ -5,7 +5,7 @@ const _layout = () => (
   <>
     <Stack
       initialRouteName="banned-game"
-      screenOptions={{ headerShown: false, gestureEnabled: false }}
+      screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
         name="banned-game"

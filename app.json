@@ -1,5 +1,17 @@
 {
   "expo": {
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "mehmet-guloglu-88621c4e3",
+            "project": "oyunbaz",
+            "authToken": "SENTRY_AUTH_TOKEN"
+          }
+        }
+      ]
+    },
     "plugins": [
       [
         "expo-build-properties",
@@ -21,12 +33,13 @@
           "username": "mehmetguloglu"
         }
       ],
+      "sentry-expo",
       "expo-router"
     ],
     "name": "Oyunbaz",
     "slug": "oyunbaz",
     "scheme": "oyunbaz",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -39,14 +52,14 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.oyunbaz.app",
-      "buildNumber": "1.0.3"
+      "buildNumber": "1.0.4"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 3,
+      "versionCode": 4,
       "package": "com.oyunbaz.app"
     },
     "web": {

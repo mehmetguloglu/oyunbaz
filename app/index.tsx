@@ -37,7 +37,7 @@ import { getRewardedAds } from "../bussiness/actions/getAds";
 import ImageButtonSquare from "../components/home/ImageButtonSquare";
 import ImageButtonReactangle from "../components/home/ImageButtonReactangle";
 import BannerAds from "../components/google-ads/BannerAds";
-
+import * as Sentry from "sentry-expo";
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
   const router = useRouter();

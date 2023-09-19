@@ -18,7 +18,6 @@ import BannerAds from "../../components/google-ads/BannerAds";
 const { width, height } = Dimensions.get("window");
 const BannedWordsGame = () => {
   const router = useRouter();
-  //   const filterWord = Word.filter((wrd) => wrd.category.includes(categoryId));
   const [openModal, setOpenModal] = useState(true);
   const [scoreModal, setScoreModal] = useState(false);
   const seconds = [
@@ -88,7 +87,7 @@ const BannedWordsGame = () => {
   };
   return (
     <>
-      <Modal animationType="slide" transparent={false} visible={openModal}>
+      <Modal animationType="none" transparent={false} visible={openModal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text fos={18} mb={8} fow={"700"}>
@@ -446,7 +445,6 @@ const BannedWordsGame = () => {
                 </Text>
               </YStack>
             </YStack>
-
             <XStack mx={15} jc="space-between">
               <YStack mr={4} f={1}>
                 <Button
@@ -529,9 +527,9 @@ const BannedWordsGame = () => {
                 </Stack>
               </YStack>
             </XStack>
-          </Stack>
-          <Stack bg={"white"} py={20}>
-            <BannerAds />
+            <Stack bg={"white"} py={20}>
+              <BannerAds />
+            </Stack>
           </Stack>
         </>
       ) : null}

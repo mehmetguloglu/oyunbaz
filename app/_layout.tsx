@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from "react";
+import { Suspense, useEffect, useMemo } from "react";
 import { useColorScheme } from "react-native";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -12,7 +12,25 @@ import * as StoreReview from "expo-store-review";
 import config from "../tamagui.config";
 import { Provider } from "react-redux";
 import { store } from "../bussiness/redux-store";
+import * as Sentry from "sentry-expo";
+import Constants from "expo-constants";
 
+Sentry.init({
+  dsn: "https://352f8b74a3d3306cbcc0db1c715c23cc@o4505896257650688.ingest.sentry.io/4505896278884352",
+  enableInExpoDevelopment: true,
+  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  tracesSampleRate: 1.0,
+  integrations: [
+    new Sentry.Native.ReactNativeTracing({
+      shouldCreateSpanForRequest: (url) => {
+        return (
+          !__DEV__ ||
+          !url.startsWith(`http://${Constants.expoConfig.hostUri}/logs`)
+        );
+      },
+    }),
+  ],
+});
 export default function Layout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -65,6 +83,7 @@ export default function Layout() {
     onFetchUpdateAsync();
     storeReviewOpen();
   }, []);
+
   return (
     <Provider store={store}>
       <TamaguiProvider config={config}>
