@@ -37,6 +37,7 @@ import { getRewardedAds } from "../bussiness/actions/getAds";
 import ImageButtonSquare from "../components/home/ImageButtonSquare";
 import ImageButtonReactangle from "../components/home/ImageButtonReactangle";
 import BannerAds from "../components/google-ads/BannerAds";
+import Constants from "expo-constants";
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
   const router = useRouter();
@@ -84,6 +85,7 @@ const HomeScreen = () => {
       <>
         <Stack f={1} bg={"white"}>
           <SafeAreaView style={{ flex: 1 }}>
+            {/* <Text>asdsad:{JSON.stringify(Constants.expoConfig.extra)}</Text> */}
             {/* HEADER */}
             <XStack
               ai="center"

@@ -6,8 +6,7 @@
           "file": "sentry-expo/upload-sourcemaps",
           "config": {
             "organization": "mehmet-guloglu-88621c4e3",
-            "project": "oyunbaz",
-            "authToken": "SENTRY_AUTH_TOKEN"
+            "project": "oyunbaz"
           }
         }
       ]
@@ -87,8 +86,6 @@
     }
   },
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-8545961952430100~8653488470",
-    "ios_app_id": "ca-app-pub-8545961952430100~6357378064",
     "delay_app_measurement_init": true,
     "sk_ad_network_items": [
       "cstr6suwn9.skadnetwork",

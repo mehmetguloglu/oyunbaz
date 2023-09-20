@@ -536,9 +536,9 @@ const BannedWordsGame = () => {
                 </YStack>
               </XStack>
             </Stack>
-            {/* <Stack bg={"white"}>
+            <Stack bg={"white"}>
               <BannerAds />
-            </Stack> */}
+            </Stack>
             <ExitButton />
           </>
         ) : null}

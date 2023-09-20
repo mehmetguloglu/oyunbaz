@@ -7,10 +7,7 @@ const Word = [
     spokenWord: "Van Gogh",
     forbiddenWords: ["Tablo", "Yıldızlı Gece", "Resim", "Kulak", "Ressam"],
   },
-  {
-    spokenWord: "Müzik",
-    forbiddenWords: ["Nota", "Çalmak", "Konser", "Şarkı", "Dinlemek"],
-  },
+
   {
     spokenWord: "Tarihi Eser",
     forbiddenWords: ["Antika", "Koleksiyon", "Müze", "Gezi", "Turizm"],
@@ -96,18 +93,7 @@ const Word = [
       "Mavi Gözlü Dev",
     ],
   },
-  {
-    spokenWord: "Kırmızı",
-    forbiddenWords: ["Renk", "Bayrak", "Gül", "Nar", "Fenerbahçe"],
-  },
-  {
-    spokenWord: "Buzdolabı",
-    forbiddenWords: ["Beyaz Eşya", "Soğutma", "Yiyecek", "Ev", "Elektrik"],
-  },
-  {
-    spokenWord: "Buzdolabı",
-    forbiddenWords: ["Beyaz Eşya", "Soğutma", "Yiyecek", "Ev", "Elektrik"],
-  },
+
   {
     spokenWord: "Oksijen",
     forbiddenWords: ["Solunum", "Gaz", "Nefes", "Hidrojen", "Hava"],
@@ -152,7 +138,7 @@ const Word = [
   },
   {
     spokenWord: "Uzaylılar",
-    forbiddenWords: ["Uzay", "Yaratık", "Galaksi", "Roswell", "Bilinmeyen"],
+    forbiddenWords: ["Roket", "Yaratık", "Galaksi", "Roswell", "Bilinmeyen"],
   },
   {
     spokenWord: "Sürrealizm",
@@ -167,16 +153,8 @@ const Word = [
     forbiddenWords: ["Tesla", "Spacex", "Mars", "Dogecoin", "Girişimci"],
   },
   {
-    spokenWord: "Kahve",
-    forbiddenWords: ["İçecek", "Filtre", "Espresso", "Latte", "Bardak"],
-  },
-  {
     spokenWord: "Kraliyet Ailesi",
     forbiddenWords: ["İngiltere", "Kraliçe", "Prens", "Elızabeth", "Taç"],
-  },
-  {
-    spokenWord: "Futbol",
-    forbiddenWords: ["Top", "Kale", "Oyuncu", "Saha", "Antrenör"],
   },
   {
     spokenWord: "Gastronomi",
@@ -226,10 +204,7 @@ const Word = [
     spokenWord: "Yapay Zeka",
     forbiddenWords: ["Bilgisayar", "Programlama", "Veri", "Robot", "Chatgpt"],
   },
-  {
-    spokenWord: "Güneş",
-    forbiddenWords: ["Yıldız", "Enerji", "Işık", "Gündüz", "Ay"],
-  },
+
   {
     spokenWord: "Güneydoğu Anadolu",
     forbiddenWords: ["Turizm", "Kültür", "İklim", "Bölge", "Sınır"],
@@ -238,10 +213,7 @@ const Word = [
     spokenWord: "Şato",
     forbiddenWords: ["Kale", "Fransa", "Saray", "Avrupa", "Tarihi Eser"],
   },
-  {
-    spokenWord: "Denizaltı",
-    forbiddenWords: ["Su", "Gemi", "Askeri", "Batık", "Dalış"],
-  },
+
   {
     spokenWord: "Gastrit",
     forbiddenWords: ["Mide", "Ağrı", "Hazım", "Gaz", "Beslenme"],
@@ -270,10 +242,7 @@ const Word = [
     spokenWord: "Strateji",
     forbiddenWords: ["Plan", "Oyun", "Karar", "Liderlik", "Savaş"],
   },
-  {
-    spokenWord: "Yüzme",
-    forbiddenWords: ["Havuz", "Deniz", "Kulaç", "Rekabet", "Olimpiyat"],
-  },
+
   {
     spokenWord: "Deney",
     forbiddenWords: ["Keşif", "Tepkime", "Araştırma", "Laboratuvar", "Kimya"],
@@ -350,10 +319,7 @@ const Word = [
     spokenWord: "Akdeniz",
     forbiddenWords: ["Deniz", "Yaz", "Mavi", "Turizm", "Kıyı"],
   },
-  {
-    spokenWord: "Kalem",
-    forbiddenWords: ["Mürekkep", "Yazmak", "Ofis", "Defter", "Kırtasiye"],
-  },
+
   {
     spokenWord: "Pythagoras",
     forbiddenWords: ["Üçgen", "Matematik", "Hipothenuse", "Teorem", "Geometri"],
@@ -363,10 +329,6 @@ const Word = [
     forbiddenWords: ["Tuşlar", "Müzik", "Çalgı", "Klasik", "Orkestra"],
   },
   {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Lens", "Görme", "Göz", "Aksesuar", "Göz Doktoru"],
-  },
-  {
     spokenWord: "Antarktika",
     forbiddenWords: ["Buzullar", "Kutup", "Pinguin", "Soğuk", "Kıta"],
   },
@@ -374,10 +336,7 @@ const Word = [
     spokenWord: "Leonardo Da Vinci",
     forbiddenWords: ["Rönesans", "Tablo", "Sanatçı", "Mona Lisa", "İcat"],
   },
-  {
-    spokenWord: "Gitar",
-    forbiddenWords: ["Teller", "Akustik", "Elektro", "Çalmak", "Enstrüman"],
-  },
+
   {
     spokenWord: "Amazon Ormanı",
     forbiddenWords: [
@@ -390,25 +349,14 @@ const Word = [
   },
 
   {
-    spokenWord: "Gökyüzü",
-    forbiddenWords: ["Bulut", "Uçak", "Mavi", "Gündüz", "Yıldız"],
-  },
-  {
     spokenWord: "William Shakespeare",
     forbiddenWords: ["Oyun", "Tragedya", "Yazar", "Romeo", "Juliet"],
-  },
-  {
-    spokenWord: "Futbol",
-    forbiddenWords: ["Top", "Kale", "Stadyum", "Maç", "Tribün"],
   },
   {
     spokenWord: "Mozaik",
     forbiddenWords: ["Parça", "Sanat", "Desen", "Seramik", "Duvar"],
   },
-  {
-    spokenWord: "Teleskop",
-    forbiddenWords: ["Uzay", "Gözlem", "Yıldız", "Araştırma", "Gök Cisimleri"],
-  },
+
   {
     spokenWord: "İstanbul",
     forbiddenWords: ["Boğaz", "Şehir", "Tarihi", "Minare", "Ayasofya"],
@@ -421,10 +369,7 @@ const Word = [
     spokenWord: "Balina",
     forbiddenWords: ["Deniz", "Büyük", "Memeli", "Su", "Leviathan"],
   },
-  {
-    spokenWord: "Pusula",
-    forbiddenWords: ["Yön", "Kuzey", "Manyetik", "Denizcilik", "Gösterge"],
-  },
+
   {
     spokenWord: "Mona Lisa",
     forbiddenWords: [
@@ -436,10 +381,6 @@ const Word = [
     ],
   },
   {
-    spokenWord: "Keman",
-    forbiddenWords: ["Telli", "Klasik", "Çalgı", "Yay", "Orkestra"],
-  },
-  {
     spokenWord: "Eiffel Kulesi",
     forbiddenWords: ["Demir", "Paris", "Manzara", "Fransa", "Yüksek"],
   },
@@ -447,10 +388,7 @@ const Word = [
     spokenWord: "Picasso",
     forbiddenWords: ["Tablo", "Sanatçı", "Kubizm", "Boya", "Guernica"],
   },
-  {
-    spokenWord: "Astronomi",
-    forbiddenWords: ["Gök Cisimleri", "Uzay", "Gözlem", "Yıldız", "Evren"],
-  },
+
   {
     spokenWord: "Lale",
     forbiddenWords: ["Çiçek", "Bahar", "Hollanda", "Soğan", "Renk"],
@@ -475,10 +413,7 @@ const Word = [
       "Kadın",
     ],
   },
-  {
-    spokenWord: "Keman",
-    forbiddenWords: ["Telli", "Klasik", "Çalgı", "Yay", "Orkestra"],
-  },
+
   {
     spokenWord: "Eiffel Kulesi",
     forbiddenWords: ["Demir", "Paris", "Manzara", "Fransa", "Yüksek"],
@@ -513,10 +448,7 @@ const Word = [
     spokenWord: "Balerin",
     forbiddenWords: ["Dans", "Pirouette", "Bale", "Kostüm", "Sahne"],
   },
-  {
-    spokenWord: "Güneş",
-    forbiddenWords: ["Yıldız", "Işık", "Gök Cisimleri", "Sıcak", "Gün"],
-  },
+
   {
     spokenWord: "Opera",
     forbiddenWords: ["Sahne", "Müzik", "Ses", "Perde", "Şan"],
@@ -525,18 +457,12 @@ const Word = [
     spokenWord: "Amazon Nehri",
     forbiddenWords: ["Orman", "Güney Amerika", "Akarsu", "Tropikal", "Kano"],
   },
-  {
-    spokenWord: "Pasta",
-    forbiddenWords: ["Tatlı", "Hamur", "Krem", "Pastane", "Çikolata"],
-  },
+
   {
     spokenWord: "Yıldızlar",
     forbiddenWords: ["Gökyüzü", "Uzay", "Parlak", "Galaksi", "Gece"],
   },
-  {
-    spokenWord: "Köprü",
-    forbiddenWords: ["Bağlantı", "Nehir", "Ulaşım", "Yol", "Mimar"],
-  },
+
   {
     spokenWord: "Drama",
     forbiddenWords: ["Tiyatro", "Oyun", "Sanat", "Roller", "Perde"],
@@ -545,26 +471,7 @@ const Word = [
     spokenWord: "Kelebek",
     forbiddenWords: ["Kanat", "Renkli", "Sinek", "Hava", "Lepidoptera"],
   },
-  {
-    spokenWord: "Pasta",
-    forbiddenWords: ["Tatlı", "Hamur", "Krem", "Pastane", "Çikolata"],
-  },
-  {
-    spokenWord: "Yıldızlar",
-    forbiddenWords: ["Gökyüzü", "Uzay", "Parlak", "Galaksi", "Gece"],
-  },
-  {
-    spokenWord: "Köprü",
-    forbiddenWords: ["Bağlantı", "Nehir", "Ulaşım", "Yol", "Mimar"],
-  },
-  {
-    spokenWord: "Drama",
-    forbiddenWords: ["Tiyatro", "Oyun", "Sanat", "Roller", "Perde"],
-  },
-  {
-    spokenWord: "Kelebek",
-    forbiddenWords: ["Kanat", "Renkli", "Sinek", "Hava", "Lepidoptera"],
-  },
+
   {
     spokenWord: "Celal Şengör",
     forbiddenWords: [
@@ -841,7 +748,7 @@ const Word = [
     forbiddenWords: ["Film", "Tom Hanks", "Koşmak", "Çikolata", "Vıetnam"],
   },
   {
-    spokenWord: "Matrıx",
+    spokenWord: "Matrix",
     forbiddenWords: [
       "Kırmızı",
       "Keanu Reeves",
@@ -885,7 +792,7 @@ const Word = [
     forbiddenWords: ["Kılıç", "Roma", "Arena", "Russell Crowe", "Savaşçı"],
   },
   {
-    spokenWord: "Requıem For A Dream",
+    spokenWord: "Requiem For A Dream",
     forbiddenWords: ["Televizyon", "Rüya", "Jared Leto", "Bağımlılık", "Müzik"],
   },
   {
@@ -1644,10 +1551,6 @@ const Word = [
     forbiddenWords: ["Yatay", "Dikey", "Doğrusal", "Düz", "Yamuk"],
   },
   {
-    spokenWord: "Kahve",
-    forbiddenWords: ["İçmek", "Sabah", "Kafein", "Sade", "Sıcak"],
-  },
-  {
     spokenWord: "Talih Kuşu",
     forbiddenWords: ["Para", "Beklenmedik", "İyi", "Hediye", "Servet"],
   },
@@ -1781,67 +1684,35 @@ const Word = [
   },
   {
     spokenWord: "Broadway",
-    forbiddenWords: ["New York", "Sahne", "Gösteri", "Tiyatro", "Yıldız"],
+    forbiddenWords: ["New York", "Sahne", "Gösteri", "Tiyatro", "Renault"],
   },
   {
     spokenWord: "Venüs",
-    forbiddenWords: ["Dünya", "Tanrıça", "Gezegen", "Uzay", "Güzellik"],
+    forbiddenWords: ["Dünya", "Tanrıça", "Gezegen", "Uzay", "Mars"],
   },
   {
     spokenWord: "Kül",
     forbiddenWords: ["Yakmak", "Şömine", "Odun", "Toz", "Sigara"],
   },
   {
-    spokenWord: "Köprü",
-    forbiddenWords: ["Nehir", "Bağlantı", "Trafik", "Mimar", "Ulaşım"],
-  },
-  {
     spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Lens", "Çerçeve", "Görme", "Moda"],
+    forbiddenWords: ["Optik", "Lens", "Çerçeve", "Görmek", "Rayban"],
   },
   {
     spokenWord: "Pusula",
-    forbiddenWords: ["Yön", "Harita", "Denizcilik", "Kuzey", "Rotası"],
+    forbiddenWords: ["Yön", "Harita", "Denizcilik", "Kuzey", "Rota"],
   },
   {
     spokenWord: "Radyo",
-    forbiddenWords: ["Müzik", "Dalga", "İstasyon", "Frekans", "Ses"],
-  },
-  {
-    spokenWord: "Teleskop",
-    forbiddenWords: ["Yıldız", "Uzay", "Gözlem", "Galaksi", "Astronom"],
+    forbiddenWords: ["Müzik", "Dalga", "İstasyon", "Televizyon", "Ses"],
   },
   {
     spokenWord: "Güneş",
     forbiddenWords: ["Gök", "Yıldız", "Isı", "Sistem", "Parlak"],
   },
   {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
-    spokenWord: "Kamera",
-    forbiddenWords: ["Fotoğraf", "Çekmek", "Lens", "Makine", "Video"],
-  },
-  {
-    spokenWord: "Müze",
-    forbiddenWords: ["Sanat", "Tarih", "Eser", "Ziyaret", "Koleksiyon"],
-  },
-  {
-    spokenWord: "Kutup",
-    forbiddenWords: ["Soğuk", "Buz", "Kuzey", "Güney", "Keşif"],
-  },
-  {
     spokenWord: "Şarap",
     forbiddenWords: ["Üzüm", "Alkol", "Kadeh", "Tadım", "İçki"],
-  },
-  {
-    spokenWord: "Çanta",
-    forbiddenWords: ["Taşımak", "Aksesuar", "Omuz", "Deri", "Moda"],
-  },
-  {
-    spokenWord: "Rüya",
-    forbiddenWords: ["Uyku", "Hayal", "Gerçekleşmek", "Görmek", "Gece"],
   },
   {
     spokenWord: "Dans",
@@ -1852,14 +1723,6 @@ const Word = [
     forbiddenWords: ["Orman", "Dal", "Yaprak", "Kök", "Doğa"],
   },
   {
-    spokenWord: "Şifre",
-    forbiddenWords: ["Gizli", "Bilgisayar", "Çözmek", "Rakam", "Kod"],
-  },
-  {
-    spokenWord: "Kral",
-    forbiddenWords: ["Taç", "Hükümdar", "Saray", "Taht", "Krallık"],
-  },
-  {
     spokenWord: "Balon",
     forbiddenWords: ["Hava", "Renkli", "Patlamak", "Çocuk", "Uçmak"],
   },
@@ -1868,56 +1731,12 @@ const Word = [
     forbiddenWords: ["Ay", "Yıldız", "Karanlık", "Uyku", "Rüya"],
   },
   {
-    spokenWord: "Köpek",
-    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
-  },
-  {
     spokenWord: "Keman",
-    forbiddenWords: ["Müzik", "Telliler", "Melodi", "Çalmak", "Klasik"],
-  },
-  {
-    spokenWord: "Roma",
-    forbiddenWords: ["İtalya", "Antik", "Tarihi", "Colosseum", "Forum"],
-  },
-  {
-    spokenWord: "Bisiklet",
-    forbiddenWords: ["Pedal", "Tekerlek", "Sürmek", "Hız", "Tur"],
-  },
-  {
-    spokenWord: "Kuş",
-    forbiddenWords: ["Uçmak", "Yuva", "Tüy", "Kanat", "Ötmek"],
-  },
-  {
-    spokenWord: "Gemi",
-    forbiddenWords: ["Deniz", "Yelken", "Liman", "Yolculuk", "Gemici"],
+    forbiddenWords: ["Müzik", "Telli", "Viyola", "Çalmak", "Klasik"],
   },
   {
     spokenWord: "Fotoğraf",
     forbiddenWords: ["Kamera", "Anı", "Objektif", "Çekmek", "Hatıra"],
-  },
-  {
-    spokenWord: "Güzel",
-    forbiddenWords: ["Çirkin", "Estetik", "Görünmek", "Güzellik", "Manken"],
-  },
-  {
-    spokenWord: "Kahve",
-    forbiddenWords: ["Kafein", "Fincan", "Kavurma", "Tat", "Sabah"],
-  },
-  {
-    spokenWord: "Caz",
-    forbiddenWords: ["Müzik", "Saxophone", "Improvisasyon", "Ritim", "Konser"],
-  },
-  {
-    spokenWord: "Deniz",
-    forbiddenWords: ["Kum", "Dalga", "Gemisi", "Mavi", "Sahil"],
-  },
-  {
-    spokenWord: "Ateş",
-    forbiddenWords: ["Yanmak", "Isı", "Odun", "Çakmak", "Yakmak"],
-  },
-  {
-    spokenWord: "Gökyüzü",
-    forbiddenWords: ["Mavi", "Bulut", "Uçmak", "Yıldız", "Uzay"],
   },
   {
     spokenWord: "Yemek",
@@ -1928,101 +1747,12 @@ const Word = [
     forbiddenWords: ["Eşik", "Anahtar", "Giriş", "Oda", "Ev"],
   },
   {
-    spokenWord: "Tatil",
-    forbiddenWords: ["Deniz", "Dinlenme", "Gezi", "Seyahat", "Kaçış"],
-  },
-  {
-    spokenWord: "Güneş gözlüğü",
-    forbiddenWords: ["Güneş", "Göz", "Koruma", "Aksesuar", "Görüş"],
-  },
-  {
-    spokenWord: "Ayakkabı",
-    forbiddenWords: ["Taban", "Moda", "Adım", "Rahat", "Ayarlamak"],
-  },
-  {
-    spokenWord: "Kalem",
-    forbiddenWords: ["Yazmak", "Kağıt", "Uç", "Resim", "Kutu"],
-  },
-  {
-    spokenWord: "Rüya",
-    forbiddenWords: ["Uyku", "Gerçek", "Hayal", "Görmek", "Gece"],
-  },
-  {
-    spokenWord: "Kum",
-    forbiddenWords: ["Deniz", "Plaj", "Oyun", "Sıcak", "Sahil"],
-  },
-  {
-    spokenWord: "Ayna",
-    forbiddenWords: ["Yansıma", "Görüntü", "Duvar", "Makyaj", "Kırık"],
-  },
-  {
-    spokenWord: "Pasta",
-    forbiddenWords: ["Tatlı", "Kek", "Krem", "Dilim", "Pastane"],
-  },
-  {
-    spokenWord: "Balık",
-    forbiddenWords: ["Deniz", "Yüzgeç", "Lezzet", "Sakız", "Suda"],
-  },
-  {
-    spokenWord: "Cep telefonu",
-    forbiddenWords: ["Arama", "Mesaj", "Ekran", "Akıllı", "Kamera"],
-  },
-  ,
-  {
     spokenWord: "Kitap",
-    forbiddenWords: ["Okuma", "Yazar", "Sayfa", "Hikaye", "Kütüphane"],
-  },
-  {
-    spokenWord: "Müzik",
-    forbiddenWords: ["Ses", "Nota", "Ritim", "Enstrüman", "Şarkı"],
-  },
-  {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
-    spokenWord: "Bisiklet",
-    forbiddenWords: ["Pedal", "Tekerlek", "Sürmek", "Hız", "Tur"],
-  },
-  {
-    spokenWord: "Şemsiye",
-    forbiddenWords: ["Yağmur", "Güneş", "Açmak", "Taşımak", "Koruma"],
-  },
-  {
-    spokenWord: "Kuş",
-    forbiddenWords: ["Uçmak", "Yuva", "Tüy", "Kanat", "Ötmek"],
-  },
-  {
-    spokenWord: "Caz",
-    forbiddenWords: ["Müzik", "Saxophone", "Improvisasyon", "Ritim", "Konser"],
-  },
-  {
-    spokenWord: "Köpek",
-    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
-  },
-  {
-    spokenWord: "Kamera",
-    forbiddenWords: ["Fotoğraf", "Çekmek", "Lens", "Makine", "Video"],
-  },
-  {
-    spokenWord: "Gemi",
-    forbiddenWords: ["Deniz", "Yelken", "Liman", "Yolculuk", "Gemici"],
-  },
-  {
-    spokenWord: "Müze",
-    forbiddenWords: ["Sanat", "Tarih", "Eser", "Ziyaret", "Koleksiyon"],
-  },
-  {
-    spokenWord: "Kuş",
-    forbiddenWords: ["Uçmak", "Yuva", "Tüy", "Kanat", "Ötmek"],
-  },
-  {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
+    forbiddenWords: ["Okumak", "Yazar", "Roman", "Hikaye", "Kütüphane"],
   },
   {
     spokenWord: "Kırmızı",
-    forbiddenWords: ["Renk", "Ateş", "Elma", "Kan", "Giyim"],
+    forbiddenWords: ["Renk", "Ateş", "Elma", "Kan", "Sarı"],
   },
   {
     spokenWord: "Dünya",
@@ -2030,51 +1760,19 @@ const Word = [
   },
   {
     spokenWord: "Kahve",
-    forbiddenWords: ["Kafein", "Fincan", "Kavurma", "Tat", "Sabah"],
+    forbiddenWords: ["Americano", "Fincan", "Türk", "Çay", "Sabah"],
   },
   {
     spokenWord: "Ayakkabı",
     forbiddenWords: ["Taban", "Moda", "Adım", "Rahat", "Ayarlamak"],
   },
   {
-    spokenWord: "Müzik",
-    forbiddenWords: ["Ses", "Nota", "Ritim", "Enstrüman", "Şarkı"],
-  },
-  {
-    spokenWord: "Güneş gözlüğü",
-    forbiddenWords: ["Güneş", "Göz", "Koruma", "Aksesuar", "Görüş"],
-  },
-  {
-    spokenWord: "Bisiklet",
-    forbiddenWords: ["Pedal", "Tekerlek", "Sürmek", "Hız", "Tur"],
-  },
-  {
-    spokenWord: "Kitap",
-    forbiddenWords: ["Okuma", "Yazar", "Sayfa", "Hikaye", "Kütüphane"],
-  },
-  {
     spokenWord: "Şemsiye",
     forbiddenWords: ["Yağmur", "Güneş", "Açmak", "Taşımak", "Koruma"],
   },
   {
-    spokenWord: "Gökyüzü",
-    forbiddenWords: ["Mavi", "Bulut", "Uçmak", "Yıldız", "Uzay"],
-  },
-  {
-    spokenWord: "Roma",
-    forbiddenWords: ["İtalya", "Antik", "Tarihi", "Colosseum", "Forum"],
-  },
-  {
-    spokenWord: "Kalem",
-    forbiddenWords: ["Yazmak", "Kağıt", "Uç", "Resim", "Kutu"],
-  },
-  {
     spokenWord: "Ayna",
     forbiddenWords: ["Yansıma", "Görüntü", "Duvar", "Makyaj", "Kırık"],
-  },
-  {
-    spokenWord: "Pasta",
-    forbiddenWords: ["Tatlı", "Kek", "Krem", "Dilim", "Pastane"],
   },
   {
     spokenWord: "Balık",
@@ -2085,65 +1783,16 @@ const Word = [
     forbiddenWords: ["Arama", "Mesaj", "Ekran", "Akıllı", "Kamera"],
   },
   {
-    spokenWord: "Ateş",
-    forbiddenWords: ["Yanmak", "Isı", "Odun", "Çakmak", "Yakmak"],
-  },
-  {
-    spokenWord: "Güzel",
-    forbiddenWords: ["Çirkin", "Estetik", "Görünmek", "Güzellik", "Manken"],
-  },
-  {
     spokenWord: "Kral",
-    forbiddenWords: ["Taç", "Hükümdar", "Saray", "Taht", "Krallık"],
+    forbiddenWords: ["Taç", "Hükümdar", "Saray", "Taht", "Padişah"],
   },
   {
     spokenWord: "Deniz",
-    forbiddenWords: ["Kum", "Dalga", "Gemisi", "Mavi", "Sahil"],
+    forbiddenWords: ["Kum", "Dalga", "Gemi", "Mavi", "Sahil"],
   },
-  {
-    spokenWord: "Rüya",
-    forbiddenWords: ["Uyku", "Gerçek", "Hayal", "Görmek", "Gece"],
-  },
-  {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
-    spokenWord: "Müze",
-    forbiddenWords: ["Sanat", "Tarih", "Eser", "Ziyaret", "Koleksiyon"],
-  },
-  {
-    spokenWord: "Kutup",
-    forbiddenWords: ["Soğuk", "Buz", "Kuzey", "Güney", "Keşif"],
-  },
-  {
-    spokenWord: "Caz",
-    forbiddenWords: ["Müzik", "Saxophone", "Improvisasyon", "Ritim", "Konser"],
-  },
-  {
-    spokenWord: "Köpek",
-    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
-  },
-  {
-    spokenWord: "Kamera",
-    forbiddenWords: ["Fotoğraf", "Çekmek", "Lens", "Makine", "Video"],
-  },
-  {
-    spokenWord: "Gemi",
-    forbiddenWords: ["Deniz", "Yelken", "Liman", "Yolculuk", "Gemici"],
-  },
-
   {
     spokenWord: "Mars",
     forbiddenWords: ["Gezegen", "Kızıl", "Uzay", "Astronomi", "Keşif"],
-  },
-  {
-    spokenWord: "Güneşlik",
-    forbiddenWords: ["Güneş", "Sıcaklık", "Gölge", "Koruma", "Plaj"],
-  },
-  {
-    spokenWord: "Kütüphane",
-    forbiddenWords: ["Kitap", "Okuma", "Sessiz", "Raflar", "Bilgi"],
   },
   {
     spokenWord: "Buzdolabı",
@@ -2151,19 +1800,15 @@ const Word = [
   },
   {
     spokenWord: "Futbol",
-    forbiddenWords: ["Top", "Saha", "Oyuncu", "Kale", "Spor"],
+    forbiddenWords: ["Top", "Saha", "Basketbol", "Kale", "Spor"],
   },
   {
-    spokenWord: "Güneş çiçeği",
-    forbiddenWords: ["Çiçek", "Sarı", "Bahçe", "Güneş", "Tohum"],
+    spokenWord: "Güneş Çiçeği",
+    forbiddenWords: ["Bitki", "Sarı", "Bahçe", "Güneş", "Tohum"],
   },
   {
     spokenWord: "Tango",
     forbiddenWords: ["Dans", "Müzik", "Leidenschaft", "Ritim", "Adım"],
-  },
-  {
-    spokenWord: "Bisiklet",
-    forbiddenWords: ["Pedal", "Tekerlek", "Sürmek", "Hız", "Tur"],
   },
   {
     spokenWord: "Eski ev",
@@ -2174,45 +1819,12 @@ const Word = [
     forbiddenWords: ["Zaman", "Dijital", "Kadran", "Alarm", "Duvar"],
   },
   {
-    spokenWord: "Tatil",
-    forbiddenWords: ["Deniz", "Dinlenme", "Gezi", "Seyahat", "Kaçış"],
-  },
-  ,
-  {
     spokenWord: "Meyve suyu",
     forbiddenWords: ["Sıvı", "Lezzet", "Sıkma", "Portakal", "İçmek"],
   },
   {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
     spokenWord: "Bilgisayar",
     forbiddenWords: ["Teknoloji", "Ekran", "Klavye", "İnternet", "Oyun"],
-  },
-  {
-    spokenWord: "Dondurma",
-    forbiddenWords: ["Sütlü", "Lezzet", "Sıcak", "Kutu", "Kaşık"],
-  },
-  {
-    spokenWord: "Sinema",
-    forbiddenWords: ["Film", "Perde", "Salon", "Aktör", "Vizyon"],
-  },
-  {
-    spokenWord: "Güzel",
-    forbiddenWords: ["Çirkin", "Estetik", "Görünmek", "Güzellik", "Manken"],
-  },
-  {
-    spokenWord: "Şifre",
-    forbiddenWords: ["Gizli", "Bilgisayar", "Çözmek", "Rakam", "Kod"],
-  },
-  {
-    spokenWord: "Balon",
-    forbiddenWords: ["Hava", "Renkli", "Patlamak", "Çocuk", "Uçmak"],
-  },
-  {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
   },
   {
     spokenWord: "Müzik",
@@ -2223,96 +1835,36 @@ const Word = [
     forbiddenWords: ["Yanmak", "Isı", "Odun", "Çakmak", "Yakmak"],
   },
   {
-    spokenWord: "Köpek",
-    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
-  },
-  {
-    spokenWord: "Kamera",
-    forbiddenWords: ["Fotoğraf", "Çekmek", "Lens", "Makine", "Video"],
-  },
-  {
-    spokenWord: "Gemi",
-    forbiddenWords: ["Deniz", "Yelken", "Liman", "Yolculuk", "Gemici"],
-  },
-  {
-    spokenWord: "Müze",
-    forbiddenWords: ["Sanat", "Tarih", "Eser", "Ziyaret", "Koleksiyon"],
-  },
-  {
     spokenWord: "Kutup",
-    forbiddenWords: ["Soğuk", "Buz", "Kuzey", "Güney", "Keşif"],
+    forbiddenWords: ["Soğuk", "Buz", "Kuzey", "Güney", "Antarctica"],
   },
   {
     spokenWord: "Caz",
-    forbiddenWords: ["Müzik", "Saxophone", "Improvisasyon", "Ritim", "Konser"],
-  },
-  {
-    spokenWord: "Köpek",
-    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
-  },
-  {
-    spokenWord: "Kamera",
-    forbiddenWords: ["Fotoğraf", "Çekmek", "Lens", "Makine", "Video"],
-  },
-  {
-    spokenWord: "Gitar",
-    forbiddenWords: ["Müzik", "Akustik", "Telliler", "Çalmak", "Rock"],
+    forbiddenWords: ["Müzik", "Saxophone", "Tür", "Ritim", "Konser"],
   },
   {
     spokenWord: "Denizaltı",
-    forbiddenWords: ["Okyanus", "Derinlik", "Dalış", "Gemisi", "Keşif"],
+    forbiddenWords: ["Okyanus", "Derinlik", "Dalış", "Gemi", "Keşif"],
   },
   {
     spokenWord: "Kalem",
-    forbiddenWords: ["Yazmak", "Kağıt", "Uç", "Resim", "Kutu"],
+    forbiddenWords: ["Yazmak", "Kağıt", "Tükenmez", "Pilot", "Kutu"],
   },
   {
     spokenWord: "Düş",
     forbiddenWords: ["Rüya", "Uyku", "Gerçek", "Havada", "Uçmak"],
   },
   {
-    spokenWord: "Yelken",
-    forbiddenWords: ["Rüzgar", "Deniz", "Tekne", "Yarış", "Dalga"],
-  },
-  {
-    spokenWord: "Güneş gözlüğü",
-    forbiddenWords: ["Güneş", "Göz", "Koruma", "Aksesuar", "Görüş"],
-  },
-  {
-    spokenWord: "Gökyüzü",
-    forbiddenWords: ["Mavi", "Bulut", "Uçmak", "Yıldız", "Uzay"],
-  },
-  {
-    spokenWord: "Puzzle",
-    forbiddenWords: ["Parça", "Oyun", "Resim", "Bulmaca", "Zorluk"],
-  },
-  {
-    spokenWord: "Kuş",
-    forbiddenWords: ["Uçmak", "Yuva", "Tüy", "Kanat", "Ötmek"],
+    spokenWord: "Güneş Gözlüğü",
+    forbiddenWords: ["Rayban", "Göz", "Koruma", "Aksesuar", "Ay"],
   },
   {
     spokenWord: "Kilit",
-    forbiddenWords: ["Kapı", "Anahtar", "Güvenlik", "Açmak", "Sırrı"],
-  },
-  {
-    spokenWord: "Rüya",
-    forbiddenWords: ["Uyku", "Gerçek", "Hayal", "Görmek", "Gece"],
-  },
-  {
-    spokenWord: "Köprü",
-    forbiddenWords: ["Nehir", "Bağlantı", "Trafik", "Mimar", "Ulaşım"],
-  },
-  {
-    spokenWord: "Hediyelik",
-    forbiddenWords: ["Hediye", "Almak", "Özel", "Satın", "Hatıra"],
+    forbiddenWords: ["Kapı", "Anahtar", "Güvenlik", "Açmak", "Kale"],
   },
   {
     spokenWord: "Kamera",
-    forbiddenWords: ["Fotoğraf", "Çekmek", "Lens", "Makine", "Video"],
-  },
-  {
-    spokenWord: "Orman",
-    forbiddenWords: ["Ağaç", "Doğa", "Yürüyüş", "Yeşil", "Hayvan"],
+    forbiddenWords: ["Fotoğraf", "Çekmek", "Selfie", "Makine", "Video"],
   },
   {
     spokenWord: "Çanta",
@@ -2323,162 +1875,52 @@ const Word = [
     forbiddenWords: ["Büyük", "Tarih", "Kemik", "Ölü", "Fosil"],
   },
   {
-    spokenWord: "Roma",
-    forbiddenWords: ["İtalya", "Antik", "Tarihi", "Colosseum", "Forum"],
-  },
-  {
-    spokenWord: "Teleskop",
-    forbiddenWords: ["Yıldız", "Uzay", "Gözlem", "Galaksi", "Astronom"],
-  },
-  {
-    spokenWord: "Şifre",
-    forbiddenWords: ["Gizli", "Bilgisayar", "Çözmek", "Rakam", "Kod"],
-  },
-  {
     spokenWord: "Köpekbalığı",
-    forbiddenWords: ["Deniz", "Yüzgeç", "Sualtı", "Tehlike", "Büyük"],
+    forbiddenWords: ["Büyük", "Su", "Deniz", "Tehlike", "Okyanus"],
   },
   {
-    spokenWord: "Güneş krema",
-    forbiddenWords: ["Güneş", "Koruma", "Plaj", "Bronzlaşma", "Cilt"],
-  },
-  {
-    spokenWord: "Tatil",
-    forbiddenWords: ["Deniz", "Dinlenme", "Gezi", "Seyahat", "Kaçış"],
-  },
-  {
-    spokenWord: "Güzel",
-    forbiddenWords: ["Çirkin", "Estetik", "Görünmek", "Güzellik", "Manken"],
+    spokenWord: "Güneş Kremi",
+    forbiddenWords: ["Yaz", "Koruma", "Plaj", "Bronzlaşma", "Cilt"],
   },
   {
     spokenWord: "Avcı",
-    forbiddenWords: ["Silah", "Orman", "Vahşi", "Avcılık", "Gözlük"],
+    forbiddenWords: ["Silah", "Orman", "Vahşi", "Yaban", "Vurmak"],
   },
   {
-    spokenWord: "Bilgisayar oyunu",
+    spokenWord: "Bilgisayar Oyunu",
     forbiddenWords: ["Oyun", "Ekran", "Kontrol", "Oynamak", "Taktik"],
   },
   {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
-    spokenWord: "Gökkuşağı",
-    forbiddenWords: ["Renk", "Yağmur", "Güneş", "Görünüm", "Efsane"],
-  },
-  {
-    spokenWord: "Saat",
-    forbiddenWords: ["Zaman", "Dijital", "Kadran", "Alarm", "Duvar"],
-  },
-  {
-    spokenWord: "Pilot",
-    forbiddenWords: ["Uçak", "Gökyüzü", "Kontrol", "Yolcu", "Hava"],
-  },
-
-  {
     spokenWord: "Denizyıldızı",
-    forbiddenWords: ["Deniz", "Yıldız", "Okyanus", "Kum", "Daldırmak"],
-  },
-  {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
-    spokenWord: "Sinema",
-    forbiddenWords: ["Film", "Perde", "Salon", "Aktör", "Vizyon"],
+    forbiddenWords: ["Patrick", "Diken", "Okyanus", "Kum", "Vantuz"],
   },
   {
     spokenWord: "Gazete",
     forbiddenWords: ["Haber", "Yazı", "Basın", "Okumak", "Sayfa"],
   },
   {
-    spokenWord: "Taksi",
-    forbiddenWords: ["Araç", "Şoför", "Yolcu", "Ücret", "Şehir"],
-  },
-  {
-    spokenWord: "Dondurma",
-    forbiddenWords: ["Sütlü", "Lezzet", "Sıcak", "Kutu", "Kaşık"],
-  },
-  {
-    spokenWord: "Bisiklet",
-    forbiddenWords: ["Pedal", "Tekerlek", "Sürmek", "Hız", "Tur"],
-  },
-  ,
-  {
     spokenWord: "Uzay",
     forbiddenWords: ["Galaksi", "Astronomi", "Yıldız", "Gezegen", "Karanlık"],
-  },
-  {
-    spokenWord: "Gitar",
-    forbiddenWords: ["Müzik", "Akustik", "Telliler", "Çalmak", "Rock"],
-  },
-  {
-    spokenWord: "Yaprak",
-    forbiddenWords: ["Ağaç", "Dal", "Yeşil", "Sonbahar", "Rüzgar"],
   },
   {
     spokenWord: "Roma",
     forbiddenWords: ["İtalya", "Antik", "Tarihi", "Colosseum", "Forum"],
   },
   {
-    spokenWord: "Davul",
-    forbiddenWords: ["Müzik", "Vurmak", "Ritim", "Enstrüman", "Çalmak"],
-  },
-  {
-    spokenWord: "Turist",
-    forbiddenWords: ["Seyahat", "Gezi", "Yabancı", "Rehber", "Tatil"],
-  },
-  {
-    spokenWord: "Pasta",
-    forbiddenWords: ["Tatlı", "Kek", "Krem", "Dilim", "Pastane"],
-  },
-  {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
-    spokenWord: "Köpek",
-    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
-  },
-  {
-    spokenWord: "Tango",
-    forbiddenWords: ["Dans", "Müzik", "Leidenschaft", "Ritim", "Adım"],
-  },
-  {
     spokenWord: "Gemi",
     forbiddenWords: ["Deniz", "Yelken", "Liman", "Yolculuk", "Gemici"],
-  },
-  {
-    spokenWord: "Köprü",
-    forbiddenWords: ["Nehir", "Bağlantı", "Trafik", "Mimar", "Ulaşım"],
   },
   {
     spokenWord: "Hediyelik",
     forbiddenWords: ["Hediye", "Almak", "Özel", "Satın", "Hatıra"],
   },
   {
-    spokenWord: "Kumbara",
-    forbiddenWords: ["Para", "Biriktirmek", "Çocuk", "Kasası", "Bozmak"],
-  },
-  {
     spokenWord: "Yüzme",
     forbiddenWords: ["Havuz", "Deniz", "Spor", "Su", "Yüzgeç"],
   },
   {
-    spokenWord: "Güneşlik",
-    forbiddenWords: ["Güneş", "Sıcaklık", "Gölge", "Koruma", "Plaj"],
-  },
-  {
-    spokenWord: "Gökyüzü",
-    forbiddenWords: ["Mavi", "Bulut", "Uçmak", "Yıldız", "Uzay"],
-  },
-  {
     spokenWord: "Şifre",
-    forbiddenWords: ["Gizli", "Bilgisayar", "Çözmek", "Rakam", "Kod"],
-  },
-  {
-    spokenWord: "Güzel",
-    forbiddenWords: ["Çirkin", "Estetik", "Görünmek", "Güzellik", "Manken"],
+    forbiddenWords: ["Gizli", "Bilgisayar", "Kasa", "Rakam", "Açmak"],
   },
   {
     spokenWord: "Bulut",
@@ -2489,12 +1931,160 @@ const Word = [
     forbiddenWords: ["Deniz", "Dinlenme", "Gezi", "Seyahat", "Kaçış"],
   },
   {
-    spokenWord: "Gözlük",
-    forbiddenWords: ["Göz", "Cam", "Takmak", "Moda", "Görüş"],
-  },
-  {
     spokenWord: "Kurabiye",
     forbiddenWords: ["Tatlı", "Hamur", "Çikolata", "Pişirme", "Lezzet"],
+  },
+  {
+    spokenWord: "Teleskop",
+    forbiddenWords: ["Yıldız", "Uzay", "Gözlem", "Galaksi", "Astronom"],
+  },
+  {
+    spokenWord: "Plaj",
+    forbiddenWords: ["Deniz", "Kum", "Güneş", "Yüzme", "Kıyı"],
+  },
+  {
+    spokenWord: "Köprü",
+    forbiddenWords: ["Nehir", "Boğaziçi", "Trafik", "Yol", "Ulaşım"],
+  },
+  {
+    spokenWord: "Dondurma",
+    forbiddenWords: ["Sütlü", "Lezzet", "Sıcak", "Kutu", "Kaşık"],
+  },
+  {
+    spokenWord: "Gitar",
+    forbiddenWords: ["Müzik", "Bass", "Tel", "Çalmak", "Rock"],
+  },
+  {
+    spokenWord: "Hamburger",
+    forbiddenWords: ["Fast food", "Et", "Ekmeğe", "Lezzet", "Sandviç"],
+  },
+  {
+    spokenWord: "Gökkuşağı",
+    forbiddenWords: ["Renk", "Yağmur", "Güneş", "Görünüm", "Efsane"],
+  },
+  {
+    spokenWord: "Davul",
+    forbiddenWords: ["Müzik", "Vurmak", "Ramazan", "Zurna", "Çalmak"],
+  },
+  {
+    spokenWord: "Pasta",
+    forbiddenWords: ["Tatlı", "Kek", "Çikolata", "Dilim", "Doğum Günü"],
+  },
+  {
+    spokenWord: "Köpek",
+    forbiddenWords: ["Havlamak", "Evcil", "Tasma", "Kuyruk", "Cins"],
+  },
+  {
+    spokenWord: "Güneşlik",
+    forbiddenWords: ["Şapka", "Sıcaklık", "Gölge", "Koruma", "Plaj"],
+  },
+  {
+    spokenWord: "Gökyüzü",
+    forbiddenWords: ["Mavi", "Bulut", "Uçmak", "Yıldız", "Uzay"],
+  },
+  {
+    spokenWord: "Turist",
+    forbiddenWords: ["Seyahat", "Gezi", "Yabancı", "Rehber", "Tatil"],
+  },
+  {
+    spokenWord: "Yelken",
+    forbiddenWords: ["Rüzgar", "Deniz", "Tekne", "Yarış", "Dalga"],
+  },
+  {
+    spokenWord: "Taksi",
+    forbiddenWords: ["Araç", "Şoför", "Yolcu", "Ücret", "Şehir"],
+  },
+  {
+    spokenWord: "Orman",
+    forbiddenWords: ["Ağaç", "Doğa", "Yürüyüş", "Yeşil", "Yağmur"],
+  },
+  {
+    spokenWord: "Yaprak",
+    forbiddenWords: ["Ağaç", "Dal", "Yeşil", "Sonbahar", "Rüzgar"],
+  },
+  {
+    spokenWord: "Kumbara",
+    forbiddenWords: ["Para", "Biriktirmek", "Çocuk", "Kasa", "Bozmak"],
+  },
+  {
+    spokenWord: "Güzel",
+    forbiddenWords: ["Çirkin", "Estetik", "Görünmek", "Kadın", "Manken"],
+  },
+  {
+    spokenWord: "Puzzle",
+    forbiddenWords: ["Parça", "Oyun", "Resim", "Bulmaca", "Lego"],
+  },
+  {
+    spokenWord: "Pilot",
+    forbiddenWords: ["Uçak", "Gökyüzü", "Kontrol", "Yolcu", "Hava"],
+  },
+  {
+    spokenWord: "Dolma",
+    forbiddenWords: ["Yaprak", "Et", "Pirinç", "Lahan", "Sarma"],
+  },
+  {
+    spokenWord: "Kıyafet",
+    forbiddenWords: ["Moda", "Giyim", "Stil", "Dikiş", "Tasarım"],
+  },
+  {
+    spokenWord: "Süpermarket",
+    forbiddenWords: ["Alışveriş", "Reyon", "Meyve", "Fiyat", "Kasa"],
+  },
+  {
+    spokenWord: "Sinema",
+    forbiddenWords: ["Film", "Perde", "Salon", "Aktör", "Vizyon"],
+  },
+  {
+    spokenWord: "Kamyon",
+    forbiddenWords: ["Araç", "Yük", "Sürücü", "Taşıma", "Karayolu"],
+  },
+  {
+    spokenWord: "Şelale",
+    forbiddenWords: ["Su", "Doğa", "Manzara", "Yükseklik", "Akan"],
+  },
+  {
+    spokenWord: "Rüya",
+    forbiddenWords: ["Uyku", "Gerçek", "Hayal", "Görmek", "Gece"],
+  },
+  {
+    spokenWord: "Kütüphane",
+    forbiddenWords: ["Kitap", "Okuma", "Sessiz", "Raflar", "Bilgi"],
+  },
+  {
+    spokenWord: "Mango",
+    forbiddenWords: ["Meyve", "Tropikal", "Dilim", "Sulu", "Tatlı"],
+  },
+  {
+    spokenWord: "Çocuk",
+    forbiddenWords: ["Oyun", "Masal", "Okul", "Anne", "Baba"],
+  },
+  {
+    spokenWord: "Kamyonet",
+    forbiddenWords: ["Taşıma", "Araç", "Yolcu", "Yük", "Nakliye"],
+  },
+  {
+    spokenWord: "Kuş",
+    forbiddenWords: ["Uçmak", "Yuva", "Tüy", "Kanat", "Ötmek"],
+  },
+  {
+    spokenWord: "Kasap",
+    forbiddenWords: ["Et", "Kesmek", "Dükkan", "Taze", "Kıyma"],
+  },
+  {
+    spokenWord: "Kemik",
+    forbiddenWords: ["İskelet", "Köpek", "Et", "İçmek", "Yemek"],
+  },
+  {
+    spokenWord: "Çamaşır",
+    forbiddenWords: ["Yıkamak", "Temizlik", "Leke", "Kurutmak", "Giyim"],
+  },
+  {
+    spokenWord: "Astronot",
+    forbiddenWords: ["Uzay", "Gezegen", "Yıldız", "Uçuş", "Görev"],
+  },
+  {
+    spokenWord: "Bisiklet",
+    forbiddenWords: ["Pedal", "Tekerlek", "Sürmek", "Hız", "Tur"],
   },
 ];
 export default Word;
