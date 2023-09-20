@@ -37,7 +37,6 @@ import { getRewardedAds } from "../bussiness/actions/getAds";
 import ImageButtonSquare from "../components/home/ImageButtonSquare";
 import ImageButtonReactangle from "../components/home/ImageButtonReactangle";
 import BannerAds from "../components/google-ads/BannerAds";
-import Constants from "expo-constants";
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
   const router = useRouter();
@@ -85,7 +84,6 @@ const HomeScreen = () => {
       <>
         <Stack f={1} bg={"white"}>
           <SafeAreaView style={{ flex: 1 }}>
-            {/* <Text>asdsad:{JSON.stringify(Constants.expoConfig.extra)}</Text> */}
             {/* HEADER */}
             <XStack
               ai="center"
@@ -135,10 +133,10 @@ const HomeScreen = () => {
                 <YStack ml={5} mr={15} f={1} ai="center">
                   <Stack mb={width * 0.02}>
                     <ImageButtonReactangle
-                      bgcolor={"#000000a0"}
-                      onPress={() => router.push("/roll-dice")}
-                      source={require("../assets//home-page/cube.png")}
-                      text={"Zar At"}
+                      bgcolor={"#39062Da0"}
+                      onPress={() => router.push("/tictactoe")}
+                      source={require("../assets/home-page/tictactoe.png")}
+                      text={"X-O-X"}
                     />
                   </Stack>
                   <Stack mt={width * 0.02}>
@@ -189,6 +187,35 @@ const HomeScreen = () => {
                     source={require("../assets/home-page/jump.png")}
                     text={"Top Sektir"}
                   />
+                </Stack>
+              </XStack>
+
+              <XStack mt={15} jc="space-between">
+                <YStack mr={5} ml={15} f={1} ai="center">
+                  <Stack mb={width * 0.02}>
+                    <ImageButtonReactangle
+                      bgcolor={"#000000a0"}
+                      onPress={() => router.push("/roll-dice")}
+                      source={require("../assets//home-page/cube.png")}
+                      text={"Zar At"}
+                    />
+                  </Stack>
+                  {/* <Stack mt={width * 0.02}>
+                    <ImageButtonReactangle
+                      bgcolor={"#000000a0"}
+                      onPress={() => router.push("/hangman")}
+                      source={require("../assets//home-page/hangman.png")}
+                      text={"Adam Asmaca"}
+                    />
+                  </Stack> */}
+                </YStack>
+                <Stack ml={5} mr={15} f={1} ai="center">
+                  {/* <ImageButtonSquare
+                    bgcolor={"#EEAFC0a0"}
+                    onPress={() => router.push("/banned-words")}
+                    source={require("../assets/home-page/bannedWord.png")}
+                    text={"Yasaklı Kelimeler"}
+                  /> */}
                 </Stack>
               </XStack>
             </ScrollView>
