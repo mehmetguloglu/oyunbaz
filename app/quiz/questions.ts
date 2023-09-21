@@ -2,9 +2,166 @@ const questions = [
   // 1. Seviye Soruları
   [
     {
+      question:
+        "Alexandre Dumas'nın 'Üç Silahşör' adlı romanında geçen ve 'Hepimiz birimiz' şeklinde başlayan sözün devamı nasıldır?",
+      options: [
+        "Birimiz birimiz için",
+        "Birimiz hepimiz için",
+        "Hepimiz birimiz için",
+        "Hepimiz hepimiz için",
+      ],
+      answer: 1,
+    },
+    {
+      question:
+        '"Linyit", "antrasit" gibi türleri olan ve büyük ölçüde karbondan oluşan hangisidir?',
+      options: ["Alüminyum", "Bor", "Kömür", "Obsidiyen"],
+      answer: 2,
+    },
+    {
+      question:
+        "Afrika kıtasının Kilimanjaro'dan sonraki en yüksek dağı olan Kenya Dağı hangi ülkededir?",
+      options: ["Kenya", "Güney Afrika", "Nijerya", "Fas"],
+      answer: 0,
+    },
+    {
+      question: 'Hangisi "havuç"a verilen bir addır?',
+      options: ["Havayavaran", "Toprağagiren", "Yeregeçen", "Karakaçan"],
+      answer: 2,
+    },
+    {
+      question: '"Keşmekeş" ne demektir?',
+      options: ["Dinginlik", "Karışıklık", "Durgunluk", "Sakinlik"],
+      answer: 1,
+    },
+    {
+      question: "Atasözüne göre hangisini 'yıkmak kolay, yapmak zordur'?",
+      options: ["Aşil tendonunu", "Safra kesesini", "Apandisi", "Kalbi"],
+      answer: 3,
+    },
+    {
+      question: "Hangisi gevrek ve sulu bir tür ayvaya verilen addır?",
+      options: [
+        "Poğaça ayvası",
+        "Kruvasan ayvası",
+        "Simit ayvası",
+        "Ekmek ayvası",
+      ],
+      answer: 3,
+    },
+    {
+      question: "Dikkate şayan ne demektir?",
+      options: ["Değerli", "Önemsiz", "Basit", "Özensiz"],
+      answer: 0,
+    },
+    {
+      question:
+        "Bulunduğu yerde, orada yaşayanları rahatsız etme pahasına sürekli kalıp oraya yerleşen biri ne yapmış olur?",
+      options: ["Kreplenmiş", "Pastalanmış", "Çöreklenmiş", "Böreklenmiş"],
+      answer: 2,
+    },
+    {
+      question:
+        "5 makinenin 5 cihaz üretmesi 5 dakika sürüyorsa 100 makinenin 100 cihaz üretmesi ne kadar sürer?",
+      options: ["5 dakika", "25 dakika", "1 saat", "1 saat 40 dakika"],
+      answer: 0,
+    },
+    {
+      question: "Tarık Akan hangisinde rol almamıştır?",
+      options: [
+        "Canım Kardeşim",
+        "Mavi Boncuk",
+        "Köyden İndim Şehire",
+        "Ah Nerede",
+      ],
+      answer: 2,
+    },
+    {
+      question: "Hangisi 'G.O.R.A.' adlı filmde geçen bir repliktir?",
+      options: [
+        "Zeki Müren de bizi görecek mi?",
+        "Vurucam kırbacı!",
+        "Araba nerde? Para nerde?",
+        "Dünyalılardan tiskiniyorum!",
+      ],
+      answer: 3,
+    },
+    {
+      question:
+        "Hangisi, Iron Man adlı çizgi roman kahramanını beyaz perdede canlandırmıştır?",
+      options: [
+        "Jake Gyllenhaal",
+        "Robert Downey Jr.",
+        "Benedict Cumberbatch",
+        "Chris Hemsworth",
+      ],
+      answer: 1,
+    },
+    {
+      question: "Kimlere 'karıncaezmez' denir?",
+      options: [
+        "Çok esprili kişilere",
+        "Çok merhametli kişilere",
+        "Çok gösterişli kişilere",
+        "Çok çalışkan kişilere",
+      ],
+      answer: 1,
+    },
+    {
+      question: '"DUS"a girecek olan biri hangi fakülteden mezun olmuştur?',
+      options: ["Hukuk", "Diş Hekimliği", "Spor Bilimleri", "Denizcilik"],
+      answer: 1,
+    },
+    {
+      question:
+        "Stefan Zweing'ın 'Satranç' adlı eserinde, bir gemi yolculuğu sırasında geçen hikayede karakterler hangi oyunu oynar?",
+      options: ["Çelik çomak", "Deve güreşi", "Satranç", "Uzuneşek"],
+      answer: 2,
+    },
+    {
       question: "Fransa'nın başkenti neresidir?",
       options: ["Londra", "Paris", "Roma", "Madrid"],
       answer: 1,
+    },
+    {
+      question:
+        "Ölçüsü dik açıdan daha büyük ve doğru açıdan daha küçük olan açılara ne ad verilir?",
+      options: ["Dar açı", "Geniş açı", "Düz açı", "Yuvarlak açı"],
+      answer: 1,
+    },
+    {
+      question:
+        '"Boş, bomboş" anlamına gelen ve "kuru bakır" şeklinde biten sözün başında hangisi söylenir?',
+      options: ["Takır tukur", "Tıkır tıkır", "Tamtakır", "Yaşbakır"],
+      answer: 2,
+    },
+    {
+      question:
+        '"Biz 40 ve 45 yaşlarındayız, bizim ve ikiz çocuklarımızın yaşları toplamı ise 115" diyen bir çift kaç yaşlarında ebeveyn olmuştur?',
+      options: ["20 ve 25", "25 ve 30", "30 ve 35", "35 ve 40"],
+      answer: 1,
+    },
+    {
+      question: "Aşkın Olayım adlı şarkıyı kim seslendirmektedir?",
+      options: ["Simge Sağın", "Aşkın Nur Yengi", "Aleyna Tilki", "Gülşen"],
+      answer: 0,
+    },
+    {
+      question:
+        "Lâmı cimi yok deyiminde geçen ve eski metinlerde kısaltma olarak kullanılan lâm ve cim, hangi anlama gelen Arapça kökenli iki kelimenin kısaltmasıdır?",
+      options: [
+        "Uygun değil ve uygun",
+        "Komşu ve misafir",
+        "Ucuz ve pahalı",
+        "Geçmiş ve gelecek",
+      ],
+      answer: 0,
+    },
+    {
+      question:
+        "100'e, 100'ün yüzde 10'u eklendiğinde çıkan sonuç 100'ün yüzde kaçı olur?",
+      options: ["Yüzde 10'u", "Yüzde 100'ü", "Yüzde 110'u", "Yüzde 1000'i"],
+      answer: 2,
     },
     {
       question:
@@ -517,9 +674,173 @@ const questions = [
   // 2. Seviye Soruları
   [
     {
+      question: "Atlas Dağları'nı gezmekte olan biri hangi ülkede olabilir?",
+      options: ["Arjantin", "Fas", "Arnavutluk", "Japonya"],
+      answer: 1,
+    },
+    {
+      question: "Hangisi bir çeşit acı bala verilen addır?",
+      options: ["Deli bal", "Mecnun bal", "Aşık bal", "Divane bal"],
+      answer: 0,
+    },
+    {
+      question: "Hangisi atomlarda bulunan temel parçacıklardan biri değildir?",
+      options: ["Proton", "Nötron", "Elektron", "Megatron"],
+      answer: 3,
+    },
+    {
+      question: "Pazen nedir?",
+      options: [
+        "Bir tarım aleti",
+        "Ara sıra anlamında bir kelime",
+        "Bir kumaş türü",
+        "Bir müzik aleti",
+      ],
+      answer: 2,
+    },
+    {
+      question:
+        "Geçtiğimiz günlerde vefat eden, Sovyetler Birliği'nin son lideri kimdir?",
+      options: [
+        "Kraliçe II. Elizabeth",
+        "Mihail Gorbaçov",
+        "Kral Julien",
+        "Pablo Neruda",
+      ],
+      answer: 1,
+    },
+    {
+      question: "Cebelitarık Boğazı hangi ikisini birbirinden ayırır?",
+      options: [
+        "Asya ve Amerika",
+        "Afrika ve Avrupa",
+        "Avrupa ve Asya",
+        "Asya ve Afrika",
+      ],
+      answer: 1,
+    },
+    {
+      question:
+        "Sevr Antlaşması'nı gösteren ünlü haritada başka devletlerin kontrolüne bırakılan topraklar bugün eğer o devletlerin toprakları olarak kalmış olsaydı, Türkiye vatandaşlarının hangisini ziyaret etmesi için vize alması gerekmeyecekti?",
+      options: [
+        "Safranbolu Evleri",
+        "Selimiye Camii",
+        "Sümela Manastırı",
+        "Halikarnas Mozolesi",
+      ],
+      answer: 0,
+    },
+    {
+      question:
+        "Bitkilerin sap ve dallarını öğütmek veya fındığın dış kabuğunu ayırmak için kullanılan, harman işini yapan makineye ne ad verilir?",
+      options: ["Patoz", "Takoz", "Tonoz", "Moloz"],
+      answer: 0,
+    },
+    {
+      question: "Cebelitarık Boğazı hangi ikisini birleştirir?",
+      options: [
+        "Akdeniz ve Atlas Okyanusu",
+        "Atlas Okyanusu ve Büyük Okyanus",
+        "Hazar Denizi ve Aral Gölü",
+        "Sarı Deniz ve Hint Okyanusu",
+      ],
+      answer: 0,
+    },
+    {
+      question: "Sayfiye ne demektir?",
+      options: [
+        "Yazlık, yazlık ev",
+        "Kışlık, kışlık ev",
+        "İlkbahar, ilkbaharlık ev",
+        "Sonbahar, sonbaharlık ev",
+      ],
+      answer: 0,
+    },
+
+    {
+      question:
+        "TDK'ye göre hangisi, 'yalnız bakmakla yetinilen aşk' anlamına gelir?",
+      options: ["Kara sevda", "Göz sevdası", "Platonik aşk", "Uzak aşk"],
+      answer: 1,
+    },
+    {
+      question:
+        "Orkestra şeflerinin sahnede mesleklerini icra ederken giydikleri genellikle hangisi olur?",
+      options: ["Tütü", "Frak", "Ropdöşambır", "Peştamal"],
+      answer: 1,
+    },
+    {
+      question:
+        '"Açlık Oyunları" adlı film serisinde Jennifer Lawrence\'ın canlandırdığı başkarakter hangisidir?',
+      options: [
+        "Ellen Ripley",
+        "Clarice Starling",
+        "Hunger Games",
+        "Katniss Everdeen",
+      ],
+      answer: 3,
+    },
+    {
+      question:
+        "Hangi köprüden geçerken, yüzyıllar öncesinden kalma bir geleneğe uygun olarak cesaretlerini kanıtlamak için köprüden nehre atlayan gençlerle karşılaşabilirsiniz?",
+      options: [
+        "Golden Gate Köprüsü",
+        "Malabadi Köprüsü",
+        "Mostar Köprüsü",
+        "Galata Köprüsü",
+      ],
+      answer: 2,
+    },
+    {
+      question:
+        "Hangisinden geçiyorsanız ABD'nin Kaliforniya eyaletindesinizdir?",
+      options: [
+        "Brandenburg Kapısı",
+        "Hadrian Duvarı",
+        "Golden Gate Köprüsü",
+        "Valens Su Kemeri",
+      ],
+      answer: 2,
+    },
+    {
+      question:
+        "Karanlık ve ıssız yerlerde, insanın gördüğünü sandığı korkunç hayalet hangisinin sözlük tanımıdır?",
+      options: ["Gulyabani", "Karabasan", "Vampir", "Ebegümeci"],
+      answer: 0,
+    },
+    {
+      question:
+        "Hangisi esas olarak aruz ölçüsünün 'feilâtün, feilâtün, feilâtün, feilün' kalıbıyla yazılmıştır?",
+      options: [
+        "Orhun Kitabeleri",
+        "İstiklal Marşı",
+        "Dede Korkut Hikayeleri",
+        "Kutadgu Bilig",
+      ],
+      answer: 1,
+    },
+    {
+      question:
+        "Hangisi mecazi anlamda 'aşırı kalabalıklaşmak' anlamına gelir?",
+      options: ["Kız vermek", "Oğul vermek", "Dünür gitmek", "Yerden bitmek"],
+      answer: 1,
+    },
+    {
+      question:
+        "Sosyal medyada paylaştığı videoda 'Manama'nın merkezinden herkese selamlar!' diyen biri hangi ülkenin başkentinden olduğunu belirtmiş olur?",
+      options: ["Bahreyn", "Polonya", "Meksika", "Panama"],
+      answer: 0,
+    },
+    {
       question: "Hangi ülkenin bayrağında beyaz renk yer almaz?",
       options: ["Fransa", "Almanya", "Türkiye", "Yunanistan"],
       answer: 1,
+    },
+    {
+      question:
+        "Şirinler adlı çizgi filmde hangi adla bilinen şirinin kolunda kırmızı bir kalp vardır?",
+      options: ["Obur Şirin", "Şair Şirin", "Şirine", "Güçlü Şirin"],
+      answer: 3,
     },
     {
       question:
@@ -1041,6 +1362,154 @@ const questions = [
   // 3. Seviye Soruları
   [
     {
+      question: "Trabzon hurmasının diğer adı hangisidir?",
+      options: [
+        "Acem hurması",
+        "Hint hurması",
+        "Japon hurması",
+        "Balkan hurması",
+      ],
+      answer: 2,
+    },
+    {
+      question: "Hangi meyvenin 'gemre' ve 'pembegemre' adında türleri vardır?",
+      options: ["Erik", "Karpuz", "Elma", "Üzüm"],
+      answer: 3,
+    },
+    {
+      question:
+        '"Mende sığar iki cihan, men bu cihana sığmazam" kimin eserinin ilk dizesidir?',
+      options: ["Fuzuli", "Baki", "Nesimi", "Aşık Veysel"],
+      answer: 2,
+    },
+    {
+      question:
+        "Shakespeare'in hangi oyunundaki başkarakter oyunun ilerleyen sahnelerinde İngiltere kralı olur?",
+      options: ["Macbeth", "III. Richard", "Othello", "Hamlet"],
+      answer: 1,
+    },
+    {
+      question:
+        '"Altın Aslan" kazanan bir yönetmen hangi film festivalinin jürisi tarafından "En İyi Yönetmen" seçilmiştir?',
+      options: [
+        "Venedik Uluslararası Film Festivali",
+        "Berlin Uluslararası Film Festivali",
+        "Cannes Film Festivali",
+        "Antalya Altın Portakal Film Festivali",
+      ],
+      answer: 0,
+    },
+    {
+      question: "Hangisi 'anlık' anlamına gelmez?",
+      options: ["Entelekt", "Spontane", "Aktüel", "Enstantane"],
+      answer: 2,
+    },
+    {
+      question:
+        "Çekimleri 46 hafta süren ve 'En uzun kesintisiz film çekimi' unvanıyla Guinness Dünya Rekorlarına giren film hangisidir?",
+      options: [
+        "Kış Uykusu",
+        "Ucuz Roman",
+        "Gözleri Tamamen Kapalı",
+        "Ağır Roman",
+      ],
+      answer: 2,
+    },
+    {
+      question:
+        "Osmanlı tarihinde, hangi addaki padişahların toplam hükümdarlık süresi yaklaşık yüz yılla en uzundur?",
+      options: ["Mehmed", "Selim", "Mahmud", "Süleyman"],
+      answer: 0,
+    },
+    {
+      question:
+        "Sri Lanka, haritadaki şekli ve coğrafi konumundan ötürü hangi ülkenin 'gözyaşı' olarak adlandırılır?",
+      options: ["Avustralya", "Japonya", "Meksika", "Hindistan"],
+      answer: 3,
+    },
+    {
+      question:
+        "Kimin 'Devlet' adlı kitabında, 'idea' kavramı, mağarada bulunan insanlarla ilgili anlatılan bir hikayeyle açıklanır?",
+      options: ["Cicero", "Diyojen", "Aristoteles", "Platon"],
+      answer: 3,
+    },
+    {
+      question:
+        "Keanu Reeves'in Al Pacino'yla sohbet ettiği bir sahne varsa izlediğiniz film muhtemelen hangisidir?",
+      options: ["Taksi Şoförü", "Kadın Kokusu", "Şeytanın Avukatı", "Matrix"],
+      answer: 2,
+    },
+    {
+      question: "Hangisinin zirvesine tırmanan bir dağcı, Asya kıtasındadır?",
+      options: [
+        "Rushmore Dağı",
+        "Etna Dağı",
+        "Everest Dağı",
+        "Kilimanjaro Dağı",
+      ],
+      answer: 2,
+    },
+    {
+      question: "Uruguay'ın resmi adı hangisidir?",
+      options: [
+        "Uruguay Kuzey Cumhuriyeti",
+        "Uruguay Güney Cumhuriyeti",
+        "Uruguay Doğu Cumhuriyeti",
+        "Uruguay Batı Cumhuriyeti",
+      ],
+      answer: 2,
+    },
+    {
+      question:
+        "Güney Rusya'da yaşayan Kazakları anlattığı tarihi romanları ve hikayeleriyle 1965'te Nobel kazanan, 4 ciltlik 'Ve Durgun Akardı Don' romanının yazarı kimdir?",
+      options: [
+        "Boris Pasternak",
+        "Lev Tolstoy",
+        "Maksim Gorki",
+        "Mihail Şolohov",
+      ],
+      answer: 3,
+    },
+    {
+      question:
+        "İtalya Serie A'da 2022-2023 sezonunda, 33 yıl aradan sonra tekrar şampiyon olan Napoli futbol takımının stadının adı nedir?",
+      options: [
+        "Roberto Baggio",
+        "Diego Armando Maradona",
+        "Zinedine Zidane",
+        "Pele",
+      ],
+      answer: 1,
+    },
+    {
+      question:
+        "Hangisi ördekgillerden, tüyleri kiremit renginde bir kuş türünün adıdır?",
+      options: ["Ebleh", "Sersem", "Angut", "Budala"],
+      answer: 2,
+    },
+    {
+      question: "Payanda nedir?",
+      options: ["Takla", "Olta", "Çatı", "Destek"],
+      answer: 3,
+    },
+    {
+      question:
+        "Güneş Sistemi'ndeki cisimlerden hangisi yüz ölçümü olarak daha büyüktür?",
+      options: [
+        "En küçük gezegen Merkür",
+        "Dünya'nın uydusu Ay",
+        "En büyük cüce gezegen Plüton",
+        "Satürn'ün uydusu Titan",
+      ],
+      answer: 3,
+    },
+    {
+      question:
+        "Hangisi Uluslararası Uzay İstasyonu'nda bugüne kadar yapılmış sporlardan biri değildir?",
+      options: ["Beyzbol", "Futbol", "Satranç", "Yağlı güreş"],
+      answer: 3,
+    },
+    {
       question: "Hangi ünlü ressam 'Starry Night' adlı tabloyu yapmıştır?",
       options: [
         "Pablo Picasso",
@@ -1453,10 +1922,60 @@ const questions = [
   // 4. Seviye Soruları
   [
     {
+      question: '"Roland-Garros şampiyonu" olan biri hangi sporu yapıyordur?',
+      options: ["Tenis", "Golf", "Bilardo", "Polo"],
+      answer: 0,
+    },
+    {
+      question:
+        "ABD New York'taki Özgürlük Heykeli bir elinde meşale tutarken diğer elinde ne tutar?",
+      options: ["Anayasa kitabı", "Kitabe", "Terazi", "Hiçbir şey"],
+      answer: 1,
+    },
+    {
+      question: "Ebu Şüca Muhammed bin Davud kimdir?",
+      options: ["Timur", "Alparslan", "Selahaddin Eyyubi", "Cengiz Han"],
+      answer: 1,
+    },
+    {
+      question:
+        '"Züğürt Ağa"da Abuzer, "Eşkıya"da Mustafa ve başrollerini Şener Şen ve Kenan İmirzalıoğlu\'nun paylaştığı "Kabadayı"da Beyto karakterini canlandıran oyuncu kimdir?',
+      options: ["Hayati Hamzaoğlu", "Kemal İnci", "Kadir Savun", "Erol Taş"],
+      answer: 1,
+    },
+    {
+      question:
+        "Hangisi yönetmenliği Woody Allen'ın yaptığı bir film değildir?",
+      options: [
+        "Roma'ya sevgilerle",
+        "Paris'te Gece Yarısı",
+        "Barselona, Barselona",
+        "Büyük Budapeşte Oteli",
+      ],
+      answer: 3,
+    },
+    {
       question: "İlk programlama dilini kim yaratmıştır?",
       options: ["Steve Jobs", "Alan Turing", "Ada Lovelace", "Bill Gates"],
 
       answer: 2,
+    },
+    {
+      question:
+        "FIFA Dünya Kupası tarihinde yarı finale ulaşmayı başaran ve başkenti Afrika'da olan tek ülke hangisidir?",
+      options: ["Nijerya", "Senegal", "Güney Afrika", "Fas"],
+      answer: 3,
+    },
+    {
+      question:
+        "Eylül 2021'de nerede eski bir geleneği devam ettirmek için 1428 yunus öldürülmüştür?",
+      options: [
+        "Danimarka'ya bağlı Faroe Adaları'nda",
+        "Japonya'ya bağlı Ryukyu Adaları'nda",
+        "Birleşik Krallık'a bağlı Falkland Adaları'nda",
+        "ABD'ye bağlı Hawaii Adaları'nda",
+      ],
+      answer: 0,
     },
     {
       question:
@@ -1740,531 +2259,12 @@ const questions = [
     },
   ],
   //DAĞITILACAK SORULAR
-  [
-    {
-      question:
-        "İtalya Serie A'da 2022-2023 sezonunda, 33 yıl aradan sonra tekrar şampiyon olan Napoli futbol takımının stadının adı nedir?",
-      options: [
-        "Roberto Baggio",
-        "Diego Armando Maradona",
-        "Zinedine Zidane",
-        "Pele",
-      ],
-      answer: 1,
-    },
-    {
-      question:
-        "Hangisi Uluslararası Uzay İstasyonu'nda bugüne kadar yapılmış sporlardan biri değildir?",
-      options: ["Beyzbol", "Futbol", "Satranç", "Yağlı güreş"],
-      answer: 3,
-    },
-    {
-      question:
-        "100'e, 100'ün yüzde 10'u eklendiğinde çıkan sonuç 100'ün yüzde kaçı olur?",
-      options: ["Yüzde 10'u", "Yüzde 100'ü", "Yüzde 110'u", "Yüzde 1000'i"],
-      answer: 2,
-    },
-    {
-      question:
-        "Eylül 2021'de nerede eski bir geleneği devam ettirmek için 1428 yunus öldürülmüştür?",
-      options: [
-        "Danimarka'ya bağlı Faroe Adaları'nda",
-        "Japonya'ya bağlı Ryukyu Adaları'nda",
-        "Birleşik Krallık'a bağlı Falkland Adaları'nda",
-        "ABD'ye bağlı Hawaii Adaları'nda",
-      ],
-      answer: 0,
-    },
-    {
-      question:
-        "Şirinler adlı çizgi filmde hangi adla bilinen şirinin kolunda kırmızı bir kalp vardır?",
-      options: ["Obur Şirin", "Şair Şirin", "Şirine", "Güçlü Şirin"],
-      answer: 3,
-    },
-    {
-      question:
-        "Hangisi esas olarak aruz ölçüsünün 'feilâtün, feilâtün, feilâtün, feilün' kalıbıyla yazılmıştır?",
-      options: [
-        "Orhun Kitabeleri",
-        "İstiklal Marşı",
-        "Dede Korkut Hikayeleri",
-        "Kutadgu Bilig",
-      ],
-      answer: 1,
-    },
-    {
-      question:
-        "Lâmı cimi yok deyiminde geçen ve eski metinlerde kısaltma olarak kullanılan lâm ve cim, hangi anlama gelen Arapça kökenli iki kelimenin kısaltmasıdır?",
-      options: [
-        "Uygun değil ve uygun",
-        "Komşu ve misafir",
-        "Ucuz ve pahalı",
-        "Geçmiş ve gelecek",
-      ],
-      answer: 0,
-    },
-    {
-      question:
-        "Güneş Sistemi'ndeki cisimlerden hangisi yüz ölçümü olarak daha büyüktür?",
-      options: [
-        "En küçük gezegen Merkür",
-        "Dünya'nın uydusu Ay",
-        "En büyük cüce gezegen Plüton",
-        "Satürn'ün uydusu Titan",
-      ],
-      answer: 3,
-    },
-    {
-      question: "Payanda nedir?",
-      options: ["Takla", "Olta", "Çatı", "Destek"],
-      answer: 3,
-    },
-    {
-      question:
-        "Sosyal medyada paylaştığı videoda 'Manama'nın merkezinden herkese selamlar!' diyen biri hangi ülkenin başkentinden olduğunu belirtmiş olur?",
-      options: ["Bahreyn", "Polonya", "Meksika", "Panama"],
-      answer: 0,
-    },
-    {
-      question:
-        "Hangisi mecazi anlamda 'aşırı kalabalıklaşmak' anlamına gelir?",
-      options: ["Kız vermek", "Oğul vermek", "Dünür gitmek", "Yerden bitmek"],
-      answer: 1,
-    },
-    {
-      question:
-        "Hangi köprüden geçerken, yüzyıllar öncesinden kalma bir geleneğe uygun olarak cesaretlerini kanıtlamak için köprüden nehre atlayan gençlerle karşılaşabilirsiniz?",
-      options: [
-        "Golden Gate Köprüsü",
-        "Malabadi Köprüsü",
-        "Mostar Köprüsü",
-        "Galata Köprüsü",
-      ],
-      answer: 2,
-    },
-    {
-      question: "Aşkın Olayım adlı şarkıyı kim seslendirmektedir?",
-      options: ["Simge Sağın", "Aşkın Nur Yengi", "Aleyna Tilki", "Gülşen"],
-      answer: 0,
-    },
-    {
-      question:
-        "FIFA Dünya Kupası tarihinde yarı finale ulaşmayı başaran ve başkenti Afrika'da olan tek ülke hangisidir?",
-      options: ["Nijerya", "Senegal", "Güney Afrika", "Fas"],
-      answer: 3,
-    },
-    {
-      question:
-        "Karanlık ve ıssız yerlerde, insanın gördüğünü sandığı korkunç hayalet hangisinin sözlük tanımıdır?",
-      options: ["Gulyabani", "Karabasan", "Vampir", "Ebegümeci"],
-      answer: 0,
-    },
-    {
-      question:
-        "Hangisi ördekgillerden, tüyleri kiremit renginde bir kuş türünün adıdır?",
-      options: ["Ebleh", "Sersem", "Angut", "Budala"],
-      answer: 2,
-    },
-    {
-      question:
-        '"Biz 40 ve 45 yaşlarındayız, bizim ve ikiz çocuklarımızın yaşları toplamı ise 115" diyen bir çift kaç yaşlarında ebeveyn olmuştur?',
-      options: ["20 ve 25", "25 ve 30", "30 ve 35", "35 ve 40"],
-      answer: 1,
-    },
-    {
-      question:
-        "Keanu Reeves'in Al Pacino'yla sohbet ettiği bir sahne varsa izlediğiniz film muhtemelen hangisidir?",
-      options: ["Taksi Şoförü", "Kadın Kokusu", "Şeytanın Avukatı", "Matrix"],
-      answer: 2,
-    },
-    {
-      question:
-        '"Boş, bomboş" anlamına gelen ve "kuru bakır" şeklinde biten sözün başında hangisi söylenir?',
-      options: ["Takır tukur", "Tıkır tıkır", "Tamtakır", "Yaşbakır"],
-      answer: 2,
-    },
-    {
-      question:
-        "Hangisinden geçiyorsanız ABD'nin Kaliforniya eyaletindesinizdir?",
-      options: [
-        "Brandenburg Kapısı",
-        "Hadrian Duvarı",
-        "Golden Gate Köprüsü",
-        "Valens Su Kemeri",
-      ],
-      answer: 2,
-    },
-    {
-      question:
-        "Ölçüsü dik açıdan daha büyük ve doğru açıdan daha küçük olan açılara ne ad verilir?",
-      options: ["Dar açı", "Geniş açı", "Düz açı", "Yuvarlak açı"],
-      answer: 1,
-    },
-    {
-      question: '"DUS"a girecek olan biri hangi fakülteden mezun olmuştur?',
-      options: ["Hukuk", "Diş Hekimliği", "Spor Bilimleri", "Denizcilik"],
-      answer: 1,
-    },
-    {
-      question:
-        "Güney Rusya'da yaşayan Kazakları anlattığı tarihi romanları ve hikayeleriyle 1965'te Nobel kazanan, 4 ciltlik 'Ve Durgun Akardı Don' romanının yazarı kimdir?",
-      options: [
-        "Boris Pasternak",
-        "Lev Tolstoy",
-        "Maksim Gorki",
-        "Mihail Şolohov",
-      ],
-      answer: 3,
-    },
-    {
-      question: "Uruguay'ın resmi adı hangisidir?",
-      options: [
-        "Uruguay Kuzey Cumhuriyeti",
-        "Uruguay Güney Cumhuriyeti",
-        "Uruguay Doğu Cumhuriyeti",
-        "Uruguay Batı Cumhuriyeti",
-      ],
-      answer: 2,
-    },
-    {
-      question: "Hangisinin zirvesine tırmanan bir dağcı, Asya kıtasındadır?",
-      options: [
-        "Rushmore Dağı",
-        "Etna Dağı",
-        "Everest Dağı",
-        "Kilimanjaro Dağı",
-      ],
-      answer: 2,
-    },
-    {
-      question:
-        '"Açlık Oyunları" adlı film serisinde Jennifer Lawrence\'ın canlandırdığı başkarakter hangisidir?',
-      options: [
-        "Ellen Ripley",
-        "Clarice Starling",
-        "Hunger Games",
-        "Katniss Everdeen",
-      ],
-      answer: 3,
-    },
-    {
-      question:
-        "Stefan Zweing'ın 'Satranç' adlı eserinde, bir gemi yolculuğu sırasında geçen hikayede karakterler hangi oyunu oynar?",
-      options: ["Çelik çomak", "Deve güreşi", "Satranç", "Uzuneşek"],
-      answer: 2,
-    },
-    {
-      question: "Sayfiye ne demektir?",
-      options: [
-        "Yazlık, yazlık ev",
-        "Kışlık, kışlık ev",
-        "İlkbahar, ilkbaharlık ev",
-        "Sonbahar, sonbaharlık ev",
-      ],
-      answer: 0,
-    },
-    {
-      question: "Trabzon hurmasının diğer adı hangisidir?",
-      options: [
-        "Acem hurması",
-        "Hint hurması",
-        "Japon hurması",
-        "Balkan hurması",
-      ],
-      answer: 2,
-    },
-    {
-      question:
-        "TDK'ye göre hangisi, 'yalnız bakmakla yetinilen aşk' anlamına gelir?",
-      options: ["Kara sevda", "Göz sevdası", "Platonik aşk", "Uzak aşk"],
-      answer: 1,
-    },
-    {
-      question:
-        "Orkestra şeflerinin sahnede mesleklerini icra ederken giydikleri genellikle hangisi olur?",
-      options: ["Tütü", "Frak", "Ropdöşambır", "Peştamal"],
-      answer: 1,
-    },
-    {
-      question:
-        "Alexandre Dumas'nın 'Üç Silahşör' adlı romanında geçen ve 'Hepimiz birimiz' şeklinde başlayan sözün devamı nasıldır?",
-      options: [
-        "Birimiz birimiz için",
-        "Birimiz hepimiz için",
-        "Hepimiz birimiz için",
-        "Hepimiz hepimiz için",
-      ],
-      answer: 1,
-    },
-    {
-      question:
-        "Kimin 'Devlet' adlı kitabında, 'idea' kavramı, mağarada bulunan insanlarla ilgili anlatılan bir hikayeyle açıklanır?",
-      options: ["Cicero", "Diyojen", "Aristoteles", "Platon"],
-      answer: 3,
-    },
-    {
-      question:
-        "Sri Lanka, haritadaki şekli ve coğrafi konumundan ötürü hangi ülkenin 'gözyaşı' olarak adlandırılır?",
-      options: ["Avustralya", "Japonya", "Meksika", "Hindistan"],
-      answer: 3,
-    },
-    {
-      question: "Atlas Dağları'nı gezmekte olan biri hangi ülkede olabilir?",
-      options: ["Arjantin", "Fas", "Arnavutluk", "Japonya"],
-      answer: 1,
-    },
-    {
-      question: "Kimlere 'karıncaezmez' denir?",
-      options: [
-        "Çok esprili kişilere",
-        "Çok merhametli kişilere",
-        "Çok gösterişli kişilere",
-        "Çok çalışkan kişilere",
-      ],
-      answer: 1,
-    },
-    {
-      question:
-        "Osmanlı tarihinde, hangi addaki padişahların toplam hükümdarlık süresi yaklaşık yüz yılla en uzundur?",
-      options: ["Mehmed", "Selim", "Mahmud", "Süleyman"],
-      answer: 0,
-    },
-    {
-      question:
-        "Hangisi, Iron Man adlı çizgi roman kahramanını beyaz perdede canlandırmıştır?",
-      options: [
-        "Jake Gyllenhaal",
-        "Robert Downey Jr.",
-        "Benedict Cumberbatch",
-        "Chris Hemsworth",
-      ],
-      answer: 1,
-    },
-    {
-      question: "Hangisi 'anlık' anlamına gelmez?",
-      options: ["Entelekt", "Spontane", "Aktüel", "Enstantane"],
-      answer: 2,
-    },
-    {
-      question:
-        "Çekimleri 46 hafta süren ve 'En uzun kesintisiz film çekimi' unvanıyla Guinness Dünya Rekorlarına giren film hangisidir?",
-      options: [
-        "Kış Uykusu",
-        "Ucuz Roman",
-        "Gözleri Tamamen Kapalı",
-        "Ağır Roman",
-      ],
-      answer: 2,
-    },
-    {
-      question: "Hangisi 'G.O.R.A.' adlı filmde geçen bir repliktir?",
-      options: [
-        "Zeki Müren de bizi görecek mi?",
-        "Vurucam kırbacı!",
-        "Araba nerde? Para nerde?",
-        "Dünyalılardan tiskiniyorum!",
-      ],
-      answer: 3,
-    },
-    {
-      question: "Cebelitarık Boğazı hangi ikisini birleştirir?",
-      options: [
-        "Akdeniz ve Atlas Okyanusu",
-        "Atlas Okyanusu ve Büyük Okyanus",
-        "Hazar Denizi ve Aral Gölü",
-        "Sarı Deniz ve Hint Okyanusu",
-      ],
-      answer: 0,
-    },
-    {
-      question:
-        "Shakespeare'in hangi oyunundaki başkarakter oyunun ilerleyen sahnelerinde İngiltere kralı olur?",
-      options: ["Macbeth", "III. Richard", "Othello", "Hamlet"],
-      answer: 1,
-    },
-    {
-      question:
-        '"Altın Aslan" kazanan bir yönetmen hangi film festivalinin jürisi tarafından "En İyi Yönetmen" seçilmiştir?',
-      options: [
-        "Venedik Uluslararası Film Festivali",
-        "Berlin Uluslararası Film Festivali",
-        "Cannes Film Festivali",
-        "Antalya Altın Portakal Film Festivali",
-      ],
-      answer: 0,
-    },
-    {
-      question: '"Roland-Garros şampiyonu" olan biri hangi sporu yapıyordur?',
-      options: ["Tenis", "Golf", "Bilardo", "Boks"],
-      answer: 0,
-    },
-    {
-      question:
-        "Bitkilerin sap ve dallarını öğütmek veya fındığın dış kabuğunu ayırmak için kullanılan, harman işini yapan makineye ne ad verilir?",
-      options: ["Patoz", "Takoz", "Tonoz", "Moloz"],
-      answer: 0,
-    },
-    {
-      question:
-        "Sevr Antlaşması'nı gösteren ünlü haritada başka devletlerin kontrolüne bırakılan topraklar bugün eğer o devletlerin toprakları olarak kalmış olsaydı, Türkiye vatandaşlarının hangisini ziyaret etmesi için vize alması gerekmeyecekti?",
-      options: [
-        "Safranbolu Evleri",
-        "Selimiye Camii",
-        "Sümela Manastırı",
-        "Halikarnas Mozolesi",
-      ],
-      answer: 0,
-    },
-    {
-      question:
-        "Hangisi yönetmenliği Woody Allen'ın yaptığı bir film değildir?",
-      options: [
-        "Roma'ya sevgilerle",
-        "Paris'te Gece Yarısı",
-        "Barselona, Barselona",
-        "Büyük Budapeşte Oteli",
-      ],
-      answer: 3,
-    },
-    {
-      question: "Cebelitarık Boğazı hangi ikisini birbirinden ayırır?",
-      options: [
-        "Asya ve Amerika",
-        "Afrika ve Avrupa",
-        "Avrupa ve Asya",
-        "Asya ve Afrika",
-      ],
-      answer: 1,
-    },
-    {
-      question:
-        "Bulunduğu yerde, orada yaşayanları rahatsız etme pahasına sürekli kalıp oraya yerleşen biri ne yapmış olur?",
-      options: ["Kreplenmiş", "Pastalanmış", "Çöreklenmiş", "Böreklenmiş"],
-      answer: 2,
-    },
-    {
-      question:
-        "5 makinenin 5 cihaz üretmesi 5 dakika sürüyorsa 100 makinenin 100 cihaz üretmesi ne kadar sürer?",
-      options: ["5 dakika", "25 dakika", "1 saat", "1 saat 40 dakika"],
-      answer: 0,
-    },
-    {
-      question: "Tarık Akan hangisinde rol almamıştır?",
-      options: [
-        "Canım Kardeşim",
-        "Mavi Boncuk",
-        "Köyden İndim Şehire",
-        "Ah Nerede",
-      ],
-      answer: 2,
-    },
-    {
-      question: "Pazen nedir?",
-      options: [
-        "Bir tarım aleti",
-        "Ara sıra anlamında bir kelime",
-        "Bir kumaş türü",
-        "Bir müzik aleti",
-      ],
-      answer: 2,
-    },
-    {
-      question:
-        "Geçtiğimiz günlerde vefat eden, Sovyetler Birliği'nin son lideri kimdir?",
-      options: [
-        "Kraliçe II. Elizabeth",
-        "Mihail Gorbaçov",
-        "Kral Julien",
-        "Pablo Neruda",
-      ],
-      answer: 1,
-    },
-    {
-      question: "Dikkate şayan ne demektir?",
-      options: ["Değerli", "Önemsiz", "Basit", "Özensiz"],
-      answer: 0,
-    },
-    {
-      question: "Hangi meyvenin 'gemre' ve 'pembegemre' adında türleri vardır?",
-      options: ["Erik", "Karpuz", "Elma", "Üzüm"],
-      answer: 3,
-    },
-    {
-      question:
-        '"Mende sığar iki cihan, men bu cihana sığmazam" kimin eserinin ilk dizesidir?',
-      options: ["Fuzuli", "Baki", "Nesimi", "Aşık Veysel"],
-      answer: 2,
-    },
-    {
-      question: "Hangisi bir çeşit acı bala verilen addır?",
-      options: ["Deli bal", "Mecnun bal", "Aşık bal", "Divane bal"],
-      answer: 0,
-    },
-    {
-      question: "Hangisi atomlarda bulunan temel parçacıklardan biri değildir?",
-      options: ["Proton", "Nötron", "Elektron", "Megatron"],
-      answer: 3,
-    },
-    {
-      question:
-        "ABD New York'taki Özgürlük Heykeli bir elinde meşale tutarken diğer elinde ne tutar?",
-      options: ["Anayasa kitabı", "Kitabe", "Terazi", "Hiçbir şey"],
-      answer: 1,
-    },
-    {
-      question: "Ebu Şüca Muhammed bin Davud kimdir?",
-      options: ["Timur", "Alparslan", "Selahaddin Eyyubi", "Cengiz Han"],
-      answer: 1,
-    },
-    {
-      question:
-        '"Züğürt Ağa"da Abuzer, "Eşkıya"da Mustafa ve başrollerini Şener Şen ve Kenan İmirzalıoğlu\'nun paylaştığı "Kabadayı"da Beyto karakterini canlandıran oyuncu kimdir?',
-      options: ["Hayati Hamzaoğlu", "Kemal İnci", "Kadir Savun", "Erol Taş"],
-      answer: 1,
-    },
-    {
-      question: "Hangisi gevrek ve sulu bir tür ayvaya verilen addır?",
-      options: [
-        "Poğaça ayvası",
-        "Kruvasan ayvası",
-        "Simit ayvası",
-        "Ekmek ayvası",
-      ],
-      answer: 3,
-    },
-    {
-      question:
-        "Afrika kıtasının Kilimanjaro'dan sonraki en yüksek dağı olan Kenya Dağı hangi ülkededir?",
-      options: ["Kenya", "Güney Afrika", "Nijerya", "Fas"],
-      answer: 0,
-    },
-    {
-      question: 'Hangisi "havuç"a verilen bir addır?',
-      options: ["Havayavaran", "Toprağagiren", "Yeregeçen", "Karakaçan"],
-      answer: 2,
-    },
-    {
-      question: '"Keşmekeş" ne demektir?',
-      options: ["Dinginlik", "Karışıklık", "Durgunluk", "Sakinlik"],
-      answer: 1,
-    },
-    {
-      question: "Atasözüne göre hangisini 'yıkmak kolay, yapmak zordur'?",
-      options: ["Aşil tendonunu", "Safra kesesini", "Apandisi", "Kalbi"],
-      answer: 3,
-    },
-    {
-      question:
-        '"Linyit", "antrasit" gibi türleri olan ve büyük ölçüde karbondan oluşan hangisidir?',
-      options: ["Alüminyum", "Bor", "Kömür", "Obsidiyen"],
-      answer: 2,
-    },
-  ],
+  // [],
 ];
 // console.log(questions[0].length, "1. Seviye Soruları");
 // console.log(questions[1].length, "2. Seviye Soruları");
 // console.log(questions[2].length, "3. Seviye Soruları");
 // console.log(questions[3].length, "4. Seviye Soruları");
-console.log(questions[4].length, "Dağıtılacak Sorular");
+// console.log(questions[4].length, "Dağıtılacak Sorular");
 
 export default questions;
