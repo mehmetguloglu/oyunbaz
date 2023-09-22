@@ -679,6 +679,17 @@ const questions = [
       answer: 1,
     },
     {
+      question:
+        "Yağışın oluşması için en son aşamada aşağıdakilerden hangisinin mutlaka gerçekleşmesi gerekir?",
+      options: [
+        "Havanın Soğuması",
+        "Havanın Isınması",
+        "Havanın Doyma Noktasına Ulaşması",
+        "Yükselici Hava Hareketinin Olması",
+      ],
+      answer: 2,
+    },
+    {
       question: "Hangisi bir çeşit acı bala verilen addır?",
       options: ["Deli bal", "Mecnun bal", "Aşık bal", "Divane bal"],
       answer: 0,
@@ -2050,17 +2061,7 @@ const questions = [
       options: ["Norveç", "Finlandiya", "Polonya", "İzlanda"],
       answer: 2,
     },
-    {
-      question:
-        "Yağışın oluşması için en son aşamada aşağıdakilerden hangisinin mutlaka gerçekleşmesi gerekir?",
-      options: [
-        "Havanın Soğuması",
-        "Havanın Isınması",
-        "Havanın Doyma Noktasına Ulaşması",
-        "Yükselici Hava Hareketinin Olması",
-      ],
-      answer: 2,
-    },
+
     {
       question:
         "Aşağıdaki Disney dizilerinden hangisi 3 Emmy ödülü kazanmıştır?",

@@ -219,10 +219,6 @@ const HomeScreen = () => {
                 </Stack>
               </XStack>
             </ScrollView>
-            {/* BANNER ADS */}
-            {/* <Stack pt={10}>
-              <BannerAds />
-            </Stack> */}
           </SafeAreaView>
         </Stack>
       </>

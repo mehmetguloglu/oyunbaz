@@ -15,6 +15,10 @@ import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
 import { buttonBlue } from "../../utils/colors";
+import {
+  getInterstitialAds,
+  getRewardedAds,
+} from "../../bussiness/actions/getAds";
 
 const { width, height } = Dimensions.get("screen");
 const SudokuGame = () => {
@@ -24,6 +28,8 @@ const SudokuGame = () => {
   const [gameBoard, setGameBoard] = useState(board[boardIndex][0]);
   const [gameFinishModal, setGameFinishModal] = useState(false);
   const [wrong, setWrong] = useState(0);
+  const { isLoaded, show } = getInterstitialAds();
+
   const buttons = [
     ["1", "2", "3", "4", "5"],
     ["6", "7", "8", "9"],
@@ -103,6 +109,7 @@ const SudokuGame = () => {
                                 title: "Hatalı Hamle!",
                                 haptic: "warning",
                               });
+                              wrong % 5 == 4 && isLoaded ? show() : null;
                             }
                           }
                         }}
@@ -170,6 +177,9 @@ const SudokuGame = () => {
                 })}
               </XStack>
             </YStack>
+          </Stack>
+          <Stack bg={"white"} py={20}>
+            <BannerAds />
           </Stack>
         </SafeAreaView>
       ) : null}
@@ -240,9 +250,6 @@ const SudokuGame = () => {
           </View>
         </View>
       </Modal>
-      <Stack bg={"white"} py={20}>
-        <BannerAds />
-      </Stack>
     </>
   );
 };

@@ -16,7 +16,14 @@ import * as Burnt from "burnt";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
 import { buttonBlue, modalMaxWidth, quizGameBG } from "../../utils/colors";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+
 const { width, height } = Dimensions.get("window");
+
 const Quiz = () => {
   const router = useRouter();
   const [correct, setCorrect] = useState(0);
@@ -31,6 +38,15 @@ const Quiz = () => {
   const [isFinished, setIsFinished] = useState(false);
   const data = questions[Math.floor(questionCount / 4)][questionIndex];
   const [selected, setSelected] = useState(4);
+
+  const circleRotate = useSharedValue(1);
+
+  const circleStyle = useAnimatedStyle(() => {
+    "worklet";
+    return {
+      transform: [{ scale: withSpring(circleRotate.value) }],
+    };
+  });
 
   const randomQuestions = () => {
     if (
@@ -78,6 +94,7 @@ const Quiz = () => {
         });
       }
       setTimeout(() => {
+        circleRotate.value = 1;
         if (index == data.answer) {
           setCorrect(correct + 1);
         } else {
@@ -93,7 +110,10 @@ const Quiz = () => {
           setIsFinished(false);
         }
       }, 3000);
-    } else setSelected(index);
+    } else {
+      setSelected(index);
+      circleRotate.value = 0;
+    }
   };
   const tryAgainButton = () => {
     setQuestionCount(0);
@@ -143,9 +163,8 @@ const Quiz = () => {
                   {"\n"}
                   5- Oyun seviyeleri düşükten yükseğe doğru şu şekildedir:{"\n"}
                   Yarı Cahil, Cahil, Ortalama Altı Zeka, Ortalama Zeka, Zeki,
-                  Aydın, Entelektüel ve Elittir. Bu seviyelerin dışında sadece
-                  en üst seviye kullanıcıların ulaşabileceği gizli bir seviye de
-                  mevcuttur.
+                  Aydın ve Elittir. Bu seviyelerin dışında sadece en üst seviye
+                  kullanıcıların ulaşabileceği gizli bir seviye de mevcuttur.
                 </Text>
               </ScrollView>
             </YStack>
@@ -233,7 +252,7 @@ const Quiz = () => {
                 bg={
                   correct / questionCount <= 2 &&
                   correct / questionCount > 0.9 &&
-                  questionCount >= 10
+                  questionCount >= 12
                     ? "#00004d"
                     : "white"
                 }
@@ -253,7 +272,7 @@ const Quiz = () => {
                       ? "#008000"
                       : correct / questionCount <= 2 &&
                         correct / questionCount > 0.9 &&
-                        questionCount >= 10
+                        questionCount >= 12
                       ? "white"
                       : correct / questionCount <= 1
                       ? "#003300"
@@ -280,7 +299,7 @@ const Quiz = () => {
                         ? "#008000"
                         : correct / questionCount <= 2 &&
                           correct / questionCount > 0.9 &&
-                          questionCount >= 10
+                          questionCount >= 12
                         ? "white"
                         : correct / questionCount <= 1
                         ? "#003300"
@@ -314,7 +333,7 @@ const Quiz = () => {
                     ? "Aydın"
                     : correct / questionCount <= 2 &&
                       correct / questionCount > 0.9 &&
-                      questionCount >= 10
+                      questionCount >= 12
                     ? "İlber Ortaylı"
                     : correct / questionCount <= 1
                     ? "Elit"
@@ -493,43 +512,46 @@ const Quiz = () => {
             </YStack>
           </Stack>
           <YStack my={15} ai="center">
-            <Stack
-              width={height / 7}
-              height={height / 7}
-              br={height / 14}
-              borderWidth={height / 140}
-              bg={
-                correct / questionCount <= 2 &&
-                correct / questionCount > 0.9 &&
-                questionCount >= 10
-                  ? "#00004d"
-                  : "white"
-              }
-              boc={
-                questionCount >= 4
-                  ? correct / questionCount <= 0.25
-                    ? "darkred"
-                    : correct / questionCount <= 0.35
-                    ? "red"
-                    : correct / questionCount <= 0.45
-                    ? "orangered"
-                    : correct / questionCount <= 0.6
-                    ? "orange"
-                    : correct / questionCount <= 0.75
-                    ? "#00b300"
-                    : correct / questionCount <= 0.85
-                    ? "#008000"
-                    : correct / questionCount <= 2 &&
-                      correct / questionCount > 0.9 &&
-                      questionCount >= 10
-                    ? "white"
-                    : correct / questionCount <= 1
-                    ? "#003300"
-                    : "black"
-                  : "black"
-              }
-              ai="center"
-              jc="center"
+            <Animated.View
+              style={[
+                circleStyle,
+                {
+                  width: Math.floor(height / 7),
+                  height: Math.floor(height / 7),
+                  borderRadius: 1000,
+                  borderWidth: Math.floor(height / 140),
+                  backgroundColor:
+                    correct / questionCount <= 2 &&
+                    correct / questionCount > 0.9 &&
+                    questionCount >= 12
+                      ? "#00004d"
+                      : "white",
+                  borderColor:
+                    questionCount >= 4
+                      ? correct / questionCount <= 0.25
+                        ? "darkred"
+                        : correct / questionCount <= 0.35
+                        ? "red"
+                        : correct / questionCount <= 0.45
+                        ? "orangered"
+                        : correct / questionCount <= 0.6
+                        ? "orange"
+                        : correct / questionCount <= 0.75
+                        ? "#00b300"
+                        : correct / questionCount <= 0.85
+                        ? "#008000"
+                        : correct / questionCount <= 2 &&
+                          correct / questionCount > 0.9 &&
+                          questionCount >= 12
+                        ? "white"
+                        : correct / questionCount <= 1
+                        ? "#003300"
+                        : "black"
+                      : "black",
+                  alignItems: "center",
+                  justifyContent: "center",
+                },
+              ]}
             >
               <Text
                 color={
@@ -548,7 +570,7 @@ const Quiz = () => {
                       ? "#008000"
                       : correct / questionCount <= 2 &&
                         correct / questionCount > 0.9 &&
-                        questionCount >= 10
+                        questionCount >= 12
                       ? "white"
                       : correct / questionCount <= 1
                       ? "#003300"
@@ -582,13 +604,13 @@ const Quiz = () => {
                   ? "Aydın"
                   : correct / questionCount <= 2 &&
                     correct / questionCount > 0.9 &&
-                    questionCount >= 10
+                    questionCount >= 12
                   ? "İlber Ortaylı"
                   : correct / questionCount <= 1
                   ? "Elit"
                   : null}
               </Text>
-            </Stack>
+            </Animated.View>
           </YStack>
           <ExitButton />
           <Stack>

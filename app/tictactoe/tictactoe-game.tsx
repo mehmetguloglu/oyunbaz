@@ -1,5 +1,5 @@
-import { View, Dimensions, SafeAreaView } from "react-native";
-import React, { useRef, useState } from "react";
+import { Dimensions, SafeAreaView } from "react-native";
+import React, { useState } from "react";
 import { Button, Stack, XStack, Text, YStack } from "tamagui";
 import { Image } from "expo-image";
 import Animated, {
@@ -110,6 +110,14 @@ const TicTacToeGame = () => {
                 return (
                   <XStack zIndex={1} key={idx}>
                     {item.map((item, index) => {
+                      const textScale = useSharedValue(0);
+
+                      const textAniStyle = useAnimatedStyle(() => {
+                        "worklet";
+                        return {
+                          transform: [{ scale: withSpring(textScale.value) }],
+                        };
+                      });
                       return (
                         <Button
                           m={2}
@@ -120,14 +128,27 @@ const TicTacToeGame = () => {
                           bg={"white"}
                           height={Math.floor(height / 8.1)}
                           width={Math.floor(width / 3.0)}
-                          onPress={() =>
-                            _handlePress({ rowIndex: idx, colIndex: index })
-                          }
+                          onPress={() => {
+                            _handlePress({ rowIndex: idx, colIndex: index });
+                            textScale.value = 1;
+                            if (gameover) {
+                              textScale.value = 0;
+                            }
+                          }}
                           disabled={item != 0 || gameover}
                         >
-                          <Text fos={40} fow={"700"}>
+                          <Animated.Text
+                            style={[
+                              ,
+                              textAniStyle,
+                              {
+                                fontSize: 40,
+                                fontWeight: "700",
+                              },
+                            ]}
+                          >
                             {item == 1 ? "X" : item == 2 ? "O" : null}
-                          </Text>
+                          </Animated.Text>
                         </Button>
                       );
                     })}
