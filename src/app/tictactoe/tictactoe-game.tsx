@@ -12,7 +12,7 @@ import * as Burnt from "burnt";
 import { buttonBlue } from "../../utils/colors";
 import XoxButton from "../../components/tictactoe/XoxButton";
 import { useStateWithCallbackLazy } from "use-state-with-callback";
-
+//get screen size
 const { width, height } = Dimensions.get("screen");
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
