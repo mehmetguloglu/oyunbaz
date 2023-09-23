@@ -10,6 +10,9 @@ import Animated, {
 import ExitButton from "../../components/ExitButton";
 import * as Burnt from "burnt";
 import { buttonBlue } from "../../utils/colors";
+import XoxButton from "../../components/tictactoe/XoxButton";
+import { useStateWithCallbackLazy } from "use-state-with-callback";
+
 const { width, height } = Dimensions.get("screen");
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
@@ -24,7 +27,7 @@ const TicTacToeGame = () => {
     [0, 0, 0],
     [0, 0, 0],
   ]);
-  const [gameover, setGameover] = useState(false);
+  const [gameover, setGameover] = useStateWithCallbackLazy(false);
   const switchPos = useSharedValue(-50);
   const switchRotate = useSharedValue("180");
   const refreshImageRotate = useSharedValue("180");
@@ -65,9 +68,9 @@ const TicTacToeGame = () => {
         button == 1 ? count[0] + 1 : count[0],
         button == 2 ? count[1] + 1 : count[1],
       ]);
-      setGameover(true);
-      refreshImageRotate.value = "0";
-      refreshImageRotate.value = "0deg";
+      setGameover(true, () => {});
+      refreshImageRotate.value =
+        refreshImageRotate.value == "180" ? "0" : "180";
       Burnt.toast({
         duration: 1,
         haptic: "error",
@@ -75,6 +78,13 @@ const TicTacToeGame = () => {
         title: button == 1 ? "X kazandı." : "O kazandı.",
       });
     } else {
+      let control = false;
+      newXox.map((item) => {
+        item.map((item) => {
+          if (item == 0) control = true;
+        });
+      });
+      if (!control) setGameover(true, () => {});
       setButton(button == 1 ? 2 : 1);
       switchPos.value = switchPos.value == 50 ? -50 : 50;
       switchRotate.value = switchRotate.value == "360" ? "180" : "360";
@@ -82,14 +92,25 @@ const TicTacToeGame = () => {
   };
 
   const tryAgainPress = () => {
-    setXox([
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]);
+    function refresh() {
+      const newXox = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+      ];
+      setXox([...newXox]);
 
-    refreshImageRotate.value = "180";
-    setGameover(false);
+      refreshImageRotate.value =
+        refreshImageRotate.value == "180" ? "0" : "180";
+      setGameover(false, () => {});
+    }
+    if (!gameover)
+      setGameover(true, () => {
+        refresh();
+      });
+    else {
+      refresh();
+    }
   };
   return (
     <>
@@ -109,49 +130,16 @@ const TicTacToeGame = () => {
                 const idx = index;
                 return (
                   <XStack zIndex={1} key={idx}>
-                    {item.map((item, index) => {
-                      const textScale = useSharedValue(0);
-
-                      const textAniStyle = useAnimatedStyle(() => {
-                        "worklet";
-                        return {
-                          transform: [{ scale: withSpring(textScale.value) }],
-                        };
-                      });
-                      return (
-                        <Button
-                          m={2}
-                          alignItems="center"
-                          jc="center"
-                          p={0}
-                          key={index}
-                          bg={"white"}
-                          height={Math.floor(height / 8.1)}
-                          width={Math.floor(width / 3.0)}
-                          onPress={() => {
-                            _handlePress({ rowIndex: idx, colIndex: index });
-                            textScale.value = 1;
-                            if (gameover) {
-                              textScale.value = 0;
-                            }
-                          }}
-                          disabled={item != 0 || gameover}
-                        >
-                          <Animated.Text
-                            style={[
-                              ,
-                              textAniStyle,
-                              {
-                                fontSize: 40,
-                                fontWeight: "700",
-                              },
-                            ]}
-                          >
-                            {item == 1 ? "X" : item == 2 ? "O" : null}
-                          </Animated.Text>
-                        </Button>
-                      );
-                    })}
+                    {item.map((item, index) => (
+                      <XoxButton
+                        key={index}
+                        index={index}
+                        idx={idx}
+                        item={item}
+                        _handlePress={_handlePress}
+                        gameover={gameover}
+                      />
+                    ))}
                   </XStack>
                 );
               })}
