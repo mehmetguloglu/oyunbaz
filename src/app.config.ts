@@ -33,7 +33,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       [
         "expo-updates",
         {
-          username: "mehmetguloglu",
+          username: "mehmet10x",
         },
       ],
       "sentry-expo",
@@ -42,7 +42,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     name: "Oyunbaz",
     slug: "oyunbaz",
     scheme: "oyunbaz",
-    version: "1.0.4",
+    version: "1.0.5",
     orientation: "portrait",
     icon: "./assets/icon.png",
     userInterfaceStyle: "light",
@@ -55,14 +55,14 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.oyunbaz.app",
-      buildNumber: "1.0.4",
+      buildNumber: "1.0.5",
     },
     android: {
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#ffffff",
       },
-      versionCode: 4,
+      versionCode: 5,
       package: "com.oyunbaz.app",
     },
     web: {
