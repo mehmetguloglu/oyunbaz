@@ -21,12 +21,12 @@ const Card = ({
   number,
   type,
   index,
-  userCards,
-  setUserCards,
-  setSelectedCard,
+  // userCards,
+  // setUserCards,
+  // setSelectedCard,
   onPress,
-  disabled,
-  setDisabled,
+  disabled = false,
+  setDisabled = null,
 }) => {
   const cardPosY = useSharedValue(100);
   const cardPosX = useSharedValue(index * 35);
@@ -52,14 +52,14 @@ const Card = ({
       <Pressable
         style={{ flex: 1 }}
         onPress={() => {
-          setDisabled(true);
-          cardPosY.value = (height / 2 - 75) * -1;
+          setDisabled != null ? setDisabled(true) : null;
+          cardPosY.value = (height / 2 - 150) * -1;
           cardPosX.value = width / 2 - 90;
           onPress();
           setTimeout(() => {
             cardPosY.value = 100;
             cardPosX.value = index * 35;
-            setDisabled(false);
+            setDisabled != null ? setDisabled(false) : null;
           }, 1500);
         }}
         disabled={disabled}
@@ -176,9 +176,17 @@ const BatakGame = () => {
   const [onePCards, setOnePCards] = useState([]);
   const [twoPCards, setTwoPCards] = useState([]);
   const [threePCards, setThreePCards] = useState([]);
+  let usedCards = [];
+
   const [selectedCard, setSelectedCard] = useStateWithCallbackLazy(null);
+  const [selectedOnePCard, setSelectedOnePCard] =
+    useStateWithCallbackLazy(null);
+  const [selectedTwoPCard, setSelectedTwoPCard] =
+    useStateWithCallbackLazy(null);
+  const [selectedThreePCard, setSelectedThreePCard] =
+    useStateWithCallbackLazy(null);
   const [disabled, setDisabled] = useState(false);
-  let gameType = 4;
+  let gameType = 1;
 
   const playButtonPress = () => {
     let count = 0;
@@ -241,11 +249,60 @@ const BatakGame = () => {
       }
       count++;
     } while (count < 52);
-    newUserCards = orderBy(newUserCards, ["type", "number"]);
+    newUserCards = orderBy(newUserCards, ["type", "number"]).reverse();
+    newOnePCards = orderBy(newOnePCards, ["type", "number"]).reverse();
+    newTwoPCards = orderBy(newTwoPCards, ["type", "number"]).reverse();
+    newThreePCards = orderBy(newThreePCards, ["type", "number"]).reverse();
     setUserCards(newUserCards);
     setOnePCards(newOnePCards);
     setTwoPCards(newTwoPCards);
     setThreePCards(newThreePCards);
+  };
+
+  const cardPress = ({ item, index }) => {
+    usedCards = [...usedCards, item];
+    setSelectedCard(item, () => {
+      let newCards = [...userCards];
+      newCards.splice(index, 1);
+
+      setTimeout(() => {
+        setUserCards(newCards);
+        botPlay({ item: item, bot: 1 });
+      }, 1500);
+    });
+  };
+
+  const botPlay = ({ item, bot }) => {
+    let newBotCards;
+
+    let sameTypeCards = newBotCards.filter((x) => x.type == item.type);
+    // AYNI CİNS KART YOKSA
+    if (sameTypeCards.length == 0) {
+      console.log("aynı cins kart yok");
+      sameTypeCards = newBotCards.filter((x) => x.type == gameType);
+      // KOZ YOKSA
+      if (sameTypeCards.length == 0) {
+        console.log("koz yok");
+      }
+    }
+    // AYNI CİNS KART VARSA
+    else {
+      if (sameTypeCards.filter((x) => x.number > item.number).length == 0) {
+        console.log("aynı cins daha büyük kart yok");
+      } else {
+        console.log(sameTypeCards);
+      }
+    }
+
+    if (bot == 1) {
+      newBotCards = [...onePCards];
+      // botPlay({ item: {}, bot: 2 });
+    } else if (bot == 2) {
+      newBotCards = [...twoPCards];
+      // botPlay({ item: {}, bot: 3 });
+    } else {
+      newBotCards = [...threePCards];
+    }
   };
 
   return (
@@ -418,31 +475,15 @@ const BatakGame = () => {
                 <>
                   {index < 7 ? (
                     <Card
-                      onPress={() => {
-                        setSelectedCard(
-                          {
-                            type: item.type,
-                            number: item.number,
-                          },
-                          () => {
-                            let newCards = [...userCards];
-                            newCards.splice(index, 1);
-
-                            setTimeout(() => {
-                              setUserCards(newCards);
-                              setSelectedCard(null, () => {});
-                            }, 1500);
-                          }
-                        );
-                      }}
+                      onPress={() => cardPress({ item, index })}
                       setDisabled={setDisabled}
                       disabled={disabled}
                       number={item.number}
                       type={item.type}
                       index={index}
-                      userCards={userCards}
-                      setUserCards={setUserCards}
-                      setSelectedCard={setSelectedCard}
+                      // userCards={userCards}
+                      // setUserCards={setUserCards}
+                      // setSelectedCard={setSelectedCard}
                     />
                   ) : null}
                 </>
@@ -461,37 +502,32 @@ const BatakGame = () => {
                 <>
                   {index >= 7 ? (
                     <Card
-                      onPress={() => {
-                        setSelectedCard(
-                          {
-                            type: item.type,
-                            number: item.number,
-                          },
-                          () => {
-                            let newCards = [...userCards];
-                            newCards.splice(index, 1);
-
-                            setTimeout(() => {
-                              setUserCards(newCards);
-                              setSelectedCard(null, () => {});
-                            }, 1500);
-                          }
-                        );
-                      }}
+                      onPress={() => cardPress({ item, index })}
                       disabled={disabled}
                       setDisabled={setDisabled}
                       number={item.number}
                       type={item.type}
                       index={index - 7}
-                      userCards={userCards}
-                      setUserCards={setUserCards}
-                      setSelectedCard={setSelectedCard}
+                      // userCards={userCards}
+                      // setUserCards={setUserCards}
+                      // setSelectedCard={setSelectedCard}
                     />
                   ) : null}
                 </>
               );
             })}
           </XStack>
+          {/* {selectedOnePCard != null ? (
+            <Stack>
+              <Card
+                disabled={false}
+                index={0}
+                onPress={() => {}}
+                number={selectedOnePCard[0].number}
+                type={selectedOnePCard[0].type}
+              />
+            </Stack>
+          ) : null} */}
         </SafeAreaView>
       </ImageBackground>
     </>
