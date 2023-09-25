@@ -7,113 +7,167 @@ import { cards } from "./cards";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useStateWithCallbackLazy } from "use-state-with-callback";
 import { orderBy } from "lodash";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import { setUser } from "@sentry/core";
 
 const { width, height } = Dimensions.get("screen");
 
-const Card = ({ number, type }) => {
+const Card = ({
+  number,
+  type,
+  index,
+  userCards,
+  setUserCards,
+  setSelectedCard,
+  onPress,
+  disabled,
+  setDisabled,
+}) => {
+  const cardPosY = useSharedValue(100);
+  const cardPosX = useSharedValue(index * 35);
+  const cardAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      top: cardPosY.value == 100 ? 100 : withTiming(cardPosY.value),
+      left:
+        cardPosX.value == index * 35 ? index * 35 : withTiming(cardPosX.value),
+    };
+  });
   return (
-    <Pressable
-      style={{
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 3,
+    <Animated.View
+      style={[
+        {
+          position: "absolute",
+          // transform: [{ rotate: `${(index - 3) * 4}deg` }],
+          zIndex: index,
         },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-
-        elevation: 6,
-        padding: 8,
-        width: 90,
-        borderRadius: 15,
-        height: 150,
-        backgroundColor: "white",
-      }}
+        cardAnimatedStyle,
+      ]}
+      key={index}
     >
-      <YStack alignItems="flex-start" jc={"flex-start"}>
-        <YStack ai="center">
-          <Text fos={16} color={type == 0 || type == 2 ? "red" : "black"}>
-            {number < 9
-              ? number + 2
-              : number == 9
-              ? "J"
-              : number == 10
-              ? "Q"
-              : number == 11
-              ? "K"
-              : number == 12
-              ? "A"
-              : null}
-          </Text>
-          <MaterialCommunityIcons
-            name={
-              type == 0
-                ? "cards-diamond"
-                : type == 2
-                ? "cards-heart"
-                : type == 1
-                ? "cards-club"
-                : type == 3
-                ? "cards-spade"
-                : "cards-variant"
-            }
-            size={16}
-            color={type == 0 || type == 2 ? "red" : "black"}
-          />
-        </YStack>
-      </YStack>
+      <Pressable
+        style={{ flex: 1 }}
+        onPress={() => {
+          setDisabled(true);
+          cardPosY.value = (height / 2 - 75) * -1;
+          cardPosX.value = width / 2 - 90;
+          onPress();
+          setTimeout(() => {
+            cardPosY.value = 100;
+            cardPosX.value = index * 35;
+            setDisabled(false);
+          }, 1500);
+        }}
+        disabled={disabled}
+      >
+        <View
+          style={{
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowOpacity: 0.27,
+            shadowRadius: 4.65,
 
-      <Stack alignItems="center" jc="center" f={1}>
-        <MaterialCommunityIcons
-          name={
-            type == 0
-              ? "cards-diamond"
-              : type == 2
-              ? "cards-heart"
-              : type == 1
-              ? "cards-club"
-              : type == 3
-              ? "cards-spade"
-              : "cards-variant"
-          }
-          size={36}
-          color={type == 0 || type == 2 ? "red" : "black"}
-        />
-      </Stack>
+            elevation: 6,
+            padding: 8,
+            width: 90,
+            borderRadius: 15,
+            height: 150,
+            backgroundColor: "white",
+          }}
+        >
+          <YStack alignItems="flex-start" jc={"flex-start"}>
+            <YStack ai="center">
+              <Text fos={16} color={type == 0 || type == 2 ? "red" : "black"}>
+                {number < 9
+                  ? number + 2
+                  : number == 9
+                  ? "J"
+                  : number == 10
+                  ? "Q"
+                  : number == 11
+                  ? "K"
+                  : number == 12
+                  ? "A"
+                  : null}
+              </Text>
+              <MaterialCommunityIcons
+                name={
+                  type == 0
+                    ? "cards-diamond"
+                    : type == 2
+                    ? "cards-heart"
+                    : type == 1
+                    ? "cards-club"
+                    : type == 3
+                    ? "cards-spade"
+                    : "cards-variant"
+                }
+                size={16}
+                color={type == 0 || type == 2 ? "red" : "black"}
+              />
+            </YStack>
+          </YStack>
 
-      <YStack alignItems="flex-end" jc={"flex-end"}>
-        <YStack rotate="180deg" jc="center" ai="center">
-          <Text fos={16} color={type == 0 || type == 2 ? "red" : "black"}>
-            {number < 9
-              ? number
-              : number == 9
-              ? "J"
-              : number == 10
-              ? "Q"
-              : number == 11
-              ? "K"
-              : number == 12
-              ? "A"
-              : null}
-          </Text>
-          <MaterialCommunityIcons
-            name={
-              type == 0
-                ? "cards-diamond"
-                : type == 2
-                ? "cards-heart"
-                : type == 1
-                ? "cards-club"
-                : type == 3
-                ? "cards-spade"
-                : "cards-variant"
-            }
-            size={16}
-            color={type == 0 || type == 2 ? "red" : "black"}
-          />
-        </YStack>
-      </YStack>
-    </Pressable>
+          <Stack alignItems="center" jc="center" f={1}>
+            <MaterialCommunityIcons
+              name={
+                type == 0
+                  ? "cards-diamond"
+                  : type == 2
+                  ? "cards-heart"
+                  : type == 1
+                  ? "cards-club"
+                  : type == 3
+                  ? "cards-spade"
+                  : "cards-variant"
+              }
+              size={36}
+              color={type == 0 || type == 2 ? "red" : "black"}
+            />
+          </Stack>
+
+          <YStack alignItems="flex-end" jc={"flex-end"}>
+            <YStack rotate="180deg" jc="center" ai="center">
+              <Text fos={16} color={type == 0 || type == 2 ? "red" : "black"}>
+                {number < 9
+                  ? number + 2
+                  : number == 9
+                  ? "J"
+                  : number == 10
+                  ? "Q"
+                  : number == 11
+                  ? "K"
+                  : number == 12
+                  ? "A"
+                  : null}
+              </Text>
+              <MaterialCommunityIcons
+                name={
+                  type == 0
+                    ? "cards-diamond"
+                    : type == 2
+                    ? "cards-heart"
+                    : type == 1
+                    ? "cards-club"
+                    : type == 3
+                    ? "cards-spade"
+                    : "cards-variant"
+                }
+                size={16}
+                color={type == 0 || type == 2 ? "red" : "black"}
+              />
+            </YStack>
+          </YStack>
+        </View>
+      </Pressable>
+    </Animated.View>
   );
 };
 
@@ -122,6 +176,8 @@ const BatakGame = () => {
   const [onePCards, setOnePCards] = useState([]);
   const [twoPCards, setTwoPCards] = useState([]);
   const [threePCards, setThreePCards] = useState([]);
+  const [selectedCard, setSelectedCard] = useStateWithCallbackLazy(null);
+  const [disabled, setDisabled] = useState(false);
   let gameType = 4;
 
   const playButtonPress = () => {
@@ -199,6 +255,7 @@ const BatakGame = () => {
           width: width,
           height: height,
           flex: 1,
+          zIndex: -1,
         }}
         contentFit="fill"
         source={require("../../assets/batak/batakbg.png")}
@@ -319,9 +376,9 @@ const BatakGame = () => {
               </Text>
             </Stack>
           </XStack>
-          {/* ESRA */}
+          {/* ŞEVKET */}
           <XStack
-            left={-15}
+            left={-25}
             rotate="-90deg"
             position="absolute"
             top={160}
@@ -334,7 +391,7 @@ const BatakGame = () => {
           >
             <Stack>
               <Text color={"white"} fos={18}>
-                Esra{" "}
+                Şevket{" "}
               </Text>
             </Stack>
             <Stack bg={"black"} px={5} py={2} br={15}>
@@ -343,62 +400,93 @@ const BatakGame = () => {
               </Text>
             </Stack>
           </XStack>
+
+          {/* PLAYER CARDS */}
           <XStack
-            width={width}
-            // ai="center"
-            jc="center"
             pos="absolute"
-            bottom={150}
-            left={(width - 300) / 2}
+            left={
+              (width -
+                (35 * (userCards.length > 6 ? 6 : userCards.length - 1) + 90)) /
+              2
+            }
+            bottom={240}
+            jc="center"
+            zIndex={1}
           >
             {userCards.map((item, index) => {
               return (
                 <>
                   {index < 7 ? (
-                    <Pressable
-                      style={{
-                        position: "absolute",
-                        top:
-                          0 < (index - 3) * 3
-                            ? (index - 3) * 3
-                            : (index - 3) * -3,
-                        left: index * 35,
-                        transform: [{ rotate: `${(index - 3) * 4}deg` }],
+                    <Card
+                      onPress={() => {
+                        setSelectedCard(
+                          {
+                            type: item.type,
+                            number: item.number,
+                          },
+                          () => {
+                            let newCards = [...userCards];
+                            newCards.splice(index, 1);
+
+                            setTimeout(() => {
+                              setUserCards(newCards);
+                              setSelectedCard(null, () => {});
+                            }, 1500);
+                          }
+                        );
                       }}
-                      key={index}
-                      onPress={() => {}}
-                    >
-                      <Card number={item.number} type={item.type} />
-                    </Pressable>
+                      setDisabled={setDisabled}
+                      disabled={disabled}
+                      number={item.number}
+                      type={item.type}
+                      index={index}
+                      userCards={userCards}
+                      setUserCards={setUserCards}
+                      setSelectedCard={setSelectedCard}
+                    />
                   ) : null}
                 </>
               );
             })}
           </XStack>
           <XStack
-            width={width}
-            jc="center"
             pos="absolute"
-            bottom={90}
-            left={(width - 300) / 2}
+            left={(width - 265) / 2}
+            bottom={180}
+            jc="center"
+            zIndex={2}
           >
             {userCards.map((item, index) => {
               return (
                 <>
                   {index >= 7 ? (
-                    <Stack
-                      rotate={`${(index - 9.5) * 4}deg`}
-                      top={
-                        0 < (index - 10) * 3
-                          ? (index - 10) * 3
-                          : (index - 10) * -3
-                      }
-                      key={index}
-                      pos="absolute"
-                      left={(index - 6.5) * 35}
-                    >
-                      <Card number={item.number} type={item.type} />
-                    </Stack>
+                    <Card
+                      onPress={() => {
+                        setSelectedCard(
+                          {
+                            type: item.type,
+                            number: item.number,
+                          },
+                          () => {
+                            let newCards = [...userCards];
+                            newCards.splice(index, 1);
+
+                            setTimeout(() => {
+                              setUserCards(newCards);
+                              setSelectedCard(null, () => {});
+                            }, 1500);
+                          }
+                        );
+                      }}
+                      disabled={disabled}
+                      setDisabled={setDisabled}
+                      number={item.number}
+                      type={item.type}
+                      index={index - 7}
+                      userCards={userCards}
+                      setUserCards={setUserCards}
+                      setSelectedCard={setSelectedCard}
+                    />
                   ) : null}
                 </>
               );

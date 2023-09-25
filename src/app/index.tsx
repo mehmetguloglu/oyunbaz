@@ -3,8 +3,6 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   Dimensions,
-  ImageBackground,
-  Pressable,
   SafeAreaView,
   Modal,
   StyleSheet,
@@ -12,7 +10,6 @@ import {
   Share,
   Platform,
   Linking,
-  Vibration,
 } from "react-native";
 import { Image } from "expo-image";
 import {
@@ -111,7 +108,12 @@ const HomeScreen = () => {
               <XStack ai="center" jc="center" f={1}>
                 <Image
                   source={require("../assets/icon.png")}
-                  style={{ width: 42, height: 42, marginRight: 10 }}
+                  style={{
+                    width: 42,
+                    height: 42,
+                    marginRight: 10,
+                    borderRadius: 21,
+                  }}
                 />
                 <Text ta="center" fow={"800"} fos={18}>
                   Oyunbaz
@@ -255,7 +257,12 @@ const HomeScreen = () => {
               <XStack ai="center" jc="center" f={1}>
                 <Image
                   source={require("../assets/icon.png")}
-                  style={{ width: 42, height: 42, marginRight: 10 }}
+                  style={{
+                    width: 42,
+                    height: 42,
+                    marginRight: 10,
+                    borderRadius: 21,
+                  }}
                 />
                 <Text color={"#5c5752"} ta="center" fow={"800"} fos={18}>
                   Oyunbaz
