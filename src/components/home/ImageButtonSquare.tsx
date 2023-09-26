@@ -14,7 +14,7 @@ const ImageButtonSquare = ({ source, onPress, text, bgcolor }) => {
       style={{
         width: width * 0.44,
         height: width * 0.44,
-        borderRadius: 20,
+        borderRadius: width * 0.05,
         overflow: "hidden",
       }}
       placeholder={blurhash}
@@ -25,16 +25,10 @@ const ImageButtonSquare = ({ source, onPress, text, bgcolor }) => {
       <XStack f={1}>
         <Pressable
           onPress={onPress}
-          style={{ flex: 1, justifyContent: "flex-end" }}
+          style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }}
         >
-          <Stack br={20} bg={bgcolor}>
-            <Text
-              p={12}
-              ta="center"
-              color={"white"}
-              fontSize={16}
-              fontWeight={"700"}
-            >
+          <Stack px={12} py={8} br={width * 0.1} bg={bgcolor}>
+            <Text ta="center" color={"white"} fontSize={16} fontWeight={"700"}>
               {text}
             </Text>
           </Stack>

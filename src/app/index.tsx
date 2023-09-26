@@ -122,17 +122,17 @@ const HomeScreen = () => {
           {/* BODY */}
 
           <ScrollView showsVerticalScrollIndicator={false} f={1} bg={"white"}>
-            <XStack f={1} mx={15} py={10}>
-              <YStack mr={8}>
-                <Stack mb={height * 0.01}>
+            <XStack f={1} mx={width * 0.04} py={10}>
+              <YStack mr={width * 0.02}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonSquare
-                    bgcolor={"#EEAFC0a0"}
+                    bgcolor={"#d69eada0"}
                     onPress={() => router.push("/banned-words")}
                     source={require("../assets/home-page/bannedWord.png")}
                     text={"Yasaklı Kelimeler"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#7D4628a0"}
                     onPress={() => router.push("/quiz")}
@@ -140,7 +140,7 @@ const HomeScreen = () => {
                     text={"Cahilmetre"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#46422Da0"}
                     onPress={() => router.push("/who-am-i")}
@@ -148,7 +148,7 @@ const HomeScreen = () => {
                     text={"Ben Kimim"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#46422Da0"}
                     onPress={() => router.push("/batak")}
@@ -157,24 +157,24 @@ const HomeScreen = () => {
                   />
                 </Stack>
               </YStack>
-              <YStack ml={8}>
-                <Stack mb={height * 0.01}>
+              <YStack ml={width * 0.02}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
-                    bgcolor={"#39062Da0"}
+                    bgcolor={"#31062ba0"}
                     onPress={() => router.push("/tictactoe")}
                     source={require("../assets/home-page/tictactoe.png")}
                     text={"X-O-X"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
-                    bgcolor={"#000000a0"}
+                    bgcolor={"#a5cedaa0"}
                     onPress={() => router.push("/hangman")}
-                    source={require("../assets//home-page/hangman.png")}
+                    source={require("../assets/home-page/hangman.png")}
                     text={"Adam Asmaca"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#5C6D89a0"}
                     onPress={() => router.push("/sudoku")}
@@ -182,7 +182,7 @@ const HomeScreen = () => {
                     text={"Sudoku"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#634128a0"}
                     onPress={() => router.push("/jump")}
@@ -190,7 +190,7 @@ const HomeScreen = () => {
                     text={"Top Sektir"}
                   />
                 </Stack>
-                <Stack mb={height * 0.01}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#000000a0"}
                     onPress={() => router.push("/roll-dice")}

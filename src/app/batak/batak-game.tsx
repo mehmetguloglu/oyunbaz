@@ -12,7 +12,6 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import { setUser } from "@sentry/core";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -169,13 +168,14 @@ const Card = ({
     </Animated.View>
   );
 };
-
+//o elde oynanan kartlar için array oluştur
 const BatakGame = () => {
   const [userCards, setUserCards] = useState([]);
   const [onePCards, setOnePCards] = useState([]);
   const [twoPCards, setTwoPCards] = useState([]);
   const [threePCards, setThreePCards] = useState([]);
   let usedCards = [];
+  let currentCards = [];
 
   const [selectedCard, setSelectedCard] = useStateWithCallbackLazy(null);
   const [selectedOnePCard, setSelectedOnePCard] =
@@ -287,17 +287,12 @@ const BatakGame = () => {
     let sameTypeCards = newBotCards?.filter((x) => x.type == item.type);
     // AYNI CİNS KART YOKSA
     if (sameTypeCards?.length == 0) {
-      console.log("aynı cins kart yok");
       sameTypeCards = newBotCards.filter((x) => x.type == gameType);
       // KOZ DA YOKSA
       if (sameTypeCards?.length == 0) {
-        console.log("aynı cins kart yok koz yok");
-        availableCards = newBotCards[0];
-        newBotCards.map((x) => {
-          x.number < availableCards ? (availableCards = x) : null;
-        });
-        console.log("koz yok");
-        usedCards = [...usedCards, availableCards];
+        availableCards = [...newBotCards].sort((a, b) => {
+          return a.number - b.number;
+        })[0];
       }
       // KOZ VARSA
       else {
@@ -306,7 +301,7 @@ const BatakGame = () => {
         //EN DÜŞÜK KOZ SEÇİLDİ
         availableCards = sameTypeCards.reverse()[0];
 
-        usedCards = [...usedCards, availableCards];
+        //o el masada koz varsa ve elimde daha büyük koz varsa onu atacak
       }
     }
     // AYNI CİNS KART VARSA
@@ -324,40 +319,36 @@ const BatakGame = () => {
       // AYNI CİNS DAHA BÜYÜK KART VARSA
       else {
         availableCards = sameTypeCards?.filter((x) => x.number > item.number);
-        console.log(availableCards);
-        // DAHA ÖNCE KULLANILMIŞ KARTLAR KONTROL
-        // EDİLECEK  KULLANMIŞ KARTLAR ÇIKINCA
-        // AVAİLABLE CARD DAHA BÜYÜKSE EN BÜYÜĞÜ ALACAĞIZ
-        if (usedCards.length != 0) {
-          if (
-            usedCards
-              .filter((x) => x.type == item.type)
-              .filter((x) => x.number > item.number).length != 0
-          ) {
-            let count = 0;
-            availableCards[0].number == 12
-              ? null
-              : usedCards.map((x) => {
-                  if (x.number > availableCards[0].number) {
-                    count++;
-                  }
-                });
-            if (count + availableCards[0].number != 12) {
-              availableCards = availableCards.reverse()[0];
-              usedCards = [...usedCards, availableCards];
-            }
-          }
+        let availableMaxCard = availableCards[0];
+        let availableMinCard = availableCards.reverse()[0];
+        let maxCardCount = 12 - availableMaxCard.number;
+        let usedSameTypeBigCardCount = usedCards.filter(
+          (x) =>
+            x.type == availableMaxCard.type &&
+            x.number > availableMaxCard.number
+        ).length;
+        if (maxCardCount == usedSameTypeBigCardCount) {
+          availableCards = availableMaxCard;
+        } else {
+          availableCards = availableMinCard;
         }
-
-        console.log(availableCards);
       }
     }
-
+    currentCards = [...currentCards, availableCards];
+    usedCards = [...usedCards, availableCards];
+    let availableCardIndex = newBotCards.findIndex((x) => x == availableCards);
+    newBotCards.splice(availableCardIndex, 1);
+    console.log(availableCards);
+    console.log(availableCardIndex);
     if (bot == 1) {
-      // botPlay({ item: {}, bot: 2 });
+      setOnePCards(newBotCards);
+      botPlay({ item: availableCards, bot: 2 });
     } else if (bot == 2) {
-      // botPlay({ item: {}, bot: 3 });
+      setTwoPCards(newBotCards);
+
+      botPlay({ item: availableCards, bot: 3 });
     } else {
+      setThreePCards(newBotCards);
     }
   };
 
@@ -526,26 +517,24 @@ const BatakGame = () => {
             jc="center"
             zIndex={1}
           >
-            {userCards.map((item, index) => {
-              return (
-                <>
-                  {index < 7 ? (
-                    <Card
-                      key={index}
-                      onPress={() => cardPress({ item, index })}
-                      setDisabled={setDisabled}
-                      disabled={disabled}
-                      number={item.number}
-                      type={item.type}
-                      index={index}
-                      // userCards={userCards}
-                      // setUserCards={setUserCards}
-                      // setSelectedCard={setSelectedCard}
-                    />
-                  ) : null}
-                </>
-              );
-            })}
+            {userCards
+              .filter((item, index) => index < 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item, index })}
+                    setDisabled={setDisabled}
+                    disabled={disabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                    // userCards={userCards}
+                    // setUserCards={setUserCards}
+                    // setSelectedCard={setSelectedCard}
+                  />
+                );
+              })}
           </XStack>
           <XStack
             pos="absolute"
@@ -554,26 +543,24 @@ const BatakGame = () => {
             jc="center"
             zIndex={2}
           >
-            {userCards.map((item, index) => {
-              return (
-                <>
-                  {index >= 7 ? (
-                    <Card
-                      key={index}
-                      onPress={() => cardPress({ item, index })}
-                      disabled={disabled}
-                      setDisabled={setDisabled}
-                      number={item.number}
-                      type={item.type}
-                      index={index - 7}
-                      // userCards={userCards}
-                      // setUserCards={setUserCards}
-                      // setSelectedCard={setSelectedCard}
-                    />
-                  ) : null}
-                </>
-              );
-            })}
+            {userCards
+              .filter((x, index) => index >= 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item: item, index: index + 7 })}
+                    disabled={disabled}
+                    setDisabled={setDisabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                    // userCards={userCards}
+                    // setUserCards={setUserCards}
+                    // setSelectedCard={setSelectedCard}
+                  />
+                );
+              })}
           </XStack>
           {/* {selectedOnePCard != null ? (
             <Stack>
@@ -586,6 +573,144 @@ const BatakGame = () => {
               />
             </Stack>
           ) : null} */}
+
+          <XStack
+            pos="absolute"
+            right={400}
+            bottom={1000}
+            jc="center"
+            zIndex={1}
+          >
+            {onePCards
+              .filter((item, index) => index < 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item, index })}
+                    setDisabled={setDisabled}
+                    disabled={disabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                    // userCards={userCards}
+                    // setUserCards={setUserCards}
+                    // setSelectedCard={setSelectedCard}
+                  />
+                );
+              })}
+          </XStack>
+          <XStack
+            pos="absolute"
+            right={400}
+            bottom={800}
+            jc="center"
+            zIndex={2}
+          >
+            {onePCards
+              .filter((x, index) => index >= 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item: item, index: index + 7 })}
+                    disabled={disabled}
+                    setDisabled={setDisabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                  />
+                );
+              })}
+          </XStack>
+
+          <XStack
+            pos="absolute"
+            left={(width - 265) / 2}
+            top={0}
+            jc="center"
+            zIndex={1}
+          >
+            {twoPCards
+              .filter((item, index) => index < 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item, index })}
+                    setDisabled={setDisabled}
+                    disabled={disabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                    // userCards={userCards}
+                    // setUserCards={setUserCards}
+                    // setSelectedCard={setSelectedCard}
+                  />
+                );
+              })}
+          </XStack>
+          <XStack
+            pos="absolute"
+            left={(width - 265) / 2}
+            top={100}
+            jc="center"
+            zIndex={2}
+          >
+            {twoPCards
+              .filter((x, index) => index >= 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item: item, index: index + 7 })}
+                    disabled={disabled}
+                    setDisabled={setDisabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                  />
+                );
+              })}
+          </XStack>
+
+          <XStack pos="absolute" left={15} bottom={1000} jc="center" zIndex={1}>
+            {threePCards
+              .filter((item, index) => index < 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item, index })}
+                    setDisabled={setDisabled}
+                    disabled={disabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                    // userCards={userCards}
+                    // setUserCards={setUserCards}
+                    // setSelectedCard={setSelectedCard}
+                  />
+                );
+              })}
+          </XStack>
+          <XStack pos="absolute" left={15} bottom={800} jc="center" zIndex={2}>
+            {threePCards
+              .filter((x, index) => index >= 7)
+              .map((item, index) => {
+                return (
+                  <Card
+                    key={index}
+                    onPress={() => cardPress({ item: item, index: index + 7 })}
+                    disabled={disabled}
+                    setDisabled={setDisabled}
+                    number={item.number}
+                    type={item.type}
+                    index={index}
+                  />
+                );
+              })}
+          </XStack>
         </SafeAreaView>
       </ImageBackground>
     </>

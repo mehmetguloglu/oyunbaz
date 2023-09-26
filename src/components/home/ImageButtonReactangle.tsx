@@ -14,8 +14,8 @@ const ImageButtonReactangle = ({ source, onPress, text, bgcolor }) => {
     <ImageBackground
       style={{
         width: width * 0.44,
-        height: width * 0.21,
-        borderRadius: 16,
+        height: width * 0.2,
+        borderRadius: width * 0.04,
         overflow: "hidden",
       }}
       placeholder={blurhash}
@@ -28,14 +28,8 @@ const ImageButtonReactangle = ({ source, onPress, text, bgcolor }) => {
           onPress={onPress}
           style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }}
         >
-          <Stack br={20} bg={bgcolor}>
-            <Text
-              py={10}
-              px={20}
-              color={"white"}
-              fontSize={16}
-              fontWeight={"700"}
-            >
+          <Stack px={12} py={8} br={width * 0.1} bg={bgcolor}>
+            <Text ta="center" color={"white"} fontSize={16} fontWeight={"700"}>
               {text}
             </Text>
           </Stack>
