@@ -14,7 +14,7 @@ const ImageButtonReactangle = ({ source, onPress, text, bgcolor }) => {
     <ImageBackground
       style={{
         width: width * 0.44,
-        height: width * 0.2,
+        height: width * 0.21,
         borderRadius: 16,
         overflow: "hidden",
       }}

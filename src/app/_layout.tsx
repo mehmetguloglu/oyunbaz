@@ -145,6 +145,12 @@ export default function Layout() {
                     headerShown: false,
                   }}
                 />
+                <Stack.Screen
+                  name="batak"
+                  options={{
+                    headerShown: false,
+                  }}
+                />
               </Stack>
             </ThemeProvider>
           </Theme>

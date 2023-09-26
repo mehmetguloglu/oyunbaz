@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Button, Stack, Text, XStack, YStack } from "tamagui";
 import { ImageBackground } from "expo-image";
 import ExitButton from "../../components/ExitButton";
-import { cards } from "./cards";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useStateWithCallbackLazy } from "use-state-with-callback";
 import { orderBy } from "lodash";
@@ -532,6 +531,7 @@ const BatakGame = () => {
                 <>
                   {index < 7 ? (
                     <Card
+                      key={index}
                       onPress={() => cardPress({ item, index })}
                       setDisabled={setDisabled}
                       disabled={disabled}
@@ -559,6 +559,7 @@ const BatakGame = () => {
                 <>
                   {index >= 7 ? (
                     <Card
+                      key={index}
                       onPress={() => cardPress({ item, index })}
                       disabled={disabled}
                       setDisabled={setDisabled}

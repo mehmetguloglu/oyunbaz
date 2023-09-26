@@ -78,53 +78,53 @@ const HomeScreen = () => {
     <>
       <StatusBar hidden={true} />
 
-      <>
-        <Stack f={1} bg={"white"}>
-          <SafeAreaView style={{ flex: 1 }}>
-            {/* HEADER */}
-            <XStack
+      <Stack f={1} bg={"white"}>
+        <SafeAreaView style={{ flex: 1 }}>
+          {/* HEADER */}
+          <XStack
+            ai="center"
+            mt={Platform.OS == "android" ? 15 : 0}
+            mb={10}
+            mx={15}
+          >
+            <Button
+              p={0}
+              br={50}
+              width={42}
+              height={42}
               ai="center"
-              mt={Platform.OS == "android" ? 15 : 0}
-              mb={15}
-              mx={15}
+              jc="center"
+              right={0}
+              zIndex={1}
+              pos="absolute"
+              bg={"white"}
+              onPress={() => {
+                setShowModal(!showModal);
+              }}
             >
-              <Button
-                p={0}
-                br={50}
-                width={42}
-                height={42}
-                ai="center"
-                jc="center"
-                right={0}
-                zIndex={1}
-                pos="absolute"
-                bg={"white"}
-                onPress={() => {
-                  setShowModal(!showModal);
+              <Entypo name="info-with-circle" size={24} color="#5c5752" />
+            </Button>
+            <XStack ai="center" jc="center" f={1}>
+              <Image
+                source={require("../assets/icon.png")}
+                style={{
+                  width: 42,
+                  height: 42,
+                  marginRight: 10,
+                  borderRadius: 21,
                 }}
-              >
-                <Entypo name="info-with-circle" size={24} color="#5c5752" />
-              </Button>
-              <XStack ai="center" jc="center" f={1}>
-                <Image
-                  source={require("../assets/icon.png")}
-                  style={{
-                    width: 42,
-                    height: 42,
-                    marginRight: 10,
-                    borderRadius: 21,
-                  }}
-                />
-                <Text ta="center" fow={"800"} fos={18}>
-                  Oyunbaz
-                </Text>
-              </XStack>
+              />
+              <Text ta="center" fow={"800"} fos={18}>
+                Oyunbaz
+              </Text>
             </XStack>
-            {/* BODY */}
-            <ScrollView f={1} bg={"white"}>
-              {/* 1. ROW */}
-              <XStack mt={15} jc="space-between">
-                <Stack mr={5} ml={15} f={1} ai="center">
+          </XStack>
+          {/* BODY */}
+
+          <ScrollView showsVerticalScrollIndicator={false} f={1} bg={"white"}>
+            <XStack f={1} mx={15} py={10}>
+              <YStack mr={8}>
+                <Stack mb={height * 0.01}>
                   <ImageButtonSquare
                     bgcolor={"#EEAFC0a0"}
                     onPress={() => router.push("/banned-words")}
@@ -132,30 +132,7 @@ const HomeScreen = () => {
                     text={"Yasaklı Kelimeler"}
                   />
                 </Stack>
-
-                <YStack ml={5} mr={15} f={1} ai="center">
-                  <Stack mb={width * 0.02}>
-                    <ImageButtonReactangle
-                      bgcolor={"#39062Da0"}
-                      onPress={() => router.push("/tictactoe")}
-                      source={require("../assets/home-page/tictactoe.png")}
-                      text={"X-O-X"}
-                    />
-                  </Stack>
-                  <Stack mt={width * 0.02}>
-                    <ImageButtonReactangle
-                      bgcolor={"#000000a0"}
-                      onPress={() => router.push("/hangman")}
-                      source={require("../assets//home-page/hangman.png")}
-                      text={"Adam Asmaca"}
-                    />
-                  </Stack>
-                </YStack>
-              </XStack>
-
-              {/* 2. ROW */}
-              <XStack mt={15} jc="space-between">
-                <Stack mr={5} ml={15} f={1} ai="center">
+                <Stack mb={height * 0.01}>
                   <ImageButtonSquare
                     bgcolor={"#7D4628a0"}
                     onPress={() => router.push("/quiz")}
@@ -163,28 +140,7 @@ const HomeScreen = () => {
                     text={"Cahilmetre"}
                   />
                 </Stack>
-                <YStack ml={5} mr={15} f={1} ai="center">
-                  <Stack mb={width * 0.02}>
-                    <ImageButtonReactangle
-                      bgcolor={"#5C6D89a0"}
-                      onPress={() => router.push("/sudoku")}
-                      source={require("../assets/home-page/sudoku.png")}
-                      text={"Sudoku"}
-                    />
-                  </Stack>
-                  <Stack mt={width * 0.02}>
-                    <ImageButtonReactangle
-                      bgcolor={"#634128a0"}
-                      onPress={() => router.push("/jump")}
-                      source={require("../assets/home-page/jump.png")}
-                      text={"Top Sektir"}
-                    />
-                  </Stack>
-                </YStack>
-              </XStack>
-              {/* 3.ROW */}
-              <XStack mt={15} jc="space-between">
-                <Stack mr={5} ml={15} f={1} ai="center">
+                <Stack mb={height * 0.01}>
                   <ImageButtonSquare
                     bgcolor={"#46422Da0"}
                     onPress={() => router.push("/who-am-i")}
@@ -192,22 +148,7 @@ const HomeScreen = () => {
                     text={"Ben Kimim"}
                   />
                 </Stack>
-
-                <YStack ml={5} mr={15} f={1} ai="center">
-                  <Stack mb={width * 0.02}>
-                    <ImageButtonReactangle
-                      bgcolor={"#000000a0"}
-                      onPress={() => router.push("/roll-dice")}
-                      source={require("../assets//home-page/cube.png")}
-                      text={"Zar At"}
-                    />
-                  </Stack>
-                </YStack>
-              </XStack>
-
-              {/* 4.ROW */}
-              <XStack mt={15} jc="space-between">
-                <Stack mr={5} ml={15} f={1} ai="center">
+                <Stack mb={height * 0.01}>
                   <ImageButtonSquare
                     bgcolor={"#46422Da0"}
                     onPress={() => router.push("/batak")}
@@ -215,28 +156,59 @@ const HomeScreen = () => {
                     text={"Batak"}
                   />
                 </Stack>
-
-                <YStack ml={5} mr={15} f={1} ai="center">
-                  <Stack mb={width * 0.02}>
-                    {/* <ImageButtonReactangle
-                      bgcolor={"#5A6902a0"}
-                      onPress={() => router.push("/jump")}
-                      source={require("../assets/home-page/jump.png")}
-                      text={"Top Sektir"}
-                    /> */}
-                  </Stack>
-                </YStack>
-              </XStack>
-            </ScrollView>
-          </SafeAreaView>
-        </Stack>
-      </>
+              </YStack>
+              <YStack ml={8}>
+                <Stack mb={height * 0.01}>
+                  <ImageButtonReactangle
+                    bgcolor={"#39062Da0"}
+                    onPress={() => router.push("/tictactoe")}
+                    source={require("../assets/home-page/tictactoe.png")}
+                    text={"X-O-X"}
+                  />
+                </Stack>
+                <Stack mb={height * 0.01}>
+                  <ImageButtonReactangle
+                    bgcolor={"#000000a0"}
+                    onPress={() => router.push("/hangman")}
+                    source={require("../assets//home-page/hangman.png")}
+                    text={"Adam Asmaca"}
+                  />
+                </Stack>
+                <Stack mb={height * 0.01}>
+                  <ImageButtonReactangle
+                    bgcolor={"#5C6D89a0"}
+                    onPress={() => router.push("/sudoku")}
+                    source={require("../assets/home-page/sudoku.png")}
+                    text={"Sudoku"}
+                  />
+                </Stack>
+                <Stack mb={height * 0.01}>
+                  <ImageButtonReactangle
+                    bgcolor={"#634128a0"}
+                    onPress={() => router.push("/jump")}
+                    source={require("../assets/home-page/jump.png")}
+                    text={"Top Sektir"}
+                  />
+                </Stack>
+                <Stack mb={height * 0.01}>
+                  <ImageButtonReactangle
+                    bgcolor={"#000000a0"}
+                    onPress={() => router.push("/roll-dice")}
+                    source={require("../assets//home-page/cube.png")}
+                    text={"Zar At"}
+                  />
+                </Stack>
+              </YStack>
+            </XStack>
+          </ScrollView>
+        </SafeAreaView>
+      </Stack>
 
       <Modal animationType="slide" transparent={true} visible={showModal}>
         <SafeAreaView style={styles.centeredView}>
           <View style={styles.modalView}>
             {/* MODAL HEADER */}
-            <XStack ai="center" mt={Platform.OS == "android" ? 15 : 0} mb={15}>
+            <XStack ai="center" mt={Platform.OS == "android" ? 15 : 0} mb={10}>
               <Button
                 backgroundColor={"white"}
                 width={42}
@@ -454,3 +426,104 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+{
+  /* <ScrollView f={1} bg={"white"}>
+  <XStack mt={15} jc="space-between">
+    <Stack mr={5} ml={15} f={1} ai="center">
+      <ImageButtonSquare
+        bgcolor={"#EEAFC0a0"}
+        onPress={() => router.push("/banned-words")}
+        source={require("../assets/home-page/bannedWord.png")}
+        text={"Yasaklı Kelimeler"}
+      />
+    </Stack>
+
+    <YStack ml={5} mr={15} f={1} ai="center">
+      <Stack mb={10}>
+        <ImageButtonReactangle
+          bgcolor={"#39062Da0"}
+          onPress={() => router.push("/tictactoe")}
+          source={require("../assets/home-page/tictactoe.png")}
+          text={"X-O-X"}
+        />
+      </Stack>
+      <Stack mt={10}>
+        <ImageButtonReactangle
+          bgcolor={"#000000a0"}
+          onPress={() => router.push("/hangman")}
+          source={require("../assets//home-page/hangman.png")}
+          text={"Adam Asmaca"}
+        />
+      </Stack>
+    </YStack>
+  </XStack>
+
+  <XStack mt={15} jc="space-between">
+    <Stack mr={5} ml={15} f={1} ai="center">
+      <ImageButtonSquare
+        bgcolor={"#7D4628a0"}
+        onPress={() => router.push("/quiz")}
+        source={require("../assets/home-page/quiz.png")}
+        text={"Cahilmetre"}
+      />
+    </Stack>
+    <YStack ml={5} mr={15} f={1} ai="center">
+      <Stack mb={10}>
+        <ImageButtonReactangle
+          bgcolor={"#5C6D89a0"}
+          onPress={() => router.push("/sudoku")}
+          source={require("../assets/home-page/sudoku.png")}
+          text={"Sudoku"}
+        />
+      </Stack>
+      <Stack mt={10}>
+        <ImageButtonReactangle
+          bgcolor={"#634128a0"}
+          onPress={() => router.push("/jump")}
+          source={require("../assets/home-page/jump.png")}
+          text={"Top Sektir"}
+        />
+      </Stack>
+    </YStack>
+  </XStack>
+  <XStack mt={15} jc="space-between">
+    <Stack mr={5} ml={15} f={1} ai="center">
+      <ImageButtonSquare
+        bgcolor={"#46422Da0"}
+        onPress={() => router.push("/who-am-i")}
+        source={require("../assets/home-page/whoami.png")}
+        text={"Ben Kimim"}
+      />
+    </Stack>
+
+    <YStack ml={5} mr={15} f={1} ai="center">
+      <Stack mb={10}>
+        <ImageButtonReactangle
+          bgcolor={"#000000a0"}
+          onPress={() => router.push("/roll-dice")}
+          source={require("../assets//home-page/cube.png")}
+          text={"Zar At"}
+        />
+      </Stack>
+    </YStack>
+  </XStack>
+
+  <XStack mt={15} jc="space-between">
+    <Stack mr={5} ml={15} f={1} ai="center">
+      <ImageButtonSquare
+        bgcolor={"#46422Da0"}
+        onPress={() => router.push("/batak")}
+        source={require("../assets/home-page/batak.png")}
+        text={"Batak"}
+      />
+    </Stack>
+
+    <YStack ml={5} mr={15} f={1} ai="center">
+      <Stack mb={10}>
+      
+      </Stack>
+    </YStack>
+  </XStack>
+</ScrollView>; */
+}

@@ -53,6 +53,7 @@ const RollDice = () => {
                 if (index < 3) {
                   return (
                     <DiceImage
+                      key={index}
                       ref={(r) =>
                         index == 0
                           ? (dice1.current = r)
@@ -77,6 +78,7 @@ const RollDice = () => {
                 } else {
                   return (
                     <DiceImage
+                      key={index}
                       ref={(r) =>
                         index == 3
                           ? (dice4.current = r)
