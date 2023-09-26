@@ -12,6 +12,7 @@ import * as Burnt from "burnt";
 import { buttonBlue } from "../../utils/colors";
 import XoxButton from "../../components/tictactoe/XoxButton";
 import { useStateWithCallbackLazy } from "use-state-with-callback";
+import BannerAds from "../../components/google-ads/BannerAds";
 //get screen size
 const { width, height } = Dimensions.get("screen");
 
@@ -339,6 +340,9 @@ const TicTacToeGame = () => {
             {count[1]}
           </Text>
         </XStack>
+        <Stack mt={10}>
+          <BannerAds />
+        </Stack>
       </SafeAreaView>
     </>
   );

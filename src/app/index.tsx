@@ -140,14 +140,7 @@ const HomeScreen = () => {
                     text={"Cahilmetre"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
-                  <ImageButtonSquare
-                    bgcolor={"#46422Da0"}
-                    onPress={() => router.push("/who-am-i")}
-                    source={require("../assets/home-page/whoami.png")}
-                    text={"Ben Kimim"}
-                  />
-                </Stack>
+
                 <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#46422Da0"}
@@ -196,6 +189,14 @@ const HomeScreen = () => {
                     onPress={() => router.push("/roll-dice")}
                     source={require("../assets//home-page/cube.png")}
                     text={"Zar At"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.02}>
+                  <ImageButtonReactangle
+                    bgcolor={"#46422Da0"}
+                    onPress={() => router.push("/who-am-i")}
+                    source={require("../assets/home-page/whoami.png")}
+                    text={"Ben Kimim"}
                   />
                 </Stack>
               </YStack>

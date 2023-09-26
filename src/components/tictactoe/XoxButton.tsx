@@ -50,8 +50,10 @@ const XoxButton = ({ item, idx, index, _handlePress, gameover }) => {
               : null
           }
           style={{
-            width: 40,
-            height: 40,
+            width: Math.floor(width / 10),
+            height: Math.floor(width / 10),
+            maxHeight: 80,
+            maxWidth: 80,
           }}
         />
       ) : (
@@ -67,8 +69,10 @@ const XoxButton = ({ item, idx, index, _handlePress, gameover }) => {
             ,
             textAniStyle,
             {
-              width: 40,
-              height: 40,
+              width: Math.floor(width / 10),
+              height: Math.floor(width / 10),
+              maxHeight: 80,
+              maxWidth: 80,
             },
           ]}
         />
