@@ -274,26 +274,7 @@ const BatakGame = () => {
 
   const botPlay = ({ item, bot }) => {
     let newBotCards;
-
-    let sameTypeCards = newBotCards.filter((x) => x.type == item.type);
-    // AYNI CİNS KART YOKSA
-    if (sameTypeCards.length == 0) {
-      console.log("aynı cins kart yok");
-      sameTypeCards = newBotCards.filter((x) => x.type == gameType);
-      // KOZ YOKSA
-      if (sameTypeCards.length == 0) {
-        console.log("koz yok");
-      }
-    }
-    // AYNI CİNS KART VARSA
-    else {
-      if (sameTypeCards.filter((x) => x.number > item.number).length == 0) {
-        console.log("aynı cins daha büyük kart yok");
-      } else {
-        console.log(sameTypeCards);
-      }
-    }
-
+    let availableCards;
     if (bot == 1) {
       newBotCards = [...onePCards];
       // botPlay({ item: {}, bot: 2 });
@@ -302,6 +283,82 @@ const BatakGame = () => {
       // botPlay({ item: {}, bot: 3 });
     } else {
       newBotCards = [...threePCards];
+    }
+
+    let sameTypeCards = newBotCards?.filter((x) => x.type == item.type);
+    // AYNI CİNS KART YOKSA
+    if (sameTypeCards?.length == 0) {
+      console.log("aynı cins kart yok");
+      sameTypeCards = newBotCards.filter((x) => x.type == gameType);
+      // KOZ DA YOKSA
+      if (sameTypeCards?.length == 0) {
+        console.log("aynı cins kart yok koz yok");
+        availableCards = newBotCards[0];
+        newBotCards.map((x) => {
+          x.number < availableCards ? (availableCards = x) : null;
+        });
+        console.log("koz yok");
+        usedCards = [...usedCards, availableCards];
+      }
+      // KOZ VARSA
+      else {
+        console.log("aynı cins kart yok en düşük koz seçildi");
+
+        //EN DÜŞÜK KOZ SEÇİLDİ
+        availableCards = sameTypeCards.reverse()[0];
+
+        usedCards = [...usedCards, availableCards];
+      }
+    }
+    // AYNI CİNS KART VARSA
+    else {
+      // AYNI CİNS DAHA BÜYÜK KART YOKSA
+      if (sameTypeCards?.filter((x) => x.number > item.number).length == 0) {
+        // EN KÜÇÜK KART SEÇİLDİ
+        availableCards = sameTypeCards.reverse()[0];
+        console.log(
+          "aynı cins daha büyük kart yok oynanacak kart : ",
+          availableCards
+        );
+        usedCards = [...usedCards, availableCards];
+      }
+      // AYNI CİNS DAHA BÜYÜK KART VARSA
+      else {
+        availableCards = sameTypeCards?.filter((x) => x.number > item.number);
+        console.log(availableCards);
+        // DAHA ÖNCE KULLANILMIŞ KARTLAR KONTROL
+        // EDİLECEK  KULLANMIŞ KARTLAR ÇIKINCA
+        // AVAİLABLE CARD DAHA BÜYÜKSE EN BÜYÜĞÜ ALACAĞIZ
+        if (usedCards.length != 0) {
+          if (
+            usedCards
+              .filter((x) => x.type == item.type)
+              .filter((x) => x.number > item.number).length != 0
+          ) {
+            let count = 0;
+            availableCards[0].number == 12
+              ? null
+              : usedCards.map((x) => {
+                  if (x.number > availableCards[0].number) {
+                    count++;
+                  }
+                });
+            if (count + availableCards[0].number != 12) {
+              availableCards = availableCards.reverse()[0];
+              usedCards = [...usedCards, availableCards];
+            }
+          }
+        }
+
+        console.log(availableCards);
+      }
+    }
+
+    if (bot == 1) {
+      // botPlay({ item: {}, bot: 2 });
+    } else if (bot == 2) {
+      // botPlay({ item: {}, bot: 3 });
+    } else {
     }
   };
 
