@@ -19,9 +19,6 @@ const Card = ({
   number,
   type,
   index,
-  // userCards,
-  // setUserCards,
-  // setSelectedCard,
   onPress,
   disabled = false,
   setDisabled = null,
@@ -52,13 +49,13 @@ const Card = ({
         onPress={() => {
           setDisabled != null ? setDisabled(true) : null;
           cardPosY.value = (height / 2 - 150) * -1;
-          cardPosX.value = width / 2 - 90;
+          cardPosX.value = width / 2 - index * 35;
           onPress();
           setTimeout(() => {
             cardPosY.value = 100;
             cardPosX.value = index * 35;
             setDisabled != null ? setDisabled(false) : null;
-          }, 1500);
+          }, 3600);
         }}
         disabled={disabled}
       >
@@ -169,22 +166,22 @@ const Card = ({
   );
 };
 //o elde oynanan kartlar için array oluştur
+
 const BatakGame = () => {
+  const [selectedCard, setSelectedCard] = useStateWithCallbackLazy(null);
   const [userCards, setUserCards] = useState([]);
   const [onePCards, setOnePCards] = useState([]);
   const [twoPCards, setTwoPCards] = useState([]);
   const [threePCards, setThreePCards] = useState([]);
+  const [disabled, setDisabled] = useState(false);
+
   let usedCards = [];
   let currentCards = [];
 
-  const [selectedCard, setSelectedCard] = useStateWithCallbackLazy(null);
-  const [selectedOnePCard, setSelectedOnePCard] =
-    useStateWithCallbackLazy(null);
-  const [selectedTwoPCard, setSelectedTwoPCard] =
-    useStateWithCallbackLazy(null);
-  const [selectedThreePCard, setSelectedThreePCard] =
-    useStateWithCallbackLazy(null);
-  const [disabled, setDisabled] = useState(false);
+  let selectedOnePCard;
+  let selectedTwoPCard;
+  let selectedThreePCard;
+
   let gameType = 1;
 
   const playButtonPress = () => {
@@ -270,9 +267,12 @@ const BatakGame = () => {
         : (currentCards = [...currentCards, item]);
 
       setTimeout(() => {
-        setUserCards(newCards);
+        // setUserCards(newCards);
         botPlay({ item: item, bot: 1 });
-      }, 1500);
+      }, 500);
+      setTimeout(() => {
+        setUserCards(newCards);
+      }, 3500);
     });
   };
 
@@ -427,19 +427,22 @@ const BatakGame = () => {
     usedCards = [...usedCards, availableCards];
     let availableCardIndex = newBotCards.findIndex((x) => x == availableCards);
     newBotCards.splice(availableCardIndex, 1);
-    // console.log(bot, ". botun kullandığı kart : ", availableCards);
+    console.log(bot, ". botun kullandığı kart : ", availableCards);
     setTimeout(() => {
       if (bot == 1) {
+        selectedOnePCard = availableCards;
         setOnePCards(newBotCards);
         botPlay({ item: availableCards, bot: 2 });
       } else if (bot == 2) {
         setTwoPCards(newBotCards);
+        selectedTwoPCard = availableCards;
 
         botPlay({ item: availableCards, bot: 3 });
       } else {
         setThreePCards(newBotCards);
+        selectedThreePCard = availableCards;
       }
-    }, 1500);
+    }, 750);
   };
 
   return (
@@ -658,9 +661,6 @@ const BatakGame = () => {
                     number={item.number}
                     type={item.type}
                     index={index}
-                    // userCards={userCards}
-                    // setUserCards={setUserCards}
-                    // setSelectedCard={setSelectedCard}
                   />
                 );
               })}
