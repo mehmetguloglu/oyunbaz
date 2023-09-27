@@ -260,9 +260,14 @@ const BatakGame = () => {
 
   const cardPress = ({ item, index }) => {
     usedCards = [...usedCards, item];
+
     setSelectedCard(item, () => {
       let newCards = [...userCards];
       newCards.splice(index, 1);
+
+      currentCards.length == 3
+        ? (currentCards = [])
+        : (currentCards = [...currentCards, item]);
 
       setTimeout(() => {
         setUserCards(newCards);
@@ -272,8 +277,15 @@ const BatakGame = () => {
   };
 
   const botPlay = ({ item, bot }) => {
+    let currentType =
+      currentCards.length != 0 ? currentCards[0].type : item.type;
+    // debugger;
+    let orderCurrentCards = orderBy(currentCards, ["type", "number"]);
+
     let newBotCards;
-    let availableCards;
+
+    let availableCards = [];
+
     if (bot == 1) {
       newBotCards = [...onePCards];
       // botPlay({ item: {}, bot: 2 });
@@ -284,11 +296,11 @@ const BatakGame = () => {
       newBotCards = [...threePCards];
     }
 
-    let sameTypeCards = newBotCards?.filter((x) => x.type == item.type);
+    let sameTypeCards = newBotCards?.filter((x) => x.type == currentType);
     // AYNI CİNS KART YOKSA
     if (sameTypeCards?.length == 0) {
       sameTypeCards = newBotCards.filter((x) => x.type == gameType);
-      // KOZ DA YOKSA
+      // KOZ DA YOKSA EN DÜŞÜK KART SEÇİLDİ
       if (sameTypeCards?.length == 0) {
         availableCards = [...newBotCards].sort((a, b) => {
           return a.number - b.number;
@@ -296,60 +308,138 @@ const BatakGame = () => {
       }
       // KOZ VARSA
       else {
-        console.log("aynı cins kart yok en düşük koz seçildi");
+        let bigCurrentGameTypeCard = [...orderCurrentCards].filter(
+          (x) => x.type == gameType
+        )[0];
+        if (
+          bigCurrentGameTypeCard &&
+          sameTypeCards.filter((x) => x.number > bigCurrentGameTypeCard.number)
+            .length != 0
+        ) {
+          // DAHA ÖNCE KOZ OYNANMIŞSA VE OYNANAN EN BÜYÜK
+          // KOZDAN DAHA BÜYÜK KOZ VARSA OYNANAN KOZDAN BÜYÜK
+          // EN KÜÇÜK KOZ SEÇİLDİ
 
-        //EN DÜŞÜK KOZ SEÇİLDİ
-        availableCards = sameTypeCards.reverse()[0];
-
-        //o el masada koz varsa ve elimde daha büyük koz varsa onu atacak
+          availableCards = sameTypeCards
+            .filter((x) => x.number > bigCurrentGameTypeCard.number)
+            .reverse()[0];
+        } else {
+          //DAHA ÖNCE KOZ OYNANMAMIŞSA EN DÜŞÜK KOZ SEÇİLDİ
+          availableCards = sameTypeCards.reverse()[0];
+        }
       }
     }
     // AYNI CİNS KART VARSA
     else {
-      // AYNI CİNS DAHA BÜYÜK KART YOKSA
-      if (sameTypeCards?.filter((x) => x.number > item.number).length == 0) {
-        // EN KÜÇÜK KART SEÇİLDİ
-        availableCards = sameTypeCards.reverse()[0];
-        console.log(
-          "aynı cins daha büyük kart yok oynanacak kart : ",
-          availableCards
-        );
-        usedCards = [...usedCards, availableCards];
-      }
+      //eldeki aynı tip kartlar küçükten büyüğe alındı
+      let minToMaxSameTypeCards = [...sameTypeCards].reverse();
       // AYNI CİNS DAHA BÜYÜK KART VARSA
-      else {
-        availableCards = sameTypeCards?.filter((x) => x.number > item.number);
-        let availableMaxCard = availableCards[0];
-        let availableMinCard = availableCards.reverse()[0];
-        let maxCardCount = 12 - availableMaxCard.number;
-        let usedSameTypeBigCardCount = usedCards.filter(
-          (x) =>
-            x.type == availableMaxCard.type &&
-            x.number > availableMaxCard.number
-        ).length;
-        if (maxCardCount == usedSameTypeBigCardCount) {
+      for (let i = 0; i < minToMaxSameTypeCards.length; i++) {
+        // eldeki kartlar ile for ile loop atıldı
+        let checkCard = minToMaxSameTypeCards[i];
+        let check = false;
+        if (!check) {
+          // o el kullanılmış kartların map ile eldeki
+          // aynı tip kartlardan büyük olup olmadığı kontrol edildi
+          currentCards.map((x) => {
+            x.number > checkCard.number ? (check = true) : null;
+          });
+          if (!check) {
+            availableCards = [...availableCards, checkCard];
+          }
+        }
+      }
+
+      if (availableCards?.length == 0) {
+        availableCards = minToMaxSameTypeCards[0];
+      } else {
+        let availableMinCard = availableCards[0];
+        let availableMaxCard = [...availableCards].reverse()[0];
+        // let maxCardCount = 12 - availableMaxCard.number;
+        let count = 0;
+        let usedSameTypeCards = usedCards.filter((x) => {
+          x.type == availableMaxCard.type;
+        });
+
+        usedSameTypeCards.map((x) => {
+          x.number > availableMaxCard.number ? count++ : null;
+        });
+
+        // let usedSameTypeBigCardCount = usedCards.filter(
+        //   (x) =>
+        //     x.type == availableMaxCard.type &&
+        //     x.number > availableMaxCard.number
+        // ).length;
+
+        if (availableMaxCard.number + count == 12 && currentCards.length != 3) {
           availableCards = availableMaxCard;
         } else {
           availableCards = availableMinCard;
         }
       }
     }
-    currentCards = [...currentCards, availableCards];
+    // AYNI CİNS DAHA BÜYÜK KART YOKSA
+
+    // if (!availableCards) {
+    //   availableCards = minToMaxSameTypeCards[0];
+    // }
+
+    // if (
+    //   currentCards.filter((y) => {
+    //     sameTypeCards?.filter((x) => x.number > y.number);
+    //   }).length == 0
+    // ) {
+    // EN KÜÇÜK KART SEÇİLDİ
+    // availableCards = sameTypeCards.reverse()[0];
+    // console.log(
+    //   "aynı cins daha büyük kart yok oynanacak kart : ",
+    //   availableCards
+    // );
+    // usedCards = [...usedCards, availableCards];
+
+    // AYNI CİNS DAHA BÜYÜK KART VARSA
+    // else {
+    //   availableCards = sameTypeCards?.filter((x) => x.number > item.number);
+    // let availableMaxCard = availableCards[0];
+    // let availableMinCard = availableCards.reverse()[0];
+    // let maxCardCount = 12 - availableMaxCard.number;
+    // let usedSameTypeBigCardCount = usedCards.filter(
+    //   (x) =>
+    //     x.type == availableMaxCard.type &&
+    //     x.number > availableMaxCard.number
+    // ).length;
+    // if (
+    //   maxCardCount == usedSameTypeBigCardCount &&
+    //   currentCards.length != 3
+    // ) {
+    //   availableCards = availableMaxCard;
+    // } else {
+    //   availableCards = availableMinCard;
+    // }
+    // }
+    // }
+    if (currentCards.length == 3) {
+      currentCards = [];
+    } else {
+      currentCards = [...currentCards, availableCards];
+    }
+
     usedCards = [...usedCards, availableCards];
     let availableCardIndex = newBotCards.findIndex((x) => x == availableCards);
     newBotCards.splice(availableCardIndex, 1);
-    console.log(availableCards);
-    console.log(availableCardIndex);
-    if (bot == 1) {
-      setOnePCards(newBotCards);
-      botPlay({ item: availableCards, bot: 2 });
-    } else if (bot == 2) {
-      setTwoPCards(newBotCards);
+    // console.log(bot, ". botun kullandığı kart : ", availableCards);
+    setTimeout(() => {
+      if (bot == 1) {
+        setOnePCards(newBotCards);
+        botPlay({ item: availableCards, bot: 2 });
+      } else if (bot == 2) {
+        setTwoPCards(newBotCards);
 
-      botPlay({ item: availableCards, bot: 3 });
-    } else {
-      setThreePCards(newBotCards);
-    }
+        botPlay({ item: availableCards, bot: 3 });
+      } else {
+        setThreePCards(newBotCards);
+      }
+    }, 1500);
   };
 
   return (
@@ -370,17 +460,9 @@ const BatakGame = () => {
           <Button mt={200} onPress={playButtonPress}>
             Başla
           </Button>
-          <Button
-            onPress={() => {
-              console.log(userCards);
-              console.log(onePCards);
-              console.log(twoPCards);
-              console.log(threePCards);
-            }}
-          >
-            console
-          </Button>
-          {/* <XStack>
+
+          {/* KOZ SEÇİMİ
+          <XStack>
             <Button
               onPress={() => {
                 gameType = 0;
@@ -505,7 +587,7 @@ const BatakGame = () => {
             </Stack>
           </XStack>
 
-          {/* PLAYER CARDS */}
+          {/* PLAYERS CARDS */}
           <XStack
             pos="absolute"
             left={
@@ -523,15 +605,12 @@ const BatakGame = () => {
                 return (
                   <Card
                     key={index}
-                    onPress={() => cardPress({ item, index })}
+                    onPress={() => cardPress({ item: item, index: index })}
                     setDisabled={setDisabled}
                     disabled={disabled}
                     number={item.number}
                     type={item.type}
                     index={index}
-                    // userCards={userCards}
-                    // setUserCards={setUserCards}
-                    // setSelectedCard={setSelectedCard}
                   />
                 );
               })}
@@ -555,29 +634,15 @@ const BatakGame = () => {
                     number={item.number}
                     type={item.type}
                     index={index}
-                    // userCards={userCards}
-                    // setUserCards={setUserCards}
-                    // setSelectedCard={setSelectedCard}
                   />
                 );
               })}
           </XStack>
-          {/* {selectedOnePCard != null ? (
-            <Stack>
-              <Card
-                disabled={false}
-                index={0}
-                onPress={() => {}}
-                number={selectedOnePCard[0].number}
-                type={selectedOnePCard[0].type}
-              />
-            </Stack>
-          ) : null} */}
 
           <XStack
             pos="absolute"
-            right={400}
-            bottom={1000}
+            right={315}
+            bottom={(height / 4) * 3}
             jc="center"
             zIndex={1}
           >
@@ -602,8 +667,8 @@ const BatakGame = () => {
           </XStack>
           <XStack
             pos="absolute"
-            right={400}
-            bottom={800}
+            right={315}
+            bottom={(height / 4) * 3 - 100}
             jc="center"
             zIndex={2}
           >
@@ -627,7 +692,7 @@ const BatakGame = () => {
           <XStack
             pos="absolute"
             left={(width - 265) / 2}
-            top={0}
+            top={-80}
             jc="center"
             zIndex={1}
           >
@@ -643,9 +708,6 @@ const BatakGame = () => {
                     number={item.number}
                     type={item.type}
                     index={index}
-                    // userCards={userCards}
-                    // setUserCards={setUserCards}
-                    // setSelectedCard={setSelectedCard}
                   />
                 );
               })}
@@ -653,7 +715,7 @@ const BatakGame = () => {
           <XStack
             pos="absolute"
             left={(width - 265) / 2}
-            top={100}
+            top={20}
             jc="center"
             zIndex={2}
           >
@@ -674,7 +736,13 @@ const BatakGame = () => {
               })}
           </XStack>
 
-          <XStack pos="absolute" left={15} bottom={1000} jc="center" zIndex={1}>
+          <XStack
+            pos="absolute"
+            left={15}
+            bottom={(height / 4) * 3}
+            jc="center"
+            zIndex={1}
+          >
             {threePCards
               .filter((item, index) => index < 7)
               .map((item, index) => {
@@ -687,14 +755,17 @@ const BatakGame = () => {
                     number={item.number}
                     type={item.type}
                     index={index}
-                    // userCards={userCards}
-                    // setUserCards={setUserCards}
-                    // setSelectedCard={setSelectedCard}
                   />
                 );
               })}
           </XStack>
-          <XStack pos="absolute" left={15} bottom={800} jc="center" zIndex={2}>
+          <XStack
+            pos="absolute"
+            left={15}
+            bottom={(height / 4) * 3 - 100}
+            jc="center"
+            zIndex={2}
+          >
             {threePCards
               .filter((x, index) => index >= 7)
               .map((item, index) => {
