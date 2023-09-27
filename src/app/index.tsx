@@ -143,7 +143,7 @@ const HomeScreen = () => {
 
                 <Stack mb={width * 0.02}>
                   <ImageButtonSquare
-                    bgcolor={"#46422Da0"}
+                    bgcolor={"#383524a0"}
                     onPress={() => router.push("/batak")}
                     source={require("../assets/home-page/batak.png")}
                     text={"Batak"}
@@ -161,13 +161,21 @@ const HomeScreen = () => {
                 </Stack>
                 <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
+                    bgcolor={"#46422Da0"}
+                    onPress={() => router.push("/who-am-i")}
+                    source={require("../assets/home-page/whoami.png")}
+                    text={"Ben Kimim"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.04}>
+                  <ImageButtonReactangle
                     bgcolor={"#a5cedaa0"}
                     onPress={() => router.push("/hangman")}
                     source={require("../assets/home-page/hangman.png")}
                     text={"Adam Asmaca"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#5C6D89a0"}
                     onPress={() => router.push("/sudoku")}
@@ -175,7 +183,7 @@ const HomeScreen = () => {
                     text={"Sudoku"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#634128a0"}
                     onPress={() => router.push("/jump")}
@@ -183,20 +191,12 @@ const HomeScreen = () => {
                     text={"Top Sektir"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#000000a0"}
                     onPress={() => router.push("/roll-dice")}
                     source={require("../assets//home-page/cube.png")}
                     text={"Zar At"}
-                  />
-                </Stack>
-                <Stack mb={width * 0.02}>
-                  <ImageButtonReactangle
-                    bgcolor={"#46422Da0"}
-                    onPress={() => router.push("/who-am-i")}
-                    source={require("../assets/home-page/whoami.png")}
-                    text={"Ben Kimim"}
                   />
                 </Stack>
               </YStack>

@@ -308,11 +308,12 @@ const WhoAmI = () => {
               </Stack>
             </Stack>
 
-            <XStack ai="center" justifyContent="space-between">
+            <XStack ai="center" justifyContent="center">
               <View
                 style={{
                   flex: 1,
                   marginRight: 5,
+                  maxWidth: 250,
                 }}
               >
                 <Pressable
@@ -345,6 +346,7 @@ const WhoAmI = () => {
               <View
                 style={{
                   flex: 1,
+                  maxWidth: 250,
 
                   marginLeft: 5,
                 }}
