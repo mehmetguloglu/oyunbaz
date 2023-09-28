@@ -140,7 +140,14 @@ const HomeScreen = () => {
                     text={"Cahilmetre"}
                   />
                 </Stack>
-
+                <Stack mb={width * 0.02}>
+                  <ImageButtonReactangle
+                    bgcolor={"#000000a0"}
+                    onPress={() => router.push("/pisti")}
+                    source={require("../assets/home-page/pisti.png")}
+                    text={"Pişti"}
+                  />
+                </Stack>
                 <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#383524a0"}

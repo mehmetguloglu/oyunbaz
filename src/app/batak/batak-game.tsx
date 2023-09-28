@@ -331,6 +331,9 @@ const BatakGame = () => {
     }
     // AYNI CİNS KART VARSA
     else {
+      //DAHA ÖNCE ATILAN KARTLARDA KOZ OLUP OLMADIĞININ KONTROLÜ YAPILACAK
+      // if(currentCards.filter((x)=>x.type==gameType).length!=0){}
+
       //eldeki aynı tip kartlar küçükten büyüğe alındı
       let minToMaxSameTypeCards = [...sameTypeCards].reverse();
       // AYNI CİNS DAHA BÜYÜK KART VARSA
@@ -364,12 +367,6 @@ const BatakGame = () => {
         usedSameTypeCards.map((x) => {
           x.number > availableMaxCard.number ? count++ : null;
         });
-
-        // let usedSameTypeBigCardCount = usedCards.filter(
-        //   (x) =>
-        //     x.type == availableMaxCard.type &&
-        //     x.number > availableMaxCard.number
-        // ).length;
 
         if (availableMaxCard.number + count == 12 && currentCards.length != 3) {
           availableCards = availableMaxCard;
