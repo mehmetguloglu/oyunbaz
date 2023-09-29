@@ -14,7 +14,7 @@ import Animated, {
 import Card from "../../components/pisti/Card";
 
 const { width, height } = Dimensions.get("screen");
-
+const AnimatedStack = Animated.createAnimatedComponent(Stack);
 // const Card = ({
 //   number = 13,
 //   type = null,
@@ -472,12 +472,19 @@ const BatakGame = () => {
           ];
       }
     }
-
+    computerCardAni.value = withTiming(height / 2 - 150);
     setShowCard([availableCards]);
     currentCards = [...currentCards, availableCards];
   };
 
   const botPlay = ({ item }) => {};
+
+  const computerCardAni = useSharedValue(-80);
+  const cardAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      top: computerCardAni.value,
+    };
+  });
 
   return (
     <>
@@ -573,10 +580,11 @@ const BatakGame = () => {
             })}
           </XStack>
 
-          <Stack
+          <AnimatedStack
+            style={[cardAnimatedStyle]}
             pos="absolute"
             left={(width - 265) / 2}
-            top={-80}
+            // top={-100}
             jc="center"
             zIndex={1}
           >
@@ -589,7 +597,7 @@ const BatakGame = () => {
                 type={showCard[0].type}
               />
             ) : null}
-          </Stack>
+          </AnimatedStack>
         </SafeAreaView>
       </ImageBackground>
     </>
