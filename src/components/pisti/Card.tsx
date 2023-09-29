@@ -19,6 +19,7 @@ const Card = ({
   onPress = () => {},
   disabled = false,
   setDisabled = null,
+  scale = 1,
 }) => {
   const cardPosY = useSharedValue(100);
   const cardPosX = useSharedValue(index * 35);
@@ -33,8 +34,8 @@ const Card = ({
       style={[
         {
           position: "absolute",
-          // transform: [{ rotate: `${(index - 3) * 4}deg` }],
-          zIndex: index,
+          transform: [{ scale: scale }],
+          // zIndex: index,
         },
         cardAnimatedStyle,
       ]}
@@ -44,7 +45,7 @@ const Card = ({
         style={{ flex: 1 }}
         onPress={() => {
           setDisabled != null ? setDisabled(true) : null;
-          cardPosY.value = (height / 2 - 150) * pos;
+          // cardPosY.value = (height / 2 - 150) * pos;
           onPress();
           setTimeout(() => {
             setDisabled != null ? setDisabled(false) : null;
