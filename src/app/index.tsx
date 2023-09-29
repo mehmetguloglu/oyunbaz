@@ -34,6 +34,7 @@ import { getRewardedAds } from "../bussiness/actions/getAds";
 import ImageButtonSquare from "../components/home/ImageButtonSquare";
 import ImageButtonReactangle from "../components/home/ImageButtonReactangle";
 import BannerAds from "../components/google-ads/BannerAds";
+import StarFall from "../components/home/BGanimated";
 const { width, height } = Dimensions.get("screen");
 const HomeScreen = () => {
   const router = useRouter();
@@ -122,6 +123,7 @@ const HomeScreen = () => {
           {/* BODY */}
 
           <ScrollView showsVerticalScrollIndicator={false} f={1} bg={"white"}>
+            {/* <StarFall /> */}
             <XStack f={1} mx={width * 0.04} py={10}>
               <YStack mr={width * 0.02}>
                 <Stack mb={width * 0.02}>

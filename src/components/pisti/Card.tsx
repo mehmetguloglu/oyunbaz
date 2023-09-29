@@ -47,7 +47,6 @@ const Card = ({
           cardPosY.value = (height / 2 - 150) * pos;
           onPress();
           setTimeout(() => {
-            cardPosY.value = 100;
             setDisabled != null ? setDisabled(false) : null;
           }, 3600);
         }}
