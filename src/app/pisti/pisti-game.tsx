@@ -20,9 +20,8 @@ const Game = () => {
   const [playerWinCard, setPlayerWinCard] = useState<Array<Card[]>>([]);
   const [botWinCard, setBotWinCard] = useState<Array<Card[]>>([]);
   const unusedCard = useRef<Card[]>([]);
-
+  const cards = useRef<Card[]>([]);
   useMemo(() => {
-    const cards: Card[] = [];
     for (let c = 0; c < 4; c++) {
       for (let i = 1; i < 14; i++) {
         let cardType: CardType;
@@ -43,7 +42,7 @@ const Game = () => {
           default:
             break;
         }
-        cards.push({
+        cards.current.push({
           type: cardType,
           number: i,
         });
@@ -78,21 +77,7 @@ const Game = () => {
         unusedCard.current.splice(randomCardIndex, 1);
       }
     }
-    // else {
-    //   switch (lastPlayer) {
-    //     case 1:
-    //       setPlayerWinCard([...playerWinCard, currentGameCard]);
-    //       break;
 
-    //     case 2:
-    //       setBotWinCard([...botWinCard, currentGameCard]);
-    //       break;
-
-    //     default:
-    //       break;
-    //   }
-    //   setCurrentGameCard([]);
-    // }
     console.log(unusedCard.current);
   };
 
@@ -155,6 +140,7 @@ const Game = () => {
   };
 
   const playGame = () => {
+    unusedCard.current = [...cards.current];
     for (let i = 0; i < 4; i++) {
       let randomCardIndex = parseInt(
         (Math.random() * unusedCard.current.length).toFixed(0)
