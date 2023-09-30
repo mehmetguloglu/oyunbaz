@@ -1,6 +1,8 @@
 import React, { useMemo, useRef, useState } from "react";
 import { SafeAreaView } from "react-native";
 import { Button, Text, XStack, YStack } from "tamagui";
+import ExitButton from "../../components/ExitButton";
+import Card from "../../components/pisti/Card";
 
 enum CardType {
   "Kupa",
@@ -160,8 +162,9 @@ const Game = () => {
 
   return (
     <YStack>
+      <ExitButton />
       <SafeAreaView />
-      <Button onPress={playGame}>Dağıt piç</Button>
+      <Button onPress={playGame}>Dağıt</Button>
       <Text>Bot cards</Text>
       {botCards.map((item, index) => {
         return (
@@ -176,13 +179,14 @@ const Game = () => {
       {playerCard.map((item, index) => {
         return (
           <Button onPress={() => _handlePlayerCardPress(item, index)}>
-            <Text>
+            {/* <Text>
               {CardType[item.type]} - {item.number}
-            </Text>
+            </Text> */}
+            <Card number={item.number} type={item.type} />
           </Button>
         );
       })}
-      <Text>currentGameCard</Text>
+      {/* <Text>currentGameCard</Text>
       {currentGameCard.map((item, index) => {
         return (
           <Text>
@@ -217,7 +221,7 @@ const Game = () => {
             })}
           </XStack>
         );
-      })}
+      })} */}
     </YStack>
   );
 };
