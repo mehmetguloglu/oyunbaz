@@ -1,10 +1,9 @@
 import React, { useMemo, useRef, useState } from "react";
 import { Dimensions, Pressable, SafeAreaView } from "react-native";
-import { Button, Stack, Text, XStack, YStack } from "tamagui";
+import { Button, Text, XStack, YStack } from "tamagui";
 import ExitButton from "../../components/ExitButton";
 import Card from "../../components/pisti/Card";
-import { ImageBackground } from "expo-image";
-const { width, height } = Dimensions.get("screen");
+
 enum CardType {
   "Kupa",
   "Maca",
@@ -17,14 +16,11 @@ interface Card {
 }
 
 const Game = () => {
-  const [play, setPlay] = useState(false);
   const [botCards, setBotCards] = useState<Card[]>([]);
   const [playerCard, setPlayerCard] = useState<Card[]>([]);
   const [currentGameCard, setCurrentGameCard] = useState<Card[]>([]);
   const [playerWinCard, setPlayerWinCard] = useState<Array<Card[]>>([]);
   const [botWinCard, setBotWinCard] = useState<Array<Card[]>>([]);
-  const [playerScore, setPlayerScore] = useState(0);
-  const [botScore, setBotScore] = useState(0);
   const unusedCard = useRef<Card[]>([]);
   const cards = useRef<Card[]>([]);
   useMemo(() => {
@@ -92,7 +88,6 @@ const Game = () => {
     clonePlayerCard.splice(cardIndex, 1);
     setPlayerCard(clonePlayerCard);
     if (currentGameCard.length > 0) {
-      // ORTADA KART VARSA
       const beforeCard = currentGameCard[currentGameCard.length - 1];
       if (beforeCard.number == card.number || card.number == 11) {
         setPlayerWinCard([...playerWinCard, [...currentGameCard, card]]);
@@ -147,7 +142,6 @@ const Game = () => {
   };
 
   const playGame = () => {
-    setPlay(true);
     unusedCard.current = [...cards.current];
     for (let i = 0; i < 4; i++) {
       let randomCardIndex = parseInt(
@@ -167,72 +161,21 @@ const Game = () => {
   };
 
   return (
-    <YStack bg={"white"} f={1}>
-      <ImageBackground
-        contentFit="fill"
-        style={{
-          position: "absolute",
-          zIndex: -10,
-          width: "100%",
-          height: "100%",
-        }}
-        source={require("../../assets/pisti/pistibg.png")}
-      />
+    <YStack f={1}>
       <ExitButton />
       <SafeAreaView />
-      {!play ? (
-        <Stack
-          f={1}
-          w={"100%"}
-          h={"100%"}
-          alignItems="center"
-          jc="center"
-          position="absolute"
-          zIndex={10}
-        >
-          <Button onPress={playGame}>Oyna</Button>
-        </Stack>
-      ) : null}
-
-      <YStack
-        p={5}
-        br={5}
-        bg={"#6c321c"}
-        position="absolute"
-        bottom={120}
-        right={15}
-        ai="center"
-        jc="center"
-        shadowColor={"#000"}
-        shadowOffset={{
-          height: 2,
-          width: 0,
-        }}
-        shadowRadius={3.84}
-        shadowOpacity={0.25}
-        elevationAndroid={5}
-      >
-        <Text color={"white"} fow={"600"} fos={16}>
-          Siz
-        </Text>
-        <Stack
-          mt={5}
-          br={5}
-          p={5}
-          bg={"white"}
-          shadowColor={"#000"}
-          shadowOffset={{
-            height: 2,
-            width: 0,
-          }}
-          shadowRadius={3.84}
-          shadowOpacity={0.25}
-          elevationAndroid={5}
-        >
-          <Text fos={16}>{playerScore}</Text>
-        </Stack>
-      </YStack>
-
+      <Button onPress={playGame}>Dağıt</Button>
+      <Text>Bot cards</Text>
+      {botCards.map((item, index) => {
+        return (
+          <Button>
+            <Text>
+              {CardType[item.type]} - {item.number}
+            </Text>
+          </Button>
+        );
+      })}
+      <Text>Player cards</Text>
       <XStack
         pos="absolute"
         bottom={100}
@@ -244,7 +187,6 @@ const Game = () => {
         {playerCard.map((item, index) => {
           return (
             <Pressable
-              key={index}
               style={{ position: "absolute", left: 40 * index }}
               onPress={() => _handlePlayerCardPress(item, index)}
             >
@@ -256,102 +198,42 @@ const Game = () => {
           );
         })}
       </XStack>
-
-      {/* <XStack zIndex={-1} pos="absolute" bottom={170} left={40}>
-        {playerWinCard.map((item, index) => {
-          item.map((item, index) => {
-            return (
-              <Stack
-                rotate="90deg"
-                key={index}
-                style={{ position: "absolute", left: 5 * index }}
-                onPress={() => _handlePlayerCardPress(item, index)}
-              >
-                <Card number={item.number} type={item.type} />
-              </Stack>
-            );
-          });
-        })}
-      </XStack> */}
-
-      <YStack
-        p={5}
-        br={5}
-        bg={"#6c321c"}
-        position="absolute"
-        top={100}
-        left={15}
-        ai="center"
-        shadowColor={"#000"}
-        shadowOffset={{
-          height: 2,
-          width: 0,
-        }}
-        shadowRadius={3.84}
-        shadowOpacity={0.25}
-        elevationAndroid={5}
-      >
-        <Text color={"white"} fow={"600"} fos={16}>
-          Kadir
-        </Text>
-        <Stack
-          mt={5}
-          br={5}
-          p={5}
-          bg={"white"}
-          shadowColor={"#000"}
-          shadowOffset={{
-            height: 2,
-            width: 0,
-          }}
-          shadowRadius={3.84}
-          shadowOpacity={0.25}
-          elevationAndroid={5}
-        >
-          <Text fos={16}>{botScore}</Text>
-        </Stack>
-      </YStack>
-
-      <XStack
-        pos="absolute"
-        top={0}
-        right={
-          Dimensions.get("screen").width / 2 -
-          ((botCards.length - 1) * 40 + 90) / 2
-        }
-      >
-        {botCards.map((item, index) => {
-          return (
-            <Pressable
-              key={index}
-              style={{ position: "absolute", right: 40 * index }}
-            >
-              {/* <Text>
-              {CardType[item.type]} - {item.number}
-            </Text> */}
-              <Card number={item.number} type={item.type} />
-            </Pressable>
-          );
-        })}
-      </XStack>
-
-      <XStack
-        pos="absolute"
-        bottom={height / 2 + 75}
-        left={width / 2 - ((currentGameCard.length - 1) * 5 + 90) / 2}
-      >
-        {currentGameCard.map((item, index) => {
-          return (
-            <Pressable
-              key={index}
-              style={{ position: "absolute", left: 5 * index }}
-              onPress={() => _handlePlayerCardPress(item, index)}
-            >
-              <Card number={item.number} type={item.type} />
-            </Pressable>
-          );
-        })}
-      </XStack>
+      {/* <Text>currentGameCard</Text>
+      {currentGameCard.map((item, index) => {
+        return (
+          <Text>
+            {CardType[item.type]} - {item.number}
+          </Text>
+        );
+      })}
+      <Text>botWinCard</Text>
+      {botWinCard.map((item, index) => {
+        return (
+          <XStack>
+            {item.map((card, cardIndex) => {
+              return (
+                <Text>
+                  {CardType[card.type]} - {card.number} /
+                </Text>
+              );
+            })}
+          </XStack>
+        );
+      })}
+      <Text>playerWinCard</Text>
+      {playerWinCard.map((item, index) => {
+        return (
+          <XStack>
+            {item.map((card, cardIndex) => {
+              return (
+                <Text>
+                  {CardType[card.type]} - {card.number} /
+                </Text>
+              );
+            })}
+          </XStack>
+        );
+      })} */}
     </YStack>
   );
 };

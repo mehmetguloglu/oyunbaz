@@ -5,11 +5,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("screen");
 
-const Card = ({ number, type = null }) => {
+const Card = ({ number, type }) => {
   return (
     <View
       style={{
-        position: "absolute",
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
@@ -32,15 +31,15 @@ const Card = ({ number, type = null }) => {
             fos={16}
             color={type == 0 || type == 2 || !type ? "red" : "black"}
           >
-            {number < 10
-              ? number + 1
-              : number == 10
-              ? "J"
+            {number < 11 && number > 1
+              ? number
               : number == 11
-              ? "Q"
+              ? "J"
               : number == 12
-              ? "K"
+              ? "Q"
               : number == 13
+              ? "K"
+              : number == 1
               ? "A"
               : null}
           </Text>
@@ -86,15 +85,15 @@ const Card = ({ number, type = null }) => {
             fos={16}
             color={type == 0 || type == 2 || !type ? "red" : "black"}
           >
-            {number < 10
-              ? number + 1
-              : number == 10
-              ? "J"
+            {number < 11 && number > 1
+              ? number
               : number == 11
-              ? "Q"
+              ? "J"
               : number == 12
-              ? "K"
+              ? "Q"
               : number == 13
+              ? "K"
+              : number == 1
               ? "A"
               : null}
           </Text>
