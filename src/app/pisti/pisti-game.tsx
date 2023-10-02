@@ -1,9 +1,19 @@
 import React, { useMemo, useRef, useState } from "react";
-import { Dimensions, Pressable, SafeAreaView } from "react-native";
-import { Button, Stack, Text, XStack, YStack } from "tamagui";
+import {
+  Dimensions,
+  Modal,
+  Pressable,
+  SafeAreaView,
+  View,
+  StyleSheet,
+} from "react-native";
+import { Button, ScrollView, Stack, Text, XStack, YStack } from "tamagui";
 import ExitButton from "../../components/ExitButton";
 import Card from "../../components/pisti/Card";
 import { ImageBackground } from "expo-image";
+import useStateWithCallback from "use-state-with-callback";
+import { useRouter } from "expo-router";
+import { buttonBlue, modalMaxWidth } from "../../utils/colors";
 const { width, height } = Dimensions.get("screen");
 enum CardType {
   "Kupa",
@@ -17,14 +27,63 @@ interface Card {
 }
 
 const Game = () => {
+  const router = useRouter();
   const [play, setPlay] = useState(false);
-  const [botCards, setBotCards] = useState<Card[]>([]);
-  const [playerCard, setPlayerCard] = useState<Card[]>([]);
+  const [showModal, setShowModal] = useState(true);
   const [currentGameCard, setCurrentGameCard] = useState<Card[]>([]);
-  const [playerWinCard, setPlayerWinCard] = useState<Array<Card[]>>([]);
-  const [botWinCard, setBotWinCard] = useState<Array<Card[]>>([]);
+  // OYUNCU KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
+  const [playerCard, setPlayerCard] = useState<Card[]>([]);
   const [playerScore, setPlayerScore] = useState(0);
+  const [playerWinCard, setPlayerWinCard] = useStateWithCallback<Array<Card[]>>(
+    [],
+    () => {
+      console.log(playerWinCard);
+      let pScore = 0;
+      playerWinCard.map((item) => {
+        if (item.length == 2 && item[0].number == item[1].number) {
+          pScore += 10;
+        }
+        item.map((x) => {
+          if (x.type == 3 && x.number == 2) {
+            pScore = pScore + 2;
+          }
+          if (x.type == 0 && x.number == 10) {
+            pScore = pScore + 3;
+          }
+          if (x.number == 11 || x.number == 1) {
+            pScore = pScore + 1;
+          }
+        });
+        setPlayerScore(pScore);
+      });
+    }
+  );
+  // BOT KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
+  const [botCards, setBotCards] = useState<Card[]>([]);
   const [botScore, setBotScore] = useState(0);
+  const [botWinCard, setBotWinCard] = useStateWithCallback<Array<Card[]>>(
+    [],
+    () => {
+      let bScore = 0;
+      botWinCard.map((item) => {
+        if (item.length == 2 && item[0].number == item[1].number) {
+          bScore += 10;
+        }
+        item.map((x) => {
+          if (x.type == 3 && x.number == 2) {
+            bScore = bScore + 2;
+          }
+          if (x.type == 0 && x.number == 10) {
+            bScore = bScore + 3;
+          }
+          if (x.number == 11 || x.number == 1) {
+            bScore = bScore + 1;
+          }
+        });
+        setBotScore(bScore);
+      });
+    }
+  );
   const unusedCard = useRef<Card[]>([]);
   const cards = useRef<Card[]>([]);
   useMemo(() => {
@@ -83,8 +142,6 @@ const Game = () => {
         unusedCard.current.splice(randomCardIndex, 1);
       }
     }
-
-    console.log(unusedCard.current);
   };
 
   const _handlePlayerCardPress = (card: Card, cardIndex: number) => {
@@ -95,6 +152,8 @@ const Game = () => {
       // ORTADA KART VARSA
       const beforeCard = currentGameCard[currentGameCard.length - 1];
       if (beforeCard.number == card.number || card.number == 11) {
+        // ÖNCEKİ KARTLA PLAYER KART AYNIYSA VEYA ATILAN KART JOKERSE
+        // PLAYER KAZANIR BOT JOKER HARİCİ BİR KART ATAR
         setPlayerWinCard([...playerWinCard, [...currentGameCard, card]]);
 
         let botCardIndex: number | null = null;
@@ -167,59 +226,43 @@ const Game = () => {
   };
 
   return (
-    <YStack bg={"white"} f={1}>
-      <ImageBackground
-        contentFit="fill"
-        style={{
-          position: "absolute",
-          zIndex: -10,
-          width: "100%",
-          height: "100%",
-        }}
-        source={require("../../assets/pisti/pistibg.png")}
-      />
-      <ExitButton />
-      <SafeAreaView />
-      {!play ? (
-        <Stack
-          f={1}
-          w={"100%"}
-          h={"100%"}
-          alignItems="center"
-          jc="center"
-          position="absolute"
-          zIndex={10}
-        >
-          <Button onPress={playGame}>Oyna</Button>
-        </Stack>
-      ) : null}
+    <>
+      <YStack bg={"white"} f={1}>
+        <ImageBackground
+          contentFit="fill"
+          style={{
+            position: "absolute",
+            zIndex: -10,
+            width: "100%",
+            height: "100%",
+          }}
+          source={require("../../assets/pisti/pistibg.png")}
+        />
+        <ExitButton />
+        {/* {!play ? (
+          <Stack
+            f={1}
+            w={"100%"}
+            h={"100%"}
+            alignItems="center"
+            jc="center"
+            position="absolute"
+            zIndex={10}
+          >
+            <Button onPress={playGame}>Oyna</Button>
+          </Stack>
+        ) : null} */}
 
-      <YStack
-        p={5}
-        br={5}
-        bg={"#6c321c"}
-        position="absolute"
-        bottom={120}
-        right={15}
-        ai="center"
-        jc="center"
-        shadowColor={"#000"}
-        shadowOffset={{
-          height: 2,
-          width: 0,
-        }}
-        shadowRadius={3.84}
-        shadowOpacity={0.25}
-        elevationAndroid={5}
-      >
-        <Text color={"white"} fow={"600"} fos={16}>
-          Siz
-        </Text>
-        <Stack
-          mt={5}
-          br={5}
+        {/* PLAYER */}
+        <YStack
           p={5}
-          bg={"white"}
+          br={5}
+          bg={"#6c321c"}
+          position="absolute"
+          bottom={120}
+          right={15}
+          ai="center"
+          jc="center"
           shadowColor={"#000"}
           shadowOffset={{
             height: 2,
@@ -229,131 +272,240 @@ const Game = () => {
           shadowOpacity={0.25}
           elevationAndroid={5}
         >
-          <Text fos={16}>{playerScore}</Text>
-        </Stack>
-      </YStack>
+          <Text color={"white"} fow={"600"} fos={16}>
+            Siz
+          </Text>
+          <Stack
+            mt={5}
+            br={5}
+            p={5}
+            bg={"white"}
+            shadowColor={"#000"}
+            shadowOffset={{
+              height: 2,
+              width: 0,
+            }}
+            shadowRadius={3.84}
+            shadowOpacity={0.25}
+            elevationAndroid={5}
+          >
+            <Text fos={16}>{playerScore}</Text>
+          </Stack>
+        </YStack>
 
-      <XStack
-        pos="absolute"
-        bottom={100}
-        left={
-          Dimensions.get("screen").width / 2 -
-          ((playerCard.length - 1) * 40 + 90) / 2
-        }
-      >
-        {playerCard.map((item, index) => {
-          return (
-            <Pressable
-              key={index}
-              style={{ position: "absolute", left: 40 * index }}
-              onPress={() => _handlePlayerCardPress(item, index)}
-            >
-              {/* <Text>
+        <XStack
+          pos="absolute"
+          bottom={100}
+          left={
+            Dimensions.get("screen").width / 2 -
+            ((playerCard.length - 1) * 40 + 90) / 2
+          }
+        >
+          {playerCard.map((item, index) => {
+            return (
+              <Pressable
+                key={index}
+                style={{ position: "absolute", left: 40 * index }}
+                onPress={() => _handlePlayerCardPress(item, index)}
+              >
+                <Card number={item.number} type={item.type} />
+              </Pressable>
+            );
+          })}
+        </XStack>
+
+        {/* BOT */}
+        <YStack
+          p={5}
+          br={5}
+          bg={"#6c321c"}
+          position="absolute"
+          top={100}
+          left={15}
+          ai="center"
+          shadowColor={"#000"}
+          shadowOffset={{
+            height: 2,
+            width: 0,
+          }}
+          shadowRadius={3.84}
+          shadowOpacity={0.25}
+          elevationAndroid={5}
+        >
+          <Text color={"white"} fow={"600"} fos={16}>
+            Kadir
+          </Text>
+          <Stack
+            mt={5}
+            br={5}
+            p={5}
+            bg={"white"}
+            shadowColor={"#000"}
+            shadowOffset={{
+              height: 2,
+              width: 0,
+            }}
+            shadowRadius={3.84}
+            shadowOpacity={0.25}
+            elevationAndroid={5}
+          >
+            <Text fos={16}>{botScore}</Text>
+          </Stack>
+        </YStack>
+
+        <XStack
+          pos="absolute"
+          top={0}
+          right={
+            Dimensions.get("screen").width / 2 -
+            ((botCards.length - 1) * 40 + 90) / 2
+          }
+        >
+          {botCards.map((item, index) => {
+            return (
+              <Pressable
+                key={index}
+                style={{ position: "absolute", right: 40 * index }}
+              >
+                {/* <Text>
               {CardType[item.type]} - {item.number}
             </Text> */}
-              <Card number={item.number} type={item.type} />
-            </Pressable>
-          );
-        })}
-      </XStack>
+                <Card number={item.number} type={item.type} />
+              </Pressable>
+            );
+          })}
+        </XStack>
 
-      {/* <XStack zIndex={-1} pos="absolute" bottom={170} left={40}>
-        {playerWinCard.map((item, index) => {
-          item.map((item, index) => {
+        {/* CURRENT CARDS */}
+        <XStack
+          pos="absolute"
+          bottom={height / 2 + 75}
+          left={width / 2 - ((currentGameCard.length - 1) * 5 + 90) / 2}
+        >
+          {currentGameCard.map((item, index) => {
             return (
-              <Stack
-                rotate="90deg"
+              <Pressable
                 key={index}
                 style={{ position: "absolute", left: 5 * index }}
                 onPress={() => _handlePlayerCardPress(item, index)}
               >
                 <Card number={item.number} type={item.type} />
-              </Stack>
+              </Pressable>
             );
-          });
-        })}
-      </XStack> */}
-
-      <YStack
-        p={5}
-        br={5}
-        bg={"#6c321c"}
-        position="absolute"
-        top={100}
-        left={15}
-        ai="center"
-        shadowColor={"#000"}
-        shadowOffset={{
-          height: 2,
-          width: 0,
-        }}
-        shadowRadius={3.84}
-        shadowOpacity={0.25}
-        elevationAndroid={5}
-      >
-        <Text color={"white"} fow={"600"} fos={16}>
-          Kadir
-        </Text>
-        <Stack
-          mt={5}
-          br={5}
-          p={5}
-          bg={"white"}
-          shadowColor={"#000"}
-          shadowOffset={{
-            height: 2,
-            width: 0,
-          }}
-          shadowRadius={3.84}
-          shadowOpacity={0.25}
-          elevationAndroid={5}
-        >
-          <Text fos={16}>{botScore}</Text>
-        </Stack>
+          })}
+        </XStack>
       </YStack>
-
-      <XStack
-        pos="absolute"
-        top={0}
-        right={
-          Dimensions.get("screen").width / 2 -
-          ((botCards.length - 1) * 40 + 90) / 2
-        }
-      >
-        {botCards.map((item, index) => {
-          return (
-            <Pressable
-              key={index}
-              style={{ position: "absolute", right: 40 * index }}
+      <Modal animationType="slide" transparent={false} visible={showModal}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <ScrollView
+              contentContainerStyle={{
+                alignItems: "center",
+              }}
+              maxHeight={300}
+              showsVerticalScrollIndicator={false}
             >
-              {/* <Text>
-              {CardType[item.type]} - {item.number}
-            </Text> */}
-              <Card number={item.number} type={item.type} />
-            </Pressable>
-          );
-        })}
-      </XStack>
+              <Text fos={18} mb={8} fow={"700"}>
+                Pişti
+              </Text>
+              <Text ta="justify" mb={12}>
+                Nasıl Oynanır?{"\n"}
+                Pişti oyunu, günümüzde bilinen zevkli iskambil oyunlarından
+                birisidir. 52 kağıtlık tek bir desteyle iki kişi ile oynanır.
+                {"\n"}
+                İki kağıdın rakam değeri aynı ise bu iki kağıt aynı kabul
+                edilmektedir. Örneğin kupa onlu ile karo onlu veya karo papazı
+                ile sinek papazı aynıdır.
+                {"\n"}
+                Oyun başladığında oyunculara 4 er kağıt dağıtılır. Yere 3 kapalı
+                1 açık kağıt konulur. Oyuncular sırasıyla ellerindeki bir kağıdı
+                yerdekinin üstüne atarlar.
+                {"\n"}
+                Elinde en üstte bulunan kağıdın aynısından bulunan oyuncu onu
+                atarak yerdeki bütün kağıtları alır.
+                {"\n"}
+                Bunun dışında vale(J) yerdeki kağıdın ne olduğuna bakılmaksızın
+                yerdeki bütün kağıtları alan bir kağıttır.
+                {"\n"}
+                Yerde hiç kağıt yokken rakibiniz yere bir kağıt attığında, siz
+                bu kağıtla aynı olan bir kağıdı yere atarsanız pişti yapmış
+                olursunuz.Yerdeki kağıtları alırsınız ve oyun diğer oyuncunun
+                attığı kağıtla devam eder.
+                {"\n"}
+                İki oyuncunun elindeki kağıtlar bitince yeniden 4’er kağıt
+                dağıtılır. Destede kağıt bitince o elde kazanılan puanlar
+                hesaplandıktan sonra yeni ele geçilir. Herhangi bir oyuncu 101
+                puana ulaştığında oyun biter.
+                {"\n"} {"\n"}
+                <Text fow={"600"}>Puanlama</Text> {"\n"}
+                Pişti: 10 puan {"\n"}
+                As: 1 puan {"\n"}
+                Sinek 2’li: 2 puan. {"\n"}
+                Karo 10’lu: 3 Puan. {"\n"}
+                Vale: 1 puandır. {"\n"}
+                Eldeki kâğıt sayısı rakibe göre fazla olan oyuncuya 3 puan
+                eklenir.
+              </Text>
+            </ScrollView>
 
-      <XStack
-        pos="absolute"
-        bottom={height / 2 + 75}
-        left={width / 2 - ((currentGameCard.length - 1) * 5 + 90) / 2}
-      >
-        {currentGameCard.map((item, index) => {
-          return (
-            <Pressable
-              key={index}
-              style={{ position: "absolute", left: 5 * index }}
-              onPress={() => _handlePlayerCardPress(item, index)}
-            >
-              <Card number={item.number} type={item.type} />
-            </Pressable>
-          );
-        })}
-      </XStack>
-    </YStack>
+            <XStack mt={10}>
+              <Button
+                onPress={() => {
+                  setShowModal(false);
+                  setTimeout(() => {
+                    router.push("/");
+                  }, 500);
+                }}
+                mr={5}
+                f={1}
+                boc={buttonBlue}
+                borderWidth={1}
+              >
+                <Text fow={"500"} fos={16} color={buttonBlue}>
+                  Çıkış
+                </Text>
+              </Button>
+              <Button
+                onPress={() => {
+                  setShowModal(false);
+                }}
+                ml={5}
+                f={1}
+                bg={buttonBlue}
+              >
+                <Text fow={"500"} fos={16} color={"white"}>
+                  Başla
+                </Text>
+              </Button>
+            </XStack>
+          </View>
+        </View>
+      </Modal>
+    </>
   );
 };
 
 export default Game;
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalView: {
+    padding: 20,
+    margin: 20,
+    maxWidth: modalMaxWidth,
+    backgroundColor: "white",
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+});
