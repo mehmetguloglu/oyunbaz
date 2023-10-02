@@ -37,7 +37,6 @@ const Game = () => {
   const [playerWinCard, setPlayerWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
-      console.log(playerWinCard);
       let pScore = 0;
       playerWinCard.map((item) => {
         if (item.length == 2 && item[0].number == item[1].number) {
@@ -398,6 +397,9 @@ const Game = () => {
       <Modal animationType="slide" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <Text fos={18} mb={8} fow={"700"}>
+              Pişti
+            </Text>
             <ScrollView
               contentContainerStyle={{
                 alignItems: "center",
@@ -405,9 +407,6 @@ const Game = () => {
               maxHeight={300}
               showsVerticalScrollIndicator={false}
             >
-              <Text fos={18} mb={8} fow={"700"}>
-                Pişti
-              </Text>
               <Text ta="justify" mb={12}>
                 Nasıl Oynanır?{"\n"}
                 Pişti oyunu, günümüzde bilinen zevkli iskambil oyunlarından
@@ -438,16 +437,15 @@ const Game = () => {
                 puana ulaştığında oyun biter.
                 {"\n"} {"\n"}
                 <Text fow={"600"}>Puanlama</Text> {"\n"}
-                Pişti: 10 puan {"\n"}
+                Pişti: 10 puan{"\n"}
                 As: 1 puan {"\n"}
-                Sinek 2’li: 2 puan. {"\n"}
-                Karo 10’lu: 3 Puan. {"\n"}
-                Vale: 1 puandır. {"\n"}
+                Sinek 2’li: 2 puan{"\n"}
+                Karo 10’lu: 3 Puan{"\n"}
+                Vale: 1 puan{"\n"}
                 Eldeki kâğıt sayısı rakibe göre fazla olan oyuncuya 3 puan
                 eklenir.
               </Text>
             </ScrollView>
-
             <XStack mt={10}>
               <Button
                 onPress={() => {
@@ -468,6 +466,9 @@ const Game = () => {
               <Button
                 onPress={() => {
                   setShowModal(false);
+
+                  setPlay(true);
+                  playGame();
                 }}
                 ml={5}
                 f={1}
