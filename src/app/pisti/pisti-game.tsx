@@ -3,7 +3,7 @@ import { Dimensions, Modal, Pressable, View, StyleSheet } from "react-native";
 import { Button, ScrollView, Stack, Text, XStack, YStack } from "tamagui";
 import ExitButton from "../../components/ExitButton";
 import Card from "../../components/pisti/Card";
-import { ImageBackground } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 import useStateWithCallback from "use-state-with-callback";
 import { useRouter } from "expo-router";
 import { buttonBlue, modalMaxWidth } from "../../utils/colors";
@@ -22,12 +22,14 @@ interface Card {
 const Game = () => {
   const router = useRouter();
   const [play, setPlay] = useState(false);
+  const [finishGame, setFinishGame] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [currentGameCard, setCurrentGameCard] = useState<Card[]>([]);
   const [winAdd, setWinAdd] = useState("");
   // OYUNCU KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
   const [playerCard, setPlayerCard] = useState<Card[]>([]);
   const [playerScore, setPlayerScore] = useState(0);
+  const [playerTotalScore, setPlayerTotalScore] = useState(0);
   const [playerWinCard, setPlayerWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
@@ -55,6 +57,7 @@ const Game = () => {
   // BOT KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
   const [botCards, setBotCards] = useState<Card[]>([]);
   const [botScore, setBotScore] = useState(0);
+  const [botTotalScore, setBotTotalScore] = useState(0);
   const [botWinCard, setBotWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
@@ -238,7 +241,24 @@ const Game = () => {
 
   return (
     <>
-      {!showModal ? (
+      {botCards.length == 0 &&
+      playerCard.length == 0 &&
+      unusedCard.current.length == 0 &&
+      currentGameCard.length == 0 ? (
+        <ImageBackground
+          source={require("../../assets/pisti/pistibg.png")}
+          style={{
+            width: "100%",
+            height: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          contentFit="fill"
+        >
+          <ExitButton />
+          <Button>Dağıt</Button>
+        </ImageBackground>
+      ) : !showModal ? (
         <YStack bg={"white"} f={1}>
           <ImageBackground
             contentFit="fill"
@@ -251,25 +271,12 @@ const Game = () => {
             source={require("../../assets/pisti/pistibg.png")}
           />
           <ExitButton />
-          {/* {!play ? (
-          <Stack
-            f={1}
-            w={"100%"}
-            h={"100%"}
-            alignItems="center"
-            jc="center"
-            position="absolute"
-            zIndex={10}
-          >
-            <Button onPress={playGame}>Oyna</Button>
-          </Stack>
-        ) : null} */}
 
           {/* PLAYER */}
           <YStack
             p={5}
             br={5}
-            bg={"#6c321c"}
+            bg={"black"}
             position="absolute"
             bottom={120}
             right={15}
@@ -332,7 +339,7 @@ const Game = () => {
           <YStack
             p={5}
             br={5}
-            bg={"#6c321c"}
+            bg={"black"}
             position="absolute"
             top={100}
             left={15}
@@ -371,7 +378,7 @@ const Game = () => {
 
           <XStack
             pos="absolute"
-            top={0}
+            top={-50}
             right={
               Dimensions.get("screen").width / 2 -
               ((botCards.length - 1) * 40 + 90) / 2
@@ -383,10 +390,14 @@ const Game = () => {
                   key={index}
                   style={{ position: "absolute", right: 40 * index }}
                 >
-                  {/* <Text>
-              {CardType[item.type]} - {item.number}
-            </Text> */}
-                  <Card number={item.number} type={item.type} />
+                  <Image
+                    style={{
+                      width: 90,
+                      height: 150,
+                      borderRadius: 7,
+                    }}
+                    source={require("../../assets/defaultCard.png")}
+                  />
                 </Pressable>
               );
             })}
@@ -403,15 +414,46 @@ const Game = () => {
                 <Pressable
                   key={index}
                   style={{ position: "absolute", left: 5 * index }}
-                  onPress={() => _handlePlayerCardPress(item, index)}
                 >
                   <Card number={item.number} type={item.type} />
                 </Pressable>
               );
             })}
           </XStack>
+
+          {/* UNUSED CARDS */}
+
+          {unusedCard.current.length != 0
+            ? unusedCard.current.map((item, index) => {
+                return (
+                  <ImageBackground
+                    key={index}
+                    style={{
+                      width: 90,
+                      height: 150,
+                      borderRadius: 7,
+                      position: "absolute",
+                      left: -40,
+                      zIndex: 300 - index,
+                      bottom: height / 2 - 80 - index,
+                      overflow: "hidden",
+                    }}
+                    source={require("../../assets/defaultCard.png")}
+                  >
+                    <Stack f={1} alignItems="flex-end" jc="center">
+                      <Stack bg={"#000"} px={10} py={8} br={10}>
+                        <Text fow={"800"} fos={16} color={"white"}>
+                          {unusedCard.current.length}
+                        </Text>
+                      </Stack>
+                    </Stack>
+                  </ImageBackground>
+                );
+              })
+            : null}
         </YStack>
       ) : null}
+      {}
       <Modal animationType="fade" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <ImageBackground
@@ -434,7 +476,7 @@ const Game = () => {
               maxHeight={300}
               showsVerticalScrollIndicator={false}
             >
-              <Text ta="justify" mb={12}>
+              <Text mb={12}>
                 Nasıl Oynanır?{"\n"}
                 Pişti oyunu, günümüzde bilinen zevkli iskambil oyunlarından
                 birisidir. 52 kağıtlık tek bir desteyle iki kişi ile oynanır.

@@ -142,20 +142,21 @@ const HomeScreen = () => {
                     text={"Cahilmetre"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
-                  <ImageButtonReactangle
-                    bgcolor={"#000000a0"}
-                    onPress={() => router.push("/pisti")}
-                    source={require("../assets/home-page/pisti.png")}
-                    text={"Pişti"}
-                  />
-                </Stack>
-                <Stack mb={width * 0.02}>
+
+                {/* <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#383524a0"}
                     onPress={() => router.push("/batak")}
                     source={require("../assets/home-page/batak.png")}
                     text={"Batak"}
+                  />
+                </Stack> */}
+                <Stack mb={width * 0.02}>
+                  <ImageButtonSquare
+                    bgcolor={"#383524a0"}
+                    onPress={() => router.push("/pisti")}
+                    source={require("../assets/home-page/pisti.png")}
+                    text={"Pişti"}
                   />
                 </Stack>
               </YStack>
@@ -200,6 +201,14 @@ const HomeScreen = () => {
                     text={"Top Sektir"}
                   />
                 </Stack>
+                {/* <Stack mb={width * 0.02}>
+                  <ImageButtonReactangle
+                    bgcolor={"#000000a0"}
+                    onPress={() => router.push("/pisti")}
+                    source={require("../assets/home-page/pisti.png")}
+                    text={"Pişti"}
+                  />
+                </Stack> */}
                 <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#000000a0"}

@@ -12,12 +12,12 @@ const Card = ({ number, type }) => {
         shadowColor: "#000",
         shadowOffset: {
           width: 0,
-          height: 3,
+          height: 2,
         },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
 
-        elevation: 6,
+        elevation: 3,
         padding: 8,
         width: 90,
         borderRadius: 15,
@@ -74,8 +74,8 @@ const Card = ({ number, type }) => {
               ? "cards-club"
               : null
           }
-          size={type != null ? 36 : 50}
-          color={type == 0 || type == 2 || type == null ? "red" : "black"}
+          size={36}
+          color={type == 0 || type == 2 ? "red" : "black"}
         />
       </Stack>
 
