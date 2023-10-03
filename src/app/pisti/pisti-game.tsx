@@ -24,12 +24,14 @@ const Game = () => {
   const [play, setPlay] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [currentGameCard, setCurrentGameCard] = useState<Card[]>([]);
+  const [winAdd, setWinAdd] = useState("");
   // OYUNCU KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
   const [playerCard, setPlayerCard] = useState<Card[]>([]);
   const [playerScore, setPlayerScore] = useState(0);
   const [playerWinCard, setPlayerWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
+      setWinAdd("player");
       let pScore = 0;
       playerWinCard.map((item) => {
         if (item.length == 2 && item[0].number == item[1].number) {
@@ -56,6 +58,7 @@ const Game = () => {
   const [botWinCard, setBotWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
+      setWinAdd("bot");
       let bScore = 0;
       botWinCard.map((item) => {
         if (item.length == 2 && item[0].number == item[1].number) {
@@ -194,6 +197,22 @@ const Game = () => {
     }
     if (cloneBotCard.length == 0 && clonePlayerCard.length == 0) {
       dealCard();
+    }
+    if (
+      cloneBotCard.length == 0 &&
+      clonePlayerCard.length == 0 &&
+      unusedCard.current.length == 0
+    ) {
+      if (winAdd == "player") {
+        setPlayerWinCard([...playerWinCard, [...currentGameCard, card]]);
+        setCurrentGameCard([]);
+      } else if (winAdd == "bot") {
+        setBotWinCard([
+          ...botWinCard,
+          [...currentGameCard, card, availableCard],
+        ]);
+        setCurrentGameCard([]);
+      }
     }
   };
 
@@ -449,9 +468,9 @@ const Game = () => {
                 As: 1 puan {"\n"}
                 Sinek 2’li: 2 puan{"\n"}
                 Karo 10’lu: 3 Puan{"\n"}
-                Vale: 1 puan{"\n"}
-                Eldeki kâğıt sayısı rakibe göre fazla olan oyuncuya 3 puan
-                eklenir.
+                Vale: 1 puan
+                {/* Eldeki kâğıt sayısı rakibe göre fazla olan oyuncuya 3 puan
+                eklenir. */}
               </Text>
             </ScrollView>
             <XStack mt={10}>
