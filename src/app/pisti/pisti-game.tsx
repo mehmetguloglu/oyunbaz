@@ -21,8 +21,7 @@ interface Card {
 
 const Game = () => {
   const router = useRouter();
-  const [play, setPlay] = useState(false);
-  const [finishGame, setFinishGame] = useState(false);
+  // const [play, setPlay] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [currentGameCard, setCurrentGameCard] = useState<Card[]>([]);
   const [winAdd, setWinAdd] = useState("");
@@ -220,7 +219,6 @@ const Game = () => {
   };
 
   const playGame = () => {
-    setPlay(true);
     unusedCard.current = [...cards.current];
     for (let i = 0; i < 4; i++) {
       let randomCardIndex = parseInt(
@@ -241,35 +239,113 @@ const Game = () => {
 
   return (
     <>
+      <ImageBackground
+        source={require("../../assets/pisti/pistibg.png")}
+        style={{
+          position: "absolute",
+          zIndex: -10,
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        contentFit="fill"
+      />
       {botCards.length == 0 &&
       playerCard.length == 0 &&
       unusedCard.current.length == 0 &&
       currentGameCard.length == 0 ? (
-        <ImageBackground
-          source={require("../../assets/pisti/pistibg.png")}
-          style={{
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          contentFit="fill"
-        >
+        <Stack width={"100%"} height={"100%"} ai="center" jc="center">
           <ExitButton />
-          <Button>Dağıt</Button>
-        </ImageBackground>
-      ) : !showModal ? (
-        <YStack bg={"white"} f={1}>
-          <ImageBackground
-            contentFit="fill"
-            style={{
-              position: "absolute",
-              zIndex: -10,
-              width: "100%",
-              height: "100%",
+          <YStack
+            p={5}
+            br={5}
+            bg={"black"}
+            position="absolute"
+            bottom={120}
+            right={15}
+            ai="center"
+            jc="center"
+            shadowColor={"#000"}
+            shadowOffset={{
+              height: 2,
+              width: 0,
             }}
-            source={require("../../assets/pisti/pistibg.png")}
-          />
+            shadowRadius={3.84}
+            shadowOpacity={0.25}
+            elevationAndroid={5}
+          >
+            <Text color={"white"} fow={"600"} fos={15}>
+              Siz
+            </Text>
+            <Stack
+              mt={5}
+              br={5}
+              p={5}
+              bg={"white"}
+              shadowColor={"#000"}
+              shadowOffset={{
+                height: 2,
+                width: 0,
+              }}
+              shadowRadius={3.84}
+              shadowOpacity={0.25}
+              elevationAndroid={5}
+            >
+              <Text fow={"800"} fos={16}>
+                {playerScore}
+              </Text>
+            </Stack>
+          </YStack>
+          <YStack
+            p={5}
+            br={5}
+            bg={"black"}
+            position="absolute"
+            top={100}
+            left={15}
+            ai="center"
+            shadowColor={"#000"}
+            shadowOffset={{
+              height: 2,
+              width: 0,
+            }}
+            shadowRadius={3.84}
+            shadowOpacity={0.25}
+            elevationAndroid={5}
+          >
+            <Text color={"white"} fow={"600"} fos={15}>
+              Kadir
+            </Text>
+            <Stack
+              mt={5}
+              br={5}
+              p={5}
+              bg={"white"}
+              shadowColor={"#000"}
+              shadowOffset={{
+                height: 2,
+                width: 0,
+              }}
+              shadowRadius={3.84}
+              shadowOpacity={0.25}
+              elevationAndroid={5}
+            >
+              <Text fow={"800"} fos={16}>
+                {botScore}
+              </Text>
+            </Stack>
+          </YStack>
+          <Button
+            onPress={() => {
+              playGame();
+            }}
+          >
+            Dağıt
+          </Button>
+        </Stack>
+      ) : !showModal ? (
+        <YStack f={1}>
           <ExitButton />
 
           {/* PLAYER */}
@@ -536,7 +612,7 @@ const Game = () => {
                 onPress={() => {
                   setShowModal(false);
 
-                  setPlay(true);
+                  // setPlay(true);
                   playGame();
                 }}
                 ml={5}
