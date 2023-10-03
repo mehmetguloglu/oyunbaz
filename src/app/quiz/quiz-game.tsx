@@ -145,7 +145,7 @@ const Quiz = () => {
                 style={{ maxHeight: height * 0.34 }}
                 showsVerticalScrollIndicator={false}
               >
-                <Text>
+                <Text ta="justify">
                   Nasıl Oynanır?{"\n"}
                   1- 16 sorudan oluşan bu bilgi yarışmasında, katılımcılar 30
                   saniye içerisinde sorulan soruya doğru cevabı seçmelidir.

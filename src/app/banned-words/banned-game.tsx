@@ -103,7 +103,7 @@ const BannedWordsGame = () => {
                   style={{ maxHeight: height * 0.25 }}
                   showsVerticalScrollIndicator={false}
                 >
-                  <Text>
+                  <Text ta="justify">
                     Nasıl Oynanır?{"\n"}
                     1- Katılımcılar,{" "}
                     <Text color={buttonBlue} fow={"500"}>

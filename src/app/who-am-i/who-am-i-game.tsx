@@ -85,7 +85,7 @@ const WhoAmI = () => {
               <Text fos={18} mb={8} fow={"700"}>
                 Ben Kimim?
               </Text>
-              <Text mb={12}>
+              <Text ta="justify" mb={12}>
                 Nasıl Oynanır?{"\n"}
                 Oyuncular telefonda yazan ismi, sadece evet ya da hayır şeklinde
                 cevaplanabilecek sorularla tahmin etmeye çalışır. Belirlenen
