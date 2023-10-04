@@ -25,6 +25,7 @@ const Game = () => {
   const [showModal, setShowModal] = useState(true);
   const [currentGameCard, setCurrentGameCard] = useState<Card[]>([]);
   const [winAdd, setWinAdd] = useState("");
+  const [cardDisabled, setCardDisabled] = useState(false);
   // OYUNCU KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
   const [playerCard, setPlayerCard] = useState<Card[]>([]);
   const [playerScore, setPlayerScore] = useState(0);

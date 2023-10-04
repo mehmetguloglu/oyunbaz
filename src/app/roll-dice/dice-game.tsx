@@ -142,7 +142,7 @@ const RollDice = () => {
             </XStack>
             <Button
               disabled={rollDisabled}
-              size={"$7"}
+              size={"$6"}
               borderWidth={1}
               boc={buttonBlue}
               onPress={roll}

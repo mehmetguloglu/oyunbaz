@@ -217,6 +217,14 @@ const HomeScreen = () => {
                     text={"Zar At"}
                   />
                 </Stack>
+                <Stack mb={width * 0.04}>
+                  <ImageButtonReactangle
+                    bgcolor={"#666666a0"}
+                    onPress={() => router.push("/spin-bottle")}
+                    source={require("../assets/home-page/spin.png")}
+                    text={"Şişe Çevir"}
+                  />
+                </Stack>
               </YStack>
             </XStack>
           </ScrollView>
