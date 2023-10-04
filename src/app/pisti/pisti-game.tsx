@@ -28,7 +28,6 @@ const Game = () => {
   // OYUNCU KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
   const [playerCard, setPlayerCard] = useState<Card[]>([]);
   const [playerScore, setPlayerScore] = useState(0);
-  const [playerTotalScore, setPlayerTotalScore] = useState(0);
   const [playerWinCard, setPlayerWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
@@ -56,7 +55,6 @@ const Game = () => {
   // BOT KARTLARI, SKORU, KAZANDIĞI KARTLARI VE SCORE HESAPLAMA CALLBACK FONKSİYONU
   const [botCards, setBotCards] = useState<Card[]>([]);
   const [botScore, setBotScore] = useState(0);
-  const [botTotalScore, setBotTotalScore] = useState(0);
   const [botWinCard, setBotWinCard] = useStateWithCallback<Array<Card[]>>(
     [],
     () => {
@@ -341,7 +339,7 @@ const Game = () => {
               playGame();
             }}
           >
-            Dağıt
+            Devam Et
           </Button>
         </Stack>
       ) : !showModal ? (
