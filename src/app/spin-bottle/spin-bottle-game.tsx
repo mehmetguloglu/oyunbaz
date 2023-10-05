@@ -45,8 +45,8 @@ const SpinBottleGame = () => {
             contentFit={"fill"}
             style={[
               {
-                height: Math.floor(width),
-                width: Math.floor((width / 440) * 200),
+                height: Math.floor(width - 50),
+                width: Math.floor(((width - 50) / 440) * 200),
               },
               ImageAnimatedStyle,
             ]}
