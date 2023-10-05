@@ -159,6 +159,14 @@ const HomeScreen = () => {
                     text={"Pişti"}
                   />
                 </Stack>
+                <Stack mb={width * 0.02}>
+                  <ImageButtonSquare
+                    bgcolor={"#383524a0"}
+                    onPress={() => router.push("/abdi")}
+                    source={require("../assets/home-page/abdi.png")}
+                    text={"Abdi"}
+                  />
+                </Stack>
               </YStack>
               <YStack ml={width * 0.02}>
                 <Stack mb={width * 0.04}>
