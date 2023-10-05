@@ -6,6 +6,7 @@ import BannerAds from "../../components/google-ads/BannerAds";
 import { buttonBlue, buttonRed } from "../../utils/colors";
 import DiceImage, { DiceImageRefs } from "../../components/roll-dice/DiceImage";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { ImageBackground } from "expo-image";
 
 const { width, height } = Dimensions.get("screen");
 const RollDice = () => {
@@ -45,9 +46,19 @@ const RollDice = () => {
   const diceArray = new Array(diceNumber).fill(0);
   return (
     <>
-      <Stack f={1} bg={"white"}>
+      <ImageBackground
+        source={require("../../assets/woodbg.png")}
+        contentFit="fill"
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          zIndex: -10,
+        }}
+      />
+      <Stack f={1}>
         <SafeAreaView style={{ flex: 1 }}>
-          <YStack pt={40} bg={"white"} f={1} ai="center" jc="center">
+          <YStack pt={40} f={1} ai="center" jc="center">
             <XStack my={10}>
               {diceArray.map((item, index) => {
                 if (index < 3) {

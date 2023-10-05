@@ -75,7 +75,7 @@ const AbdiGame = () => {
   return (
     <>
       <ImageBackground
-        source={require("../../assets/abdi/abdibg.png")}
+        source={require("../../assets/woodbg.png")}
         style={{
           width: "100%",
           height: "100%",
@@ -245,7 +245,7 @@ const AbdiGame = () => {
       <Modal animationType="fade" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <ImageBackground
-            source={require("../../assets/abdi/abdibg.png")}
+            source={require("../../assets/woodbg.png")}
             style={{
               width: "100%",
               height: "100%",

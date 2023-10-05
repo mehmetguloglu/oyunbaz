@@ -7,7 +7,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { Image } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 import BannerAds from "../../components/google-ads/BannerAds";
 import ExitButton from "../../components/ExitButton";
 import { buttonBlue } from "../../utils/colors";
@@ -26,7 +26,17 @@ const SpinBottleGame = () => {
   });
 
   return (
-    <Stack bg={"white"} f={1}>
+    <Stack f={1}>
+      <ImageBackground
+        source={require("../../assets/woodbg.png")}
+        contentFit="fill"
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          zIndex: -10,
+        }}
+      />
       <ExitButton />
       <SafeAreaView style={{ flex: 1 }}>
         <Stack f={1} ai="center" jc="center">
@@ -35,8 +45,8 @@ const SpinBottleGame = () => {
             contentFit={"fill"}
             style={[
               {
-                width: Math.floor(width),
-                height: Math.floor((width / 440) * 200),
+                height: Math.floor(width),
+                width: Math.floor((width / 440) * 200),
               },
               ImageAnimatedStyle,
             ]}
