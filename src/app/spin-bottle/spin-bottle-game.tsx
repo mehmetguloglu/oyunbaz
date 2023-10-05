@@ -54,7 +54,6 @@ const SpinBottleGame = () => {
 
             deg = Math.floor(Math.random() * 10000);
 
-            console.log(deg);
             ImageRotate.value = withTiming(`${deg}deg`, {
               duration: 3500,
             });

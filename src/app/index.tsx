@@ -151,20 +151,28 @@ const HomeScreen = () => {
                     text={"Batak"}
                   />
                 </Stack> */}
-                <Stack mb={width * 0.02}>
+                {/* <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#383524a0"}
                     onPress={() => router.push("/pisti")}
                     source={require("../assets/home-page/pisti.png")}
                     text={"Pişti"}
                   />
-                </Stack>
+                </Stack> */}
                 <Stack mb={width * 0.02}>
                   <ImageButtonSquare
-                    bgcolor={"#383524a0"}
+                    bgcolor={"#473b2ea0"}
                     onPress={() => router.push("/abdi")}
                     source={require("../assets/home-page/abdi.png")}
                     text={"Abdi"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.04}>
+                  <ImageButtonReactangle
+                    bgcolor={"#666666a0"}
+                    onPress={() => router.push("/spin-bottle")}
+                    source={require("../assets/home-page/spin.png")}
+                    text={"Şişe Çevir"}
                   />
                 </Stack>
               </YStack>
@@ -223,14 +231,6 @@ const HomeScreen = () => {
                     onPress={() => router.push("/roll-dice")}
                     source={require("../assets//home-page/cube.png")}
                     text={"Zar At"}
-                  />
-                </Stack>
-                <Stack mb={width * 0.04}>
-                  <ImageButtonReactangle
-                    bgcolor={"#666666a0"}
-                    onPress={() => router.push("/spin-bottle")}
-                    source={require("../assets/home-page/spin.png")}
-                    text={"Şişe Çevir"}
                   />
                 </Stack>
               </YStack>

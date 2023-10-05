@@ -424,7 +424,6 @@ const BatakGame = () => {
     usedCards = [...usedCards, availableCards];
     let availableCardIndex = newBotCards.findIndex((x) => x == availableCards);
     newBotCards.splice(availableCardIndex, 1);
-    console.log(bot, ". botun kullandığı kart : ", availableCards);
     setTimeout(() => {
       if (bot == 1) {
         selectedOnePCard = availableCards;

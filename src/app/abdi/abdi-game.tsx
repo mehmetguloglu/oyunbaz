@@ -66,7 +66,6 @@ const AbdiGame = () => {
 
   const _handlePress = () => {
     let index = Math.floor(Math.random() * unusedCard.current.length - 0.0001);
-    console.log(index);
     setSelectedCard(unusedCard.current[index]);
     unusedCard.current.splice(index, 1);
   };
@@ -85,153 +84,164 @@ const AbdiGame = () => {
         }}
         contentFit="fill"
       />
-      <SafeAreaView style={{ flex: 1 }}>
-        <ExitButton />
-        <Stack jc="center" ai="center" f={1}>
-          {selectedCard != null ? (
-            <>
-              <Card number={selectedCard.number} type={selectedCard.type} />
-            </>
-          ) : null}
-        </Stack>
-        <Stack
-          p={15}
-          br={10}
-          m={15}
-          bg={"white"}
-          shac={"#000"}
-          shadowOffset={{
-            width: 0,
-            height: 2,
-          }}
-          shadowRadius={3.84}
-          shadowOpacity={0.25}
-          elevationAndroid={4}
-        >
-          {selectedCard != null ? (
-            selectedCard.number == 1 ? (
-              <Text>Oynama sırası ters döner.</Text>
-            ) : selectedCard.number == 2 ? (
-              <Text>Kartı çeken kişi içer.</Text>
-            ) : selectedCard.number == 3 ? (
-              <Text>
-                Kartı çeken kişi şarkı söylemeye başlar ve şarkının istediği bir
-                kısmında durup oyun sırasına göre yanındaki kişi devam eder.
-                Şarkıyı devam ettiremeyip takılan kişi içer. Eğer şarkıyı herkes
-                takılmadan devam ettirip başlatan kişiye dönerse o kişi içer.
-              </Text>
-            ) : selectedCard.number == 4 ? (
-              <Text>Pas geçme kartı. Kimse içmez, sıra devam eder.</Text>
-            ) : selectedCard.number == 5 ? (
-              <Text>Kartı çeken kişinin seçtiği bir kişi içer.</Text>
-            ) : selectedCard.number == 6 ? (
-              <Text>Kartı çeken kişi seçtiği bir kişiyle beraber içer.</Text>
-            ) : selectedCard.number == 7 ? (
-              <Text>
-                Kartı çeken kişi herhangi bir sektörden bir marka söyler. Oyun
-                sırasına göre diğer oyuncular aynı sektörde marka isimleri
-                söylemeye devam ederler. Söyleyemeyen veya söylenmiş bir markayı
-                tekrar söyleyen kişi içer.
-              </Text>
-            ) : selectedCard.number == 8 ? (
-              <Text>Kartı çeken kişi hariç herkes içer.</Text>
-            ) : selectedCard.number == 9 ? (
-              <Text>
-                Tüm oyuncular sağ işaret parmağını masaya koyar. Son koyan
-                oyuncu içer.
-              </Text>
-            ) : selectedCard.number == 10 ? (
-              <Text>Kartı çeken kişi 2x içer.</Text>
-            ) : selectedCard.number == 11 ? (
-              <Text>Kartı çeken kişi içer ve tekrar kart çeker.</Text>
-            ) : selectedCard.number == 12 ? (
-              <Text>Kadınlar içer.</Text>
-            ) : selectedCard.number == 13 ? (
-              <Text>Erkekler içer.</Text>
-            ) : null
-          ) : null}
-        </Stack>
-        {unusedCard.current.length != 0 ? (
-          <Button
-            disabled={disabled}
-            borderWidth={1}
-            boc={disabled ? "gray" : buttonBlue}
-            mx={15}
-            size={"$6"}
-            onPress={() => {
-              setDisabled(true);
-              _handlePress();
-              setTimeout(() => {
-                setDisabled(false);
-              }, 1000);
-            }}
-          >
-            <Text color={disabled ? "gray" : buttonBlue} fos={18} fow={"600"}>
-              Kart Çek
-            </Text>
-          </Button>
-        ) : (
-          <Button
-            disabled={disabled}
-            borderWidth={1}
-            boc={buttonRed}
-            mx={15}
-            size={"$6"}
-            onPress={() => {
-              setDisabled(true);
-              tryAgainPress();
-              _handlePress();
-              setTimeout(() => {
-                setDisabled(false);
-              }, 1000);
-            }}
-          >
-            <Text color={buttonRed} fos={18} fow={"600"}>
-              Tekrar Oyna
-            </Text>
-          </Button>
-        )}
-        <Stack
-          ai="center"
-          jc="center"
-          pos="absolute"
-          right={15}
-          bg={"white"}
-          top={50}
-          p={10}
-          br={10}
-        >
-          <Text>Kalan Kart</Text>
-          <Text fow={"600"}>{unusedCard.current.length}/52</Text>
-        </Stack>
-        <Stack mt={10}>
-          <BannerAds />
-        </Stack>
-      </SafeAreaView>
-      <XStack
-        pos="absolute"
-        left={width / 2 - (150 + unusedCard.current.length * 3) / 2 + 30}
-        top={0}
-        zIndex={-9}
-      >
-        {unusedCard.current.map((item, index) => {
-          return (
-            <Image
-              key={index}
-              source={require("../../assets/defaultCard.png")}
-              style={{
-                left: index * 3,
-                height: 150,
-                width: 90,
-                position: "absolute",
-                borderRadius: 8,
-                transform: [{ rotate: "90deg" }],
+      {!showModal ? (
+        <>
+          <SafeAreaView style={{ flex: 1 }}>
+            <ExitButton />
+            <Stack jc="center" ai="center" f={1}>
+              {selectedCard != null ? (
+                <>
+                  <Card number={selectedCard.number} type={selectedCard.type} />
+                </>
+              ) : null}
+            </Stack>
+            <Stack
+              p={15}
+              br={10}
+              m={15}
+              bg={"white"}
+              shac={"#000"}
+              shadowOffset={{
+                width: 0,
+                height: 2,
               }}
-              contentFit="fill"
-            />
-          );
-        })}
-      </XStack>
+              shadowRadius={3.84}
+              shadowOpacity={0.25}
+              elevationAndroid={4}
+            >
+              {selectedCard != null ? (
+                selectedCard.number == 1 ? (
+                  <Text>Oynama sırası ters döner.</Text>
+                ) : selectedCard.number == 2 ? (
+                  <Text>Kartı çeken kişi içer.</Text>
+                ) : selectedCard.number == 3 ? (
+                  <Text>
+                    Kartı çeken kişi şarkı söylemeye başlar ve şarkının istediği
+                    bir kısmında durup oyun sırasına göre yanındaki kişi devam
+                    eder. Şarkıyı devam ettiremeyip takılan kişi içer. Eğer
+                    şarkıyı herkes takılmadan devam ettirip başlatan kişiye
+                    dönerse o kişi içer.
+                  </Text>
+                ) : selectedCard.number == 4 ? (
+                  <Text>Pas geçme kartı. Kimse içmez, sıra devam eder.</Text>
+                ) : selectedCard.number == 5 ? (
+                  <Text>Kartı çeken kişinin seçtiği bir kişi içer.</Text>
+                ) : selectedCard.number == 6 ? (
+                  <Text>
+                    Kartı çeken kişi seçtiği bir kişiyle beraber içer.
+                  </Text>
+                ) : selectedCard.number == 7 ? (
+                  <Text>
+                    Kartı çeken kişi herhangi bir sektörden bir marka söyler.
+                    Oyun sırasına göre diğer oyuncular aynı sektörde marka
+                    isimleri söylemeye devam ederler. Söyleyemeyen veya
+                    söylenmiş bir markayı tekrar söyleyen kişi içer.
+                  </Text>
+                ) : selectedCard.number == 8 ? (
+                  <Text>Kartı çeken kişi hariç herkes içer.</Text>
+                ) : selectedCard.number == 9 ? (
+                  <Text>
+                    Tüm oyuncular sağ işaret parmağını masaya koyar. Son koyan
+                    oyuncu içer.
+                  </Text>
+                ) : selectedCard.number == 10 ? (
+                  <Text>Kartı çeken kişi 2x içer.</Text>
+                ) : selectedCard.number == 11 ? (
+                  <Text>Kartı çeken kişi içer ve tekrar kart çeker.</Text>
+                ) : selectedCard.number == 12 ? (
+                  <Text>Kadınlar içer.</Text>
+                ) : selectedCard.number == 13 ? (
+                  <Text>Erkekler içer.</Text>
+                ) : null
+              ) : null}
+            </Stack>
+            {unusedCard.current.length != 0 ? (
+              <Button
+                disabled={disabled}
+                borderWidth={1}
+                boc={disabled ? "gray" : buttonBlue}
+                mx={15}
+                size={"$6"}
+                onPress={() => {
+                  setDisabled(true);
+                  _handlePress();
+                  setTimeout(() => {
+                    setDisabled(false);
+                  }, 1000);
+                }}
+              >
+                <Text
+                  color={disabled ? "gray" : buttonBlue}
+                  fos={18}
+                  fow={"600"}
+                >
+                  Kart Çek
+                </Text>
+              </Button>
+            ) : (
+              <Button
+                disabled={disabled}
+                borderWidth={1}
+                boc={buttonRed}
+                mx={15}
+                size={"$6"}
+                onPress={() => {
+                  setDisabled(true);
+                  tryAgainPress();
+                  _handlePress();
+                  setTimeout(() => {
+                    setDisabled(false);
+                  }, 1000);
+                }}
+              >
+                <Text color={buttonRed} fos={18} fow={"600"}>
+                  Tekrar Oyna
+                </Text>
+              </Button>
+            )}
+            <Stack
+              ai="center"
+              jc="center"
+              pos="absolute"
+              right={15}
+              bg={"white"}
+              top={50}
+              p={10}
+              br={10}
+            >
+              <Text>Kalan Kart</Text>
+              <Text fow={"600"}>{unusedCard.current.length}/52</Text>
+            </Stack>
+            <Stack mt={10}>
+              <BannerAds />
+            </Stack>
+          </SafeAreaView>
+          <XStack
+            pos="absolute"
+            left={width / 2 - (150 + unusedCard.current.length * 3) / 2 + 30}
+            top={0}
+            zIndex={-9}
+          >
+            {unusedCard.current.map((item, index) => {
+              return (
+                <Image
+                  key={index}
+                  source={require("../../assets/defaultCard.png")}
+                  style={{
+                    left: index * 3,
+                    height: 150,
+                    width: 90,
+                    position: "absolute",
+                    borderRadius: 8,
+                    transform: [{ rotate: "90deg" }],
+                  }}
+                  contentFit="fill"
+                />
+              );
+            })}
+          </XStack>
+        </>
+      ) : null}
       <Modal animationType="fade" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <ImageBackground
