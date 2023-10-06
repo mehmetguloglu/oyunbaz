@@ -228,6 +228,14 @@ const HomeScreen = () => {
                 <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#000000a0"}
+                    onPress={() => router.push("/carkifelek")}
+                    source={require("../assets/home-page/carkifelek.png")}
+                    text={"Çevir ve İç!"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.04}>
+                  <ImageButtonReactangle
+                    bgcolor={"#000000a0"}
                     onPress={() => router.push("/roll-dice")}
                     source={require("../assets//home-page/cube.png")}
                     text={"Zar At"}
