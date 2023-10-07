@@ -206,14 +206,13 @@ const Game = () => {
     ) {
       if (winAdd == "player") {
         setPlayerWinCard([...playerWinCard, [...currentGameCard, card]]);
-        setCurrentGameCard([]);
       } else if (winAdd == "bot") {
         setBotWinCard([
           ...botWinCard,
           [...currentGameCard, card, availableCard],
         ]);
-        setCurrentGameCard([]);
       }
+      setCurrentGameCard([]);
     }
   };
 
@@ -528,7 +527,7 @@ const Game = () => {
             : null}
         </YStack>
       ) : null}
-      {}
+
       <Modal animationType="fade" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <ImageBackground

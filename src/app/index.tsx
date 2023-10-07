@@ -170,13 +170,21 @@ const HomeScreen = () => {
               <YStack ml={width * 0.02}>
                 <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
+                    bgcolor={"#725946a0"}
+                    onPress={() => router.push("/continuous-novel")}
+                    source={require("../assets/home-page/contunuousNovel.png")}
+                    text={"Sürekli Roman"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.02}>
+                  <ImageButtonReactangle
                     bgcolor={"#31062ba0"}
                     onPress={() => router.push("/tictactoe")}
                     source={require("../assets/home-page/tictactoe.png")}
                     text={"X-O-X"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#46422Da0"}
                     onPress={() => router.push("/who-am-i")}
@@ -184,7 +192,7 @@ const HomeScreen = () => {
                     text={"Ben Kimim"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#a5cedaa0"}
                     onPress={() => router.push("/hangman")}
@@ -192,7 +200,7 @@ const HomeScreen = () => {
                     text={"Adam Asmaca"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#5C6D89a0"}
                     onPress={() => router.push("/sudoku")}
@@ -201,7 +209,7 @@ const HomeScreen = () => {
                   />
                 </Stack>
 
-                <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#777777a0"}
                     onPress={() => router.push("/carkifelek")}
@@ -209,7 +217,7 @@ const HomeScreen = () => {
                     text={"Çevir ve İç!"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#666666a0"}
                     onPress={() => router.push("/spin-bottle")}
@@ -217,7 +225,7 @@ const HomeScreen = () => {
                     text={"Şişe Çevir"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#000000a0"}
                     onPress={() => router.push("/roll-dice")}
@@ -225,7 +233,7 @@ const HomeScreen = () => {
                     text={"Zar At"}
                   />
                 </Stack>
-                <Stack mb={width * 0.02}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#634128a0"}
                     onPress={() => router.push("/jump")}

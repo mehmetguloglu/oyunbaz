@@ -13,7 +13,7 @@ const ExitButton = (props) => {
           style={{
             position: "absolute",
             left: 15,
-            top: height * 0.06,
+            top: height * 0.05,
             zIndex: 999,
             padding: 8,
             flexDirection: "row",
