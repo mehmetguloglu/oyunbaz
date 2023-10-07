@@ -26,83 +26,101 @@ const CarkifelekGame = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const ImageRotate = useSharedValue("0deg");
-
+  const ArrowRotate = useSharedValue("-90deg");
   const ImageAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ rotate: ImageRotate.value }],
     };
   });
+  const ArrowAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ rotateZ: ArrowRotate.value }],
+    };
+  });
   return (
     <>
-      <Stack f={1}>
-        <ImageBackground
-          source={require("../../assets/woodbg.png")}
-          contentFit="fill"
-          style={{
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            zIndex: -10,
-          }}
-        />
-        <ExitButton />
-        <SafeAreaView style={{ flex: 1 }}>
-          <Stack f={1} ai="center" jc="center">
-            <AnimatedImage
-              source={require("../../assets/carkifelek/cark.png")}
-              contentFit={"fill"}
-              style={[
-                {
-                  height: Math.floor((width / 20) * 19),
-                  width: Math.floor((width / 20) * 19),
-                },
-                ImageAnimatedStyle,
-              ]}
-            />
-            <Image
-              source={require("../../assets/carkifelek/arrow.png")}
-              contentFit="fill"
-              style={{
-                width: Math.floor(width / 10),
-                height: Math.floor(width / 10),
-                marginTop: width / -20,
-              }}
-            />
-          </Stack>
-
-          <Button
-            disabled={buttonDisabled}
-            mx={15}
-            borderWidth={1}
-            boc={buttonDisabled ? "gray" : buttonBlue}
-            size={"$5"}
-            onPress={() => {
-              setButtonDisabled(true);
-              let deg;
-
-              deg = Math.floor(Math.random() * 10000);
-
-              ImageRotate.value = withTiming(`${deg}deg`, {
-                duration: 3500,
-              });
-              setTimeout(() => {
-                setButtonDisabled(false);
-              }, 3500);
+      {!showModal ? (
+        <Stack f={1}>
+          <ImageBackground
+            source={require("../../assets/woodbg.png")}
+            contentFit="fill"
+            style={{
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              zIndex: -10,
             }}
-          >
-            <Text
-              fos={21}
-              fow={"600"}
-              color={buttonDisabled ? "gray" : buttonBlue}
+          />
+          <ExitButton />
+          <SafeAreaView style={{ flex: 1 }}>
+            <Stack f={1} ai="center" jc="center">
+              <AnimatedImage
+                source={require("../../assets/carkifelek/cark.png")}
+                contentFit={"fill"}
+                style={[
+                  {
+                    height: Math.floor((width / 20) * 19),
+                    width: Math.floor((width / 20) * 19),
+                  },
+                  ImageAnimatedStyle,
+                ]}
+              />
+              <AnimatedImage
+                source={require("../../assets/carkifelek/arrow.png")}
+                contentFit="fill"
+                style={[
+                  {
+                    width: Math.floor(width / 9),
+                    height: Math.floor(width / 9),
+                    marginTop: Math.floor(width / -15),
+                  },
+                  ArrowAnimatedStyle,
+                ]}
+              />
+            </Stack>
+
+            <Button
+              disabled={buttonDisabled}
+              mx={15}
+              borderWidth={1}
+              boc={buttonDisabled ? "gray" : buttonBlue}
+              size={"$5"}
+              onPress={() => {
+                setButtonDisabled(true);
+                let deg;
+
+                deg = Math.floor(Math.random() * 10000);
+
+                ImageRotate.value = withTiming(`${deg}deg`, {
+                  duration: 3500,
+                });
+                ArrowRotate.value = withTiming(`${-45}deg`, {
+                  duration: 1750,
+                });
+                setTimeout(() => {
+                  ArrowRotate.value = withTiming(`${-90}deg`, {
+                    duration: 1750,
+                  });
+                }, 1750);
+                setTimeout(() => {
+                  setButtonDisabled(false);
+                }, 3500);
+              }}
             >
-              Çevir!
-            </Text>
-          </Button>
-          <Stack mt={15}>
-            <BannerAds />
-          </Stack>
-        </SafeAreaView>
-      </Stack>
+              <Text
+                fos={21}
+                fow={"600"}
+                color={buttonDisabled ? "gray" : buttonBlue}
+              >
+                Çevir!
+              </Text>
+            </Button>
+            <Stack mt={15}>
+              <BannerAds />
+            </Stack>
+          </SafeAreaView>
+        </Stack>
+      ) : null}
       <Modal animationType="fade" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <ImageBackground

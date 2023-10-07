@@ -142,21 +142,12 @@ const HomeScreen = () => {
                     text={"Cahilmetre"}
                   />
                 </Stack>
-
                 {/* <Stack mb={width * 0.02}>
                   <ImageButtonSquare
                     bgcolor={"#383524a0"}
                     onPress={() => router.push("/batak")}
                     source={require("../assets/home-page/batak.png")}
                     text={"Batak"}
-                  />
-                </Stack> */}
-                {/* <Stack mb={width * 0.02}>
-                  <ImageButtonSquare
-                    bgcolor={"#383524a0"}
-                    onPress={() => router.push("/pisti")}
-                    source={require("../assets/home-page/pisti.png")}
-                    text={"Pişti"}
                   />
                 </Stack> */}
                 <Stack mb={width * 0.02}>
@@ -167,12 +158,12 @@ const HomeScreen = () => {
                     text={"Abdi"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
-                  <ImageButtonReactangle
-                    bgcolor={"#666666a0"}
-                    onPress={() => router.push("/spin-bottle")}
-                    source={require("../assets/home-page/spin.png")}
-                    text={"Şişe Çevir"}
+                <Stack mb={width * 0.02}>
+                  <ImageButtonSquare
+                    bgcolor={"#383524a0"}
+                    onPress={() => router.push("/pisti")}
+                    source={require("../assets/home-page/pisti.png")}
+                    text={"Pişti"}
                   />
                 </Stack>
               </YStack>
@@ -209,28 +200,21 @@ const HomeScreen = () => {
                     text={"Sudoku"}
                   />
                 </Stack>
+
                 <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
-                    bgcolor={"#634128a0"}
-                    onPress={() => router.push("/jump")}
-                    source={require("../assets/home-page/jump.png")}
-                    text={"Top Sektir"}
-                  />
-                </Stack>
-                {/* <Stack mb={width * 0.02}>
-                  <ImageButtonReactangle
-                    bgcolor={"#000000a0"}
-                    onPress={() => router.push("/pisti")}
-                    source={require("../assets/home-page/pisti.png")}
-                    text={"Pişti"}
-                  />
-                </Stack> */}
-                <Stack mb={width * 0.02}>
-                  <ImageButtonReactangle
-                    bgcolor={"#000000a0"}
+                    bgcolor={"#777777a0"}
                     onPress={() => router.push("/carkifelek")}
                     source={require("../assets/home-page/carkifelek.png")}
                     text={"Çevir ve İç!"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.02}>
+                  <ImageButtonReactangle
+                    bgcolor={"#666666a0"}
+                    onPress={() => router.push("/spin-bottle")}
+                    source={require("../assets/home-page/spin.png")}
+                    text={"Şişe Çevir"}
                   />
                 </Stack>
                 <Stack mb={width * 0.04}>
@@ -239,6 +223,14 @@ const HomeScreen = () => {
                     onPress={() => router.push("/roll-dice")}
                     source={require("../assets//home-page/cube.png")}
                     text={"Zar At"}
+                  />
+                </Stack>
+                <Stack mb={width * 0.02}>
+                  <ImageButtonReactangle
+                    bgcolor={"#634128a0"}
+                    onPress={() => router.push("/jump")}
+                    source={require("../assets/home-page/jump.png")}
+                    text={"Top Sektir"}
                   />
                 </Stack>
               </YStack>
@@ -394,7 +386,7 @@ const HomeScreen = () => {
                     ml={5}
                     fd="column"
                     onPress={() => {
-                      Linking.openURL("mailto:av.mehmetguloglu@gmail.com");
+                      Linking.openURL("mailto:dev.mehmetguloglu@gmail.com");
                     }}
                   >
                     <Entypo name="mail" size={21} color="black" />
@@ -469,104 +461,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-{
-  /* <ScrollView f={1} bg={"white"}>
-  <XStack mt={15} jc="space-between">
-    <Stack mr={5} ml={15} f={1} ai="center">
-      <ImageButtonSquare
-        bgcolor={"#EEAFC0a0"}
-        onPress={() => router.push("/banned-words")}
-        source={require("../assets/home-page/bannedWord.png")}
-        text={"Yasaklı Kelimeler"}
-      />
-    </Stack>
-
-    <YStack ml={5} mr={15} f={1} ai="center">
-      <Stack mb={10}>
-        <ImageButtonReactangle
-          bgcolor={"#39062Da0"}
-          onPress={() => router.push("/tictactoe")}
-          source={require("../assets/home-page/tictactoe.png")}
-          text={"X-O-X"}
-        />
-      </Stack>
-      <Stack mt={10}>
-        <ImageButtonReactangle
-          bgcolor={"#000000a0"}
-          onPress={() => router.push("/hangman")}
-          source={require("../assets//home-page/hangman.png")}
-          text={"Adam Asmaca"}
-        />
-      </Stack>
-    </YStack>
-  </XStack>
-
-  <XStack mt={15} jc="space-between">
-    <Stack mr={5} ml={15} f={1} ai="center">
-      <ImageButtonSquare
-        bgcolor={"#7D4628a0"}
-        onPress={() => router.push("/quiz")}
-        source={require("../assets/home-page/quiz.png")}
-        text={"Cahilmetre"}
-      />
-    </Stack>
-    <YStack ml={5} mr={15} f={1} ai="center">
-      <Stack mb={10}>
-        <ImageButtonReactangle
-          bgcolor={"#5C6D89a0"}
-          onPress={() => router.push("/sudoku")}
-          source={require("../assets/home-page/sudoku.png")}
-          text={"Sudoku"}
-        />
-      </Stack>
-      <Stack mt={10}>
-        <ImageButtonReactangle
-          bgcolor={"#634128a0"}
-          onPress={() => router.push("/jump")}
-          source={require("../assets/home-page/jump.png")}
-          text={"Top Sektir"}
-        />
-      </Stack>
-    </YStack>
-  </XStack>
-  <XStack mt={15} jc="space-between">
-    <Stack mr={5} ml={15} f={1} ai="center">
-      <ImageButtonSquare
-        bgcolor={"#46422Da0"}
-        onPress={() => router.push("/who-am-i")}
-        source={require("../assets/home-page/whoami.png")}
-        text={"Ben Kimim"}
-      />
-    </Stack>
-
-    <YStack ml={5} mr={15} f={1} ai="center">
-      <Stack mb={10}>
-        <ImageButtonReactangle
-          bgcolor={"#000000a0"}
-          onPress={() => router.push("/roll-dice")}
-          source={require("../assets//home-page/cube.png")}
-          text={"Zar At"}
-        />
-      </Stack>
-    </YStack>
-  </XStack>
-
-  <XStack mt={15} jc="space-between">
-    <Stack mr={5} ml={15} f={1} ai="center">
-      <ImageButtonSquare
-        bgcolor={"#46422Da0"}
-        onPress={() => router.push("/batak")}
-        source={require("../assets/home-page/batak.png")}
-        text={"Batak"}
-      />
-    </Stack>
-
-    <YStack ml={5} mr={15} f={1} ai="center">
-      <Stack mb={10}>
-      
-      </Stack>
-    </YStack>
-  </XStack>
-</ScrollView>; */
-}

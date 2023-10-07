@@ -132,10 +132,10 @@ const AbdiGame = () => {
                   </Text>
                 ) : selectedCard.number == 7 ? (
                   <Text>
-                    Kartı çeken kişi herhangi bir sektörden bir marka söyler.
-                    Oyun sırasına göre diğer oyuncular aynı sektörde marka
-                    isimleri söylemeye devam ederler. Söyleyemeyen veya
-                    söylenmiş bir markayı tekrar söyleyen kişi içer.
+                    Kartı çeken kişi isim söyler. Oyun sırasına göre diğer
+                    oyuncular son söylenen ismin son harfiyle başlayan yeni bir
+                    isim söylerler. Söyleyemeyen veya söylenmiş bir ismi tekrar
+                    söyleyen kişi içer.
                   </Text>
                 ) : selectedCard.number == 8 ? (
                   <Text>Kartı çeken kişi hariç herkes içer.</Text>
