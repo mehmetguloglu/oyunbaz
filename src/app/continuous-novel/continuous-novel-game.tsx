@@ -70,10 +70,10 @@ const ContinuousNovelGame = () => {
           height: "100%",
         }}
       />
-      <ExitButton />
 
       {!openModal && !finishNovel ? (
         <Stack f={1}>
+          <ExitButton />
           <SafeAreaView style={{ flex: 1 }}>
             <YStack f={1} mx={15} ai="center" jc="center">
               <ScrollView mt={width * 0.1}>
@@ -154,6 +154,15 @@ const ContinuousNovelGame = () => {
       ) : null}
       <Modal animationType="slide" transparent={false} visible={openModal}>
         <View style={styles.centeredView}>
+          <ImageBackground
+            source={require("../../assets/continuousNovel/novelbg.png")}
+            contentFit="fill"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+            }}
+          />
           <View style={styles.modalView}>
             <XStack>
               <Text fos={18} mb={8} fow={"700"}>
@@ -234,6 +243,15 @@ const ContinuousNovelGame = () => {
       </Modal>
       <Modal animationType="slide" transparent={false} visible={finishNovel}>
         <View style={styles.centeredView}>
+          <ImageBackground
+            source={require("../../assets/continuousNovel/novelbg.png")}
+            contentFit="fill"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+            }}
+          />
           <View style={styles.modalView}>
             <Text fos={18} mb={8} fow={"700"}>
               Romanımız
