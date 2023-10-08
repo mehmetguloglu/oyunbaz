@@ -77,25 +77,6 @@ const ContinuousNovelGame = () => {
           <SafeAreaView style={{ flex: 1 }}>
             <YStack f={1} mx={15} ai="center" jc="center">
               <ScrollView mt={width * 0.1}>
-                {lastSentence != "" ? (
-                  <Stack
-                    shadowColor={"#000"}
-                    shadowOffset={{ height: 1, width: 0 }}
-                    shadowOpacity={0.22}
-                    shadowRadius={2.22}
-                    elevationAndroid={2}
-                    p={5}
-                    mb={5}
-                    br={10}
-                    bg={"white"}
-                    ai="center"
-                    jc="center"
-                  >
-                    <Text fos={15} fow={"500"}>
-                      {lastSentence}
-                    </Text>
-                  </Stack>
-                ) : null}
                 <Stack
                   shadowColor={"#000"}
                   shadowOffset={{ height: 1, width: 0 }}
@@ -108,10 +89,27 @@ const ContinuousNovelGame = () => {
                     onChangeText={(e) => setNewSentence(e)}
                     value={newSentence}
                     fontSize={15}
-                    width={"100"}
-                    height={"100"}
                   />
                 </Stack>
+                {lastSentence != "" ? (
+                  <Stack
+                    p={10}
+                    m={5}
+                    br={10}
+                    bg={"white"}
+                    ai="center"
+                    jc="center"
+                  >
+                    <Text fos={15} fow={"500"}>
+                      Aşağıdaki cümle ilk cümlen olarak şekilde hikayeyi devam
+                      ettir.
+                      {"\n"}
+                    </Text>
+                    <Stack bg={"gray"} p={5} br={5}>
+                      <Text color={"white"}>{lastSentence}</Text>
+                    </Stack>
+                  </Stack>
+                ) : null}
               </ScrollView>
             </YStack>
             <XStack mx={15}>
@@ -126,6 +124,7 @@ const ContinuousNovelGame = () => {
                   fos={14}
                   fow={"600"}
                   color={novel.length == 0 ? "gray" : buttonRed}
+                  ta="center"
                 >
                   Romanı Bitir ve Oku
                 </Text>
@@ -256,7 +255,7 @@ const ContinuousNovelGame = () => {
             <Text fos={18} mb={8} fow={"700"}>
               Romanımız
             </Text>
-            <ScrollView maxHeight={600}>
+            <ScrollView mb={10} maxHeight={600}>
               <Text>{novel}</Text>
             </ScrollView>
             <XStack>
@@ -284,7 +283,7 @@ const ContinuousNovelGame = () => {
                 f={1}
                 bg={buttonBlue}
               >
-                <Text fow={"500"} fos={16} color={"white"}>
+                <Text ta="center" fow={"500"} fos={16} color={"white"}>
                   Tekrar Oyna
                 </Text>
               </Button>
