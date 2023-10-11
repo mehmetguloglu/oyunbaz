@@ -13,6 +13,11 @@ import { Image, ImageBackground } from "expo-image";
 import { buttonBlue, buttonRed, modalMaxWidth } from "../../utils/colors";
 import BannerAds from "../../components/google-ads/BannerAds";
 import { router } from "expo-router";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 const { width, height } = Dimensions.get("screen");
 enum CardType {
   "Kupa",
@@ -24,6 +29,9 @@ interface Card {
   type: CardType;
   number: number;
 }
+
+const AnimatedImage = Animated.createAnimatedComponent(Image);
+const AnimatedStack = Animated.createAnimatedComponent(Stack);
 
 const AbdiGame = () => {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -66,11 +74,44 @@ const AbdiGame = () => {
 
   const _handlePress = () => {
     let index = Math.floor(Math.random() * unusedCard.current.length - 0.0001);
-    setSelectedCard(unusedCard.current[index]);
     unusedCard.current.splice(index, 1);
+    setSelectedCard(unusedCard.current[index]);
   };
 
   const tryAgainPress = () => unusedCard.current.push(...cards.current);
+
+  const ImageRotateY = useSharedValue("0deg");
+  const StackRotateY = useSharedValue("90deg");
+  const ImageLeft = useSharedValue(
+    width / 2 -
+      (150 + unusedCard.current.length * 3) / 2 +
+      30 +
+      unusedCard.current.length * 3
+  );
+  const ImageTop = useSharedValue(0);
+  const ImageZIndex = useSharedValue(11);
+
+  const StackStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          rotateY: StackRotateY.value,
+        },
+      ],
+    };
+  });
+  const ImageStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          rotateY: ImageRotateY.value,
+        },
+      ],
+      left: ImageLeft.value,
+      top: ImageTop.value,
+      zIndex: ImageZIndex.value,
+    };
+  });
 
   return (
     <>
@@ -88,13 +129,7 @@ const AbdiGame = () => {
         <>
           <SafeAreaView style={{ flex: 1 }}>
             <ExitButton />
-            <Stack jc="center" ai="center" f={1}>
-              {selectedCard != null ? (
-                <>
-                  <Card number={selectedCard.number} type={selectedCard.type} />
-                </>
-              ) : null}
-            </Stack>
+            <Stack jc="center" ai="center" f={1}></Stack>
             <Stack
               p={15}
               br={10}
@@ -163,11 +198,34 @@ const AbdiGame = () => {
                 mx={15}
                 size={"$6"}
                 onPress={() => {
-                  setDisabled(true);
-                  _handlePress();
+                  StackRotateY.value = "90deg";
+
+                  ImageRotateY.value = withTiming("90deg", { duration: 600 });
+                  ImageLeft.value = withTiming(width / 2 - 45, {
+                    duration: 600,
+                  });
+                  ImageTop.value = withTiming(height / 2 - 150, {
+                    duration: 600,
+                  });
+                  setTimeout(() => {
+                    StackRotateY.value = withTiming("0deg", {
+                      duration: 600,
+                    });
+                  }, 600);
+                  setTimeout(() => {
+                    ImageLeft.value =
+                      width / 2 -
+                      (150 + unusedCard.current.length * 3) / 2 +
+                      30 +
+                      unusedCard.current.length * 3;
+                    ImageTop.value = 0;
+                    ImageRotateY.value = "0deg";
+                  }, 1200);
                   setTimeout(() => {
                     setDisabled(false);
-                  }, 1000);
+                  }, 1500);
+                  setDisabled(true);
+                  _handlePress();
                 }}
               >
                 <Text
@@ -224,22 +282,48 @@ const AbdiGame = () => {
           >
             {unusedCard.current.map((item, index) => {
               return (
-                <Image
-                  key={index}
-                  source={require("../../assets/defaultCard.png")}
-                  style={{
-                    left: index * 3,
-                    height: 150,
-                    width: 90,
-                    position: "absolute",
-                    borderRadius: 8,
-                    transform: [{ rotate: "90deg" }],
-                  }}
-                  contentFit="fill"
-                />
+                <>
+                  <Image
+                    key={index}
+                    source={require("../../assets/defaultCard.png")}
+                    style={{
+                      left: index * 3,
+                      height: 150,
+                      width: 90,
+                      position: "absolute",
+                      borderRadius: 8,
+                      transform: [{ rotate: "90deg" }],
+                    }}
+                    contentFit="fill"
+                  />
+                </>
               );
             })}
           </XStack>
+          {selectedCard != null ? (
+            <AnimatedStack
+              zIndex={10}
+              pos="absolute"
+              top={height / 2 - 150}
+              left={width / 2 - 45}
+              style={StackStyle}
+            >
+              <Card number={selectedCard.number} type={selectedCard.type} />
+            </AnimatedStack>
+          ) : null}
+          <AnimatedImage
+            source={require("../../assets/defaultCard.png")}
+            style={[
+              ImageStyle,
+              {
+                height: 150,
+                width: 90,
+                position: "absolute",
+                borderRadius: 8,
+              },
+            ]}
+            contentFit="fill"
+          />
         </>
       ) : null}
       <Modal animationType="fade" transparent={false} visible={showModal}>
