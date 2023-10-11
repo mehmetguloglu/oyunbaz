@@ -44,7 +44,6 @@ const ContinuousNovelGame = () => {
     newSentenceArray.splice(newSentenceArray.length - 1, 1);
 
     setNewSentence("");
-    console.log(novel);
   };
 
   const _novelFinishButtonPress = () => {
