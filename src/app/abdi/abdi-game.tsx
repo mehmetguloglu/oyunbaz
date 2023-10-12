@@ -72,30 +72,17 @@ const AbdiGame = () => {
     }
   }, []);
 
-  const _handlePress = () => {
-    let index = Math.floor(Math.random() * unusedCard.current.length - 0.0001);
-    unusedCard.current.splice(index, 1);
-    setSelectedCard(unusedCard.current[index]);
-  };
-
-  const tryAgainPress = () => unusedCard.current.push(...cards.current);
-
-  const ImageRotateY = useSharedValue("0deg");
+  const ImageRotateY = useSharedValue("180deg");
   const StackRotateY = useSharedValue("90deg");
-  const ImageLeft = useSharedValue(
-    width / 2 -
-      (150 + unusedCard.current.length * 3) / 2 +
-      30 +
-      unusedCard.current.length * 3
-  );
-  const ImageTop = useSharedValue(0);
+  const ImageLeft = useSharedValue(-45);
+  const ImageTop = useSharedValue(height / 2 - 150);
   const ImageZIndex = useSharedValue(11);
 
   const StackStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          rotateY: StackRotateY.value,
+          rotateX: StackRotateY.value,
         },
       ],
     };
@@ -104,7 +91,7 @@ const AbdiGame = () => {
     return {
       transform: [
         {
-          rotateY: ImageRotateY.value,
+          rotateX: ImageRotateY.value,
         },
       ],
       left: ImageLeft.value,
@@ -112,7 +99,35 @@ const AbdiGame = () => {
       zIndex: ImageZIndex.value,
     };
   });
+  const _handlePress = () => {
+    let index = Math.floor(Math.random() * unusedCard.current.length - 0.0001);
+    unusedCard.current.splice(index, 1);
+    setSelectedCard(unusedCard.current[index]);
 
+    StackRotateY.value = "90deg";
+    ImageRotateY.value = "180deg";
+    ImageLeft.value = -45;
+
+    ImageTop.value = height / 2 - 150;
+    ImageRotateY.value = withTiming("90deg", { duration: 600 });
+
+    ImageTop.value = withTiming(height / 2 - 150, {
+      duration: 600,
+    });
+    ImageLeft.value = withTiming(width / 2 - 45, { duration: 600 });
+    setTimeout(() => {
+      StackRotateY.value = withTiming("0deg", {
+        duration: 600,
+      });
+    }, 600);
+
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1200);
+    setDisabled(true);
+  };
+
+  const tryAgainPress = () => unusedCard.current.push(...cards.current);
   return (
     <>
       <ImageBackground
@@ -198,33 +213,6 @@ const AbdiGame = () => {
                 mx={15}
                 size={"$6"}
                 onPress={() => {
-                  StackRotateY.value = "90deg";
-
-                  ImageRotateY.value = withTiming("90deg", { duration: 600 });
-                  ImageLeft.value = withTiming(width / 2 - 45, {
-                    duration: 600,
-                  });
-                  ImageTop.value = withTiming(height / 2 - 150, {
-                    duration: 600,
-                  });
-                  setTimeout(() => {
-                    StackRotateY.value = withTiming("0deg", {
-                      duration: 600,
-                    });
-                  }, 600);
-                  setTimeout(() => {
-                    ImageLeft.value =
-                      width / 2 -
-                      (150 + unusedCard.current.length * 3) / 2 +
-                      30 +
-                      unusedCard.current.length * 3;
-                    ImageTop.value = 0;
-                    ImageRotateY.value = "0deg";
-                  }, 1200);
-                  setTimeout(() => {
-                    setDisabled(false);
-                  }, 1500);
-                  setDisabled(true);
                   _handlePress();
                 }}
               >
@@ -266,6 +254,7 @@ const AbdiGame = () => {
               top={50}
               p={10}
               br={10}
+              zIndex={12}
             >
               <Text>Kalan Kart</Text>
               <Text fow={"600"}>{unusedCard.current.length}/52</Text>
@@ -276,33 +265,40 @@ const AbdiGame = () => {
           </SafeAreaView>
           <XStack
             pos="absolute"
-            left={width / 2 - (150 + unusedCard.current.length * 3) / 2 + 30}
-            top={0}
+            left={-45}
+            top={height / 2 - unusedCard.current.length * 3 - 150}
             zIndex={-9}
           >
             {unusedCard.current.map((item, index) => {
               return (
-                <>
-                  <Image
-                    key={index}
-                    source={require("../../assets/defaultCard.png")}
-                    style={{
-                      left: index * 3,
-                      height: 150,
-                      width: 90,
-                      position: "absolute",
-                      borderRadius: 8,
-                      transform: [{ rotate: "90deg" }],
-                    }}
-                    contentFit="fill"
-                  />
-                </>
+                <View
+                  key={index}
+                  style={{
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 2,
+                    },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
+
+                    elevation: 3,
+                    padding: 8,
+                    borderRadius: 15,
+                    top: index * 3,
+                    height: 150,
+                    width: 90,
+                    backgroundColor: "white",
+
+                    position: "absolute",
+                  }}
+                />
               );
             })}
           </XStack>
           {selectedCard != null ? (
             <AnimatedStack
-              zIndex={10}
+              zIndex={9}
               pos="absolute"
               top={height / 2 - 150}
               left={width / 2 - 45}
@@ -319,13 +315,32 @@ const AbdiGame = () => {
                 height: 150,
                 width: 90,
                 position: "absolute",
-                borderRadius: 8,
+                borderRadius: 15,
+                zIndex: 9,
               },
             ]}
             contentFit="fill"
           />
+          {unusedCard.current.length != 0 ? (
+            <Image
+              source={require("../../assets/defaultCard.png")}
+              style={[
+                {
+                  top: height / 2 - 150,
+                  left: -45,
+                  height: 150,
+                  width: 90,
+                  position: "absolute",
+                  borderRadius: 15,
+                  zIndex: 9,
+                },
+              ]}
+              contentFit="fill"
+            />
+          ) : null}
         </>
       ) : null}
+
       <Modal animationType="fade" transparent={false} visible={showModal}>
         <View style={styles.centeredView}>
           <ImageBackground
