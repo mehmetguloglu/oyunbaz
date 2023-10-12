@@ -4,20 +4,23 @@ import {
   SafeAreaView,
   View,
   StyleSheet,
+  ImageBackground,
 } from "react-native";
 import React, { useMemo, useRef, useState } from "react";
 import ExitButton from "../../components/ExitButton";
 import { Button, Stack, Text, ScrollView, XStack } from "tamagui";
 import Card from "../../components/abdi/Card";
-import { Image, ImageBackground } from "expo-image";
+import { Image } from "expo-image";
 import { buttonBlue, buttonRed, modalMaxWidth } from "../../utils/colors";
 import BannerAds from "../../components/google-ads/BannerAds";
 import { router } from "expo-router";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { AntDesign } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("screen");
 enum CardType {
   "Kupa",
@@ -72,7 +75,7 @@ const AbdiGame = () => {
     }
   }, []);
 
-  const ImageRotateY = useSharedValue("180deg");
+  const ImageRotateY = useSharedValue(180);
   const StackRotateY = useSharedValue("90deg");
   const ImageLeft = useSharedValue(-45);
   const ImageTop = useSharedValue(height / 2 - 150);
@@ -82,7 +85,7 @@ const AbdiGame = () => {
     return {
       transform: [
         {
-          rotateX: StackRotateY.value,
+          rotateY: StackRotateY.value,
         },
       ],
     };
@@ -91,7 +94,7 @@ const AbdiGame = () => {
     return {
       transform: [
         {
-          rotateX: ImageRotateY.value,
+          rotateY: `${ImageRotateY.value}deg`,
         },
       ],
       left: ImageLeft.value,
@@ -100,26 +103,24 @@ const AbdiGame = () => {
     };
   });
   const _handlePress = () => {
-    let index = Math.floor(Math.random() * unusedCard.current.length - 0.0001);
-    unusedCard.current.splice(index, 1);
+    let index = Math.floor(Math.random() * unusedCard.current.length);
+    index == unusedCard.current.length ? (index = index - 1) : null;
+    console.log(index);
     setSelectedCard(unusedCard.current[index]);
+    unusedCard.current.splice(index, 1);
 
     StackRotateY.value = "90deg";
-    ImageRotateY.value = "180deg";
+    ImageRotateY.value = 180;
     ImageLeft.value = -45;
 
-    ImageTop.value = height / 2 - 150;
-    ImageRotateY.value = withTiming("90deg", { duration: 600 });
+    ImageRotateY.value = withTiming(90, { duration: 500 });
 
-    ImageTop.value = withTiming(height / 2 - 150, {
-      duration: 600,
-    });
-    ImageLeft.value = withTiming(width / 2 - 45, { duration: 600 });
+    ImageLeft.value = withTiming(width / 2 - 45, { duration: 500 });
     setTimeout(() => {
       StackRotateY.value = withTiming("0deg", {
-        duration: 600,
+        duration: 500,
       });
-    }, 600);
+    }, 500);
 
     setTimeout(() => {
       setDisabled(false);
@@ -130,204 +131,178 @@ const AbdiGame = () => {
   const tryAgainPress = () => unusedCard.current.push(...cards.current);
   return (
     <>
-      <ImageBackground
-        source={require("../../assets/woodbg.png")}
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          zIndex: -10,
-        }}
-        contentFit="fill"
-      />
       {!showModal ? (
         <>
-          <SafeAreaView style={{ flex: 1 }}>
-            <ExitButton />
-            <Stack jc="center" ai="center" f={1}></Stack>
-            <Stack
-              p={15}
-              br={10}
-              m={15}
-              bg={"white"}
-              shac={"#000"}
-              shadowOffset={{
-                width: 0,
-                height: 2,
-              }}
-              shadowRadius={3.84}
-              shadowOpacity={0.25}
-              elevationAndroid={4}
-            >
-              {selectedCard != null ? (
-                selectedCard.number == 1 ? (
-                  <Text>Oynama sırası ters döner.</Text>
-                ) : selectedCard.number == 2 ? (
-                  <Text>Kartı çeken kişi içer.</Text>
-                ) : selectedCard.number == 3 ? (
-                  <Text>
-                    Kartı çeken kişi şarkı söylemeye başlar ve şarkının istediği
-                    bir kısmında durup oyun sırasına göre yanındaki kişi devam
-                    eder. Şarkıyı devam ettiremeyip takılan kişi içer. Eğer
-                    şarkıyı herkes takılmadan devam ettirip başlatan kişiye
-                    dönerse o kişi içer.
-                  </Text>
-                ) : selectedCard.number == 4 ? (
-                  <Text>Pas geçme kartı. Kimse içmez, sıra devam eder.</Text>
-                ) : selectedCard.number == 5 ? (
-                  <Text>Kartı çeken kişinin seçtiği bir kişi içer.</Text>
-                ) : selectedCard.number == 6 ? (
-                  <Text>
-                    Kartı çeken kişi seçtiği bir kişiyle beraber içer.
-                  </Text>
-                ) : selectedCard.number == 7 ? (
-                  <Text>
-                    Kartı çeken kişi isim söyler. Oyun sırasına göre diğer
-                    oyuncular son söylenen ismin son harfiyle başlayan yeni bir
-                    isim söylerler. Söyleyemeyen veya söylenmiş bir ismi tekrar
-                    söyleyen kişi içer.
-                  </Text>
-                ) : selectedCard.number == 8 ? (
-                  <Text>Kartı çeken kişi hariç herkes içer.</Text>
-                ) : selectedCard.number == 9 ? (
-                  <Text>
-                    Tüm oyuncular sağ işaret parmağını masaya koyar. Son koyan
-                    oyuncu içer.
-                  </Text>
-                ) : selectedCard.number == 10 ? (
-                  <Text>Kartı çeken kişi 2x içer.</Text>
-                ) : selectedCard.number == 11 ? (
-                  <Text>Kartı çeken kişi içer ve tekrar kart çeker.</Text>
-                ) : selectedCard.number == 12 ? (
-                  <Text>Kadınlar içer.</Text>
-                ) : selectedCard.number == 13 ? (
-                  <Text>Erkekler içer.</Text>
-                ) : null
-              ) : null}
-            </Stack>
-            {unusedCard.current.length != 0 ? (
-              <Button
-                disabled={disabled}
-                borderWidth={1}
-                boc={disabled ? "gray" : buttonBlue}
-                mx={15}
-                size={"$6"}
-                onPress={() => {
-                  _handlePress();
+          <Stack f={1} bg={"$green6"}>
+            <SafeAreaView style={{ flex: 1 }}>
+              <ExitButton />
+              <Stack jc="center" ai="center" f={1}></Stack>
+              <Stack
+                p={15}
+                br={10}
+                m={15}
+                bg={"white"}
+                shac={"#000"}
+                shadowOffset={{
+                  width: 0,
+                  height: 2,
                 }}
+                shadowRadius={3.84}
+                shadowOpacity={0.25}
+                elevationAndroid={4}
               >
-                <Text
-                  color={disabled ? "gray" : buttonBlue}
-                  fos={18}
-                  fow={"600"}
+                {selectedCard != null ? (
+                  selectedCard.number == 1 ? (
+                    <Text>Oynama sırası ters döner.</Text>
+                  ) : selectedCard.number == 2 ? (
+                    <Text>Kartı çeken kişi içer.</Text>
+                  ) : selectedCard.number == 3 ? (
+                    <Text>
+                      Kartı çeken kişi şarkı söylemeye başlar ve şarkının
+                      istediği bir kısmında durup oyun sırasına göre yanındaki
+                      kişi devam eder. Şarkıyı devam ettiremeyip takılan kişi
+                      içer. Eğer şarkıyı herkes takılmadan devam ettirip
+                      başlatan kişiye dönerse o kişi içer.
+                    </Text>
+                  ) : selectedCard.number == 4 ? (
+                    <Text>Pas geçme kartı. Kimse içmez, sıra devam eder.</Text>
+                  ) : selectedCard.number == 5 ? (
+                    <Text>Kartı çeken kişinin seçtiği bir kişi içer.</Text>
+                  ) : selectedCard.number == 6 ? (
+                    <Text>
+                      Kartı çeken kişi seçtiği bir kişiyle beraber içer.
+                    </Text>
+                  ) : selectedCard.number == 7 ? (
+                    <Text>
+                      Kartı çeken kişi isim söyler. Oyun sırasına göre diğer
+                      oyuncular son söylenen ismin son harfiyle başlayan yeni
+                      bir isim söylerler. Söyleyemeyen veya söylenmiş bir ismi
+                      tekrar söyleyen kişi içer.
+                    </Text>
+                  ) : selectedCard.number == 8 ? (
+                    <Text>Kartı çeken kişi hariç herkes içer.</Text>
+                  ) : selectedCard.number == 9 ? (
+                    <Text>
+                      Tüm oyuncular sağ işaret parmağını masaya koyar. Son koyan
+                      oyuncu içer.
+                    </Text>
+                  ) : selectedCard.number == 10 ? (
+                    <Text>Kartı çeken kişi 2x içer.</Text>
+                  ) : selectedCard.number == 11 ? (
+                    <Text>Kartı çeken kişi içer ve tekrar kart çeker.</Text>
+                  ) : selectedCard.number == 12 ? (
+                    <Text>Kadınlar içer.</Text>
+                  ) : selectedCard.number == 13 ? (
+                    <Text>Erkekler içer.</Text>
+                  ) : null
+                ) : null}
+              </Stack>
+              {unusedCard.current.length != 0 ? (
+                <Button
+                  disabled={disabled}
+                  borderWidth={1}
+                  boc={disabled ? "gray" : buttonBlue}
+                  mx={15}
+                  size={"$6"}
+                  onPress={() => {
+                    _handlePress();
+                  }}
                 >
-                  Kart Çek
-                </Text>
-              </Button>
-            ) : (
-              <Button
-                disabled={disabled}
-                borderWidth={1}
-                boc={buttonRed}
-                mx={15}
-                size={"$6"}
-                onPress={() => {
-                  setDisabled(true);
-                  tryAgainPress();
-                  _handlePress();
-                  setTimeout(() => {
-                    setDisabled(false);
-                  }, 1000);
-                }}
+                  <Text
+                    color={disabled ? "gray" : buttonBlue}
+                    fos={18}
+                    fow={"600"}
+                  >
+                    Kart Çek
+                  </Text>
+                </Button>
+              ) : (
+                <Button
+                  disabled={disabled}
+                  borderWidth={1}
+                  boc={buttonRed}
+                  mx={15}
+                  size={"$6"}
+                  onPress={() => {
+                    setDisabled(true);
+                    tryAgainPress();
+                    _handlePress();
+                    setTimeout(() => {
+                      setDisabled(false);
+                    }, 1000);
+                  }}
+                >
+                  <Text color={buttonRed} fos={18} fow={"600"}>
+                    Tekrar Oyna
+                  </Text>
+                </Button>
+              )}
+              <Stack
+                ai="center"
+                jc="center"
+                pos="absolute"
+                right={15}
+                bg={"white"}
+                top={50}
+                p={10}
+                br={10}
+                zIndex={12}
               >
-                <Text color={buttonRed} fos={18} fow={"600"}>
-                  Tekrar Oyna
-                </Text>
-              </Button>
-            )}
-            <Stack
-              ai="center"
-              jc="center"
-              pos="absolute"
-              right={15}
-              bg={"white"}
-              top={50}
-              p={10}
-              br={10}
-              zIndex={12}
-            >
-              <Text>Kalan Kart</Text>
-              <Text fow={"600"}>{unusedCard.current.length}/52</Text>
-            </Stack>
-            <Stack mt={10}>
-              <BannerAds />
-            </Stack>
-          </SafeAreaView>
+                <Text>Kalan Kart</Text>
+                <Text fow={"600"}>{unusedCard.current.length}/52</Text>
+              </Stack>
+              <Stack mt={10}>
+                <BannerAds />
+              </Stack>
+            </SafeAreaView>
+            {unusedCard.current.map((item, index) => {
+              return (
+                <View
+                  key={index}
+                  style={{
+                    left: -45,
+                    top:
+                      height / 2 -
+                      unusedCard.current.length * 1 -
+                      150 +
+                      index * 1,
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 2,
+                    },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 3.84,
 
-          {unusedCard.current.map((item, index) => {
-            return (
-              <View
-                key={index}
-                style={{
-                  left: -45,
-                  top:
-                    height / 2 -
-                    unusedCard.current.length * 1 -
-                    150 +
-                    index * 1,
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 2,
-                  },
-                  shadowOpacity: 0.25,
-                  shadowRadius: 3.84,
+                    elevation: 3,
+                    padding: 8,
+                    borderRadius: 15,
 
-                  elevation: 3,
-                  padding: 8,
-                  borderRadius: 15,
-
-                  height: 150,
-                  width: 90,
-                  backgroundColor: "white",
-                  zIndex: -9,
-                  position: "absolute",
-                }}
-              />
-            );
-          })}
-          {selectedCard != null ? (
-            <AnimatedStack
-              zIndex={9}
-              pos="absolute"
-              top={height / 2 - 150}
-              left={width / 2 - 45}
-              style={StackStyle}
-            >
-              <Card number={selectedCard.number} type={selectedCard.type} />
-            </AnimatedStack>
-          ) : null}
-          <AnimatedImage
-            source={require("../../assets/defaultCard.png")}
-            style={[
-              ImageStyle,
-              {
-                height: 150,
-                width: 90,
-                position: "absolute",
-                borderRadius: 15,
-                zIndex: 9,
-              },
-            ]}
-            contentFit="fill"
-          />
-          {unusedCard.current.length != 0 ? (
-            <Image
+                    height: 150,
+                    width: 90,
+                    backgroundColor: "white",
+                    zIndex: -9,
+                    position: "absolute",
+                  }}
+                />
+              );
+            })}
+            {selectedCard != null ? (
+              <AnimatedStack
+                zIndex={9}
+                pos="absolute"
+                top={height / 2 - 150}
+                left={width / 2 - 45}
+                style={StackStyle}
+              >
+                <Card number={selectedCard.number} type={selectedCard.type} />
+              </AnimatedStack>
+            ) : null}
+            <AnimatedImage
               source={require("../../assets/defaultCard.png")}
               style={[
+                ImageStyle,
                 {
-                  top: height / 2 - 150,
-                  left: -45,
                   height: 150,
                   width: 90,
                   position: "absolute",
@@ -337,22 +312,29 @@ const AbdiGame = () => {
               ]}
               contentFit="fill"
             />
-          ) : null}
+            {unusedCard.current.length != 0 ? (
+              <Image
+                source={require("../../assets/defaultCard.png")}
+                style={[
+                  {
+                    top: height / 2 - 150,
+                    left: -45,
+                    height: 150,
+                    width: 90,
+                    position: "absolute",
+                    borderRadius: 15,
+                    zIndex: 9,
+                  },
+                ]}
+                contentFit="fill"
+              />
+            ) : null}
+          </Stack>
         </>
       ) : null}
 
       <Modal animationType="fade" transparent={false} visible={showModal}>
-        <View style={styles.centeredView}>
-          <ImageBackground
-            source={require("../../assets/woodbg.png")}
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              zIndex: -10,
-            }}
-            contentFit="fill"
-          />
+        <Stack f={1} ai="center" jc={"center"} bg={"$green6"}>
           <View style={styles.modalView}>
             <Text fos={18} mb={8} fow={"700"}>
               Abdi
@@ -415,7 +397,7 @@ const AbdiGame = () => {
               </Button>
             </XStack>
           </View>
-        </View>
+        </Stack>
       </Modal>
     </>
   );
@@ -423,11 +405,6 @@ const AbdiGame = () => {
 
 export default AbdiGame;
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   modalView: {
     padding: 20,
     margin: 20,
