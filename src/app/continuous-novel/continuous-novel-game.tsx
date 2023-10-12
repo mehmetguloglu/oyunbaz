@@ -20,6 +20,7 @@ import { ImageBackground } from "expo-image";
 import { buttonBlue, buttonRed, modalMaxWidth } from "../../utils/colors";
 import { useRouter } from "expo-router";
 import BannerAds from "../../components/google-ads/BannerAds";
+import DismissKeyboardView from "../../HOC/DismissKeyboardHOC";
 const { width, height } = Dimensions.get("screen");
 const ContinuousNovelGame = () => {
   const router = useRouter();
@@ -71,7 +72,7 @@ const ContinuousNovelGame = () => {
       />
 
       {!openModal && !finishNovel ? (
-        <Stack f={1}>
+        <DismissKeyboardView style={{ flex: 1 }}>
           <ExitButton />
           <SafeAreaView style={{ flex: 1 }}>
             <YStack f={1} mx={15} ai="center" jc="center">
@@ -148,7 +149,7 @@ const ContinuousNovelGame = () => {
               <BannerAds />
             </Stack>
           </SafeAreaView>
-        </Stack>
+        </DismissKeyboardView>
       ) : null}
       <Modal animationType="slide" transparent={false} visible={openModal}>
         <View style={styles.centeredView}>

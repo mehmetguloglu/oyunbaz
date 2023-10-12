@@ -263,39 +263,39 @@ const AbdiGame = () => {
               <BannerAds />
             </Stack>
           </SafeAreaView>
-          <XStack
-            pos="absolute"
-            left={-45}
-            top={height / 2 - unusedCard.current.length * 3 - 150}
-            zIndex={-9}
-          >
-            {unusedCard.current.map((item, index) => {
-              return (
-                <View
-                  key={index}
-                  style={{
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 2,
-                    },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 3.84,
 
-                    elevation: 3,
-                    padding: 8,
-                    borderRadius: 15,
-                    top: index * 3,
-                    height: 150,
-                    width: 90,
-                    backgroundColor: "white",
+          {unusedCard.current.map((item, index) => {
+            return (
+              <View
+                key={index}
+                style={{
+                  left: -45,
+                  top:
+                    height / 2 -
+                    unusedCard.current.length * 1 -
+                    150 +
+                    index * 1,
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3.84,
 
-                    position: "absolute",
-                  }}
-                />
-              );
-            })}
-          </XStack>
+                  elevation: 3,
+                  padding: 8,
+                  borderRadius: 15,
+
+                  height: 150,
+                  width: 90,
+                  backgroundColor: "white",
+                  zIndex: -9,
+                  position: "absolute",
+                }}
+              />
+            );
+          })}
           {selectedCard != null ? (
             <AnimatedStack
               zIndex={9}
