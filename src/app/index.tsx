@@ -123,7 +123,6 @@ const HomeScreen = () => {
           {/* BODY */}
 
           <ScrollView showsVerticalScrollIndicator={false} f={1} bg={"white"}>
-            {/* <StarFall /> */}
             <XStack f={1} mx={width * 0.04} py={10}>
               <YStack mr={width * 0.02}>
                 <Stack mb={width * 0.02}>
@@ -200,14 +199,14 @@ const HomeScreen = () => {
                     text={"Sudoku"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
+                {/* <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#777777a0"}
                     onPress={() => router.push("/carkifelek")}
                     source={require("../assets/home-page/carkifelek.png")}
                     text={"Çevir ve İç!"}
                   />
-                </Stack>
+                </Stack> */}
                 <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#666666a0"}
@@ -232,7 +231,7 @@ const HomeScreen = () => {
                     text={"Top Sektir"}
                   />
                 </Stack>
-                <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.02}>
                   <ImageButtonReactangle
                     bgcolor={"#31062ba0"}
                     onPress={() => router.push("/tictactoe")}

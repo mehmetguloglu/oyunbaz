@@ -1,6 +1,6 @@
-import { View, Dimensions } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { ScrollView, Stack, Text, XStack, YStack } from "tamagui";
+import { Stack, Text, XStack } from "tamagui";
 import {
   FontAwesome5,
   Entypo,
@@ -10,7 +10,7 @@ import {
   AntDesign,
 } from "@expo/vector-icons";
 
-const Card = ({ number, type }) => {
+const Card = ({ number }) => {
   return (
     <View
       style={{

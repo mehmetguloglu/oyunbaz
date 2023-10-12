@@ -37,7 +37,7 @@ enum CardType {
   "Sinek",
 }
 interface Card {
-  type: CardType;
+  // type: CardType;
   number: number;
 }
 
@@ -46,40 +46,24 @@ const AnimatedStack = Animated.createAnimatedComponent(Stack);
 
 const AbdiGame = () => {
   const [selectedCard, setSelectedCard] = useState(null);
+  let numb = selectedCard?.number % 13;
+
+  if (numb == 0) {
+    numb = 13;
+  }
   const [disabled, setDisabled] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const unusedCard = useRef<Card[]>([]);
   const cards = useRef<Card[]>([]);
-  useMemo(() => {
-    for (let c = 0; c < 4; c++) {
-      for (let i = 1; i < 14; i++) {
-        let cardType: CardType;
-        switch (c) {
-          case 0:
-            cardType = CardType.Karo;
-            break;
-          case 1:
-            cardType = CardType.Kupa;
-            break;
-          case 2:
-            cardType = CardType.Maca;
-            break;
-          case 3:
-            cardType = CardType.Sinek;
-            break;
 
-          default:
-            break;
-        }
-        cards.current.push({
-          type: cardType,
-          number: i,
-        });
-        unusedCard.current.push({
-          type: cardType,
-          number: i,
-        });
-      }
+  useMemo(() => {
+    for (let i = 1; i < 53; i++) {
+      cards.current.push({
+        number: i,
+      });
+      unusedCard.current.push({
+        number: i,
+      });
     }
   }, []);
 
@@ -88,6 +72,7 @@ const AbdiGame = () => {
   const ImageLeft = useSharedValue(-60);
   const ImageTop = useSharedValue(height / 2 - 180);
   const ImageZIndex = useSharedValue(11);
+  const TextStackScale = useSharedValue(0);
 
   const StackStyle = useAnimatedStyle(() => {
     return {
@@ -110,17 +95,24 @@ const AbdiGame = () => {
       zIndex: ImageZIndex.value,
     };
   });
+
+  const TextStackStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: TextStackScale.value }],
+    };
+  });
+
   const _handlePress = () => {
     let index = Math.floor(Math.random() * unusedCard.current.length);
     index == unusedCard.current.length ? (index = index - 1) : null;
-    console.log(index);
+
     setSelectedCard(unusedCard.current[index]);
     unusedCard.current.splice(index, 1);
 
     StackRotateY.value = "90deg";
     ImageRotateY.value = 180;
     ImageLeft.value = -60;
-
+    TextStackScale.value = 0;
     ImageRotateY.value = withTiming(90, { duration: 500 });
 
     ImageLeft.value = withTiming(width / 2 - 60, { duration: 500 });
@@ -128,6 +120,7 @@ const AbdiGame = () => {
       StackRotateY.value = withTiming("0deg", {
         duration: 500,
       });
+      TextStackScale.value = withTiming(1, { duration: 500 });
     }, 500);
 
     setTimeout(() => {
@@ -141,11 +134,15 @@ const AbdiGame = () => {
     <>
       {!showModal ? (
         <>
-          <Stack f={1} bg={"$green6"}>
+          <Stack f={1} bg={"$gray8"}>
             <SafeAreaView style={{ flex: 1 }}>
               <ExitButton />
-              <Stack jc="center" ai="center" f={1}></Stack>
-              <XStack jc="flex-end" ai="center" mr={20}>
+              <Stack f={1} />
+              {/* <XStack jc="flex-end" ai="flex-end" mr={20}>
+                <MaterialIcons name="local-drink" size={12} color="darkblue" />
+                <MaterialIcons name="local-drink" size={12} color="darkblue" />
+                <MaterialIcons name="local-drink" size={12} color="darkblue" />
+                <MaterialIcons name="local-drink" size={12} color="darkblue" />
                 <Entypo
                   style={{ marginHorizontal: 2 }}
                   name="drink"
@@ -164,34 +161,8 @@ const AbdiGame = () => {
                   size={22}
                   color="orange"
                 />
-                <Stack mx={2}>
-                  <XStack>
-                    <MaterialIcons
-                      name="local-drink"
-                      size={12}
-                      color="darkblue"
-                    />
-                    <MaterialIcons
-                      name="local-drink"
-                      size={12}
-                      color="darkblue"
-                    />
-                  </XStack>
-                  <XStack>
-                    <MaterialIcons
-                      name="local-drink"
-                      size={12}
-                      color="darkblue"
-                    />
-                    <MaterialIcons
-                      name="local-drink"
-                      size={12}
-                      color="darkblue"
-                    />
-                  </XStack>
-                </Stack>
-              </XStack>
-              <Stack
+              </XStack> */}
+              <AnimatedStack
                 p={15}
                 br={10}
                 mx={15}
@@ -205,13 +176,14 @@ const AbdiGame = () => {
                 shadowRadius={3.84}
                 shadowOpacity={0.25}
                 elevationAndroid={4}
+                style={TextStackStyle}
               >
                 {selectedCard != null ? (
-                  selectedCard.number == 1 ? (
+                  numb == 1 ? (
                     <Text>Oynama sırası ters döner.</Text>
-                  ) : selectedCard.number == 2 ? (
+                  ) : numb == 2 ? (
                     <Text>Kartı çeken kişi içer.</Text>
-                  ) : selectedCard.number == 3 ? (
+                  ) : numb == 3 ? (
                     <Text>
                       Kartı çeken kişi şarkı söylemeye başlar ve şarkının
                       istediği bir kısmında durup oyun sırasına göre yanındaki
@@ -219,39 +191,39 @@ const AbdiGame = () => {
                       içer. Eğer şarkıyı herkes takılmadan devam ettirip
                       başlatan kişiye dönerse o kişi içer.
                     </Text>
-                  ) : selectedCard.number == 4 ? (
+                  ) : numb == 4 ? (
                     <Text>Pas geçme kartı. Kimse içmez, sıra devam eder.</Text>
-                  ) : selectedCard.number == 5 ? (
+                  ) : numb == 5 ? (
                     <Text>Kartı çeken kişinin seçtiği bir kişi içer.</Text>
-                  ) : selectedCard.number == 6 ? (
+                  ) : numb == 6 ? (
                     <Text>
                       Kartı çeken kişi seçtiği bir kişiyle beraber içer.
                     </Text>
-                  ) : selectedCard.number == 7 ? (
+                  ) : numb == 7 ? (
                     <Text>
                       Kartı çeken kişi isim söyler. Oyun sırasına göre diğer
                       oyuncular son söylenen ismin son harfiyle başlayan yeni
                       bir isim söylerler. Söyleyemeyen veya söylenmiş bir ismi
                       tekrar söyleyen kişi içer.
                     </Text>
-                  ) : selectedCard.number == 8 ? (
+                  ) : numb == 8 ? (
                     <Text>Kartı çeken kişi hariç herkes içer.</Text>
-                  ) : selectedCard.number == 9 ? (
+                  ) : numb == 9 ? (
                     <Text>
                       Tüm oyuncular sağ işaret parmağını masaya koyar. Son koyan
                       oyuncu içer.
                     </Text>
-                  ) : selectedCard.number == 10 ? (
+                  ) : numb == 10 ? (
                     <Text>Kartı çeken kişi 2x içer.</Text>
-                  ) : selectedCard.number == 11 ? (
+                  ) : numb == 11 ? (
                     <Text>Kartı çeken kişi içer ve tekrar kart çeker.</Text>
-                  ) : selectedCard.number == 12 ? (
+                  ) : numb == 12 ? (
                     <Text>Kadınlar içer.</Text>
-                  ) : selectedCard.number == 13 ? (
+                  ) : numb == 13 ? (
                     <Text>Erkekler içer.</Text>
                   ) : null
                 ) : null}
-              </Stack>
+              </AnimatedStack>
               {unusedCard.current.length != 0 ? (
                 <Button
                   disabled={disabled}
@@ -292,19 +264,41 @@ const AbdiGame = () => {
                   </Text>
                 </Button>
               )}
-              <Stack
-                ai="center"
-                jc="center"
-                pos="absolute"
-                right={15}
-                bg={"white"}
-                top={50}
-                p={10}
-                br={10}
-                zIndex={12}
-              >
-                <Text>Kalan Kart</Text>
-                <Text fow={"600"}>{unusedCard.current.length}/52</Text>
+              <Stack pos="absolute" right={15} top={30} zIndex={12}>
+                <XStack ai="flex-end">
+                  <Entypo
+                    style={{ marginHorizontal: 2 }}
+                    name="drink"
+                    size={20}
+                    color="darkorange"
+                  />
+                  <FontAwesome5
+                    style={{ marginHorizontal: 2 }}
+                    name="wine-glass-alt"
+                    size={20}
+                    color="darkred"
+                  />
+                  <FontAwesome5
+                    style={{ marginHorizontal: 2 }}
+                    name="beer"
+                    size={20}
+                    color="orange"
+                  />
+                  <MaterialIcons
+                    name="local-drink"
+                    size={10}
+                    color="darkblue"
+                  />
+                  <MaterialIcons
+                    name="local-drink"
+                    size={10}
+                    color="darkblue"
+                  />
+                </XStack>
+                <Stack ai="center" jc="center" bg={"white"} p={10} br={10}>
+                  <Text>Kalan Kart</Text>
+                  <Text fow={"600"}>{unusedCard.current.length}/52</Text>
+                </Stack>
               </Stack>
               <Stack mt={10}>
                 <BannerAds />
@@ -350,7 +344,7 @@ const AbdiGame = () => {
                 left={width / 2 - 60}
                 style={StackStyle}
               >
-                <Card number={selectedCard.number} type={selectedCard.type} />
+                <Card number={numb} />
               </AnimatedStack>
             ) : null}
             <AnimatedImage
@@ -389,7 +383,7 @@ const AbdiGame = () => {
       ) : null}
 
       <Modal animationType="fade" transparent={false} visible={showModal}>
-        <Stack f={1} ai="center" jc={"center"} bg={"$green6"}>
+        <Stack f={1} ai="center" jc={"center"} bg={"$gray8"}>
           <View style={styles.modalView}>
             <Text fos={18} mb={8} fow={"700"}>
               Abdi

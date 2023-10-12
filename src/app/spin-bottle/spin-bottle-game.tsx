@@ -26,17 +26,7 @@ const SpinBottleGame = () => {
   });
 
   return (
-    <Stack f={1}>
-      <ImageBackground
-        source={require("../../assets/woodbg.png")}
-        contentFit="fill"
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          zIndex: -10,
-        }}
-      />
+    <Stack f={1} bg={"#fdf5e6"}>
       <ExitButton />
       <SafeAreaView style={{ flex: 1 }}>
         <Stack f={1} ai="center" jc="center">
