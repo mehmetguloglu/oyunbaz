@@ -12,7 +12,6 @@ import {
   Dimensions,
   Platform,
   SafeAreaView,
-  Animated,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import ExitButton from "./../../components/ExitButton";
