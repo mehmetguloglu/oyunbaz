@@ -46,17 +46,7 @@ const RollDice = () => {
   const diceArray = new Array(diceNumber).fill(0);
   return (
     <>
-      <ImageBackground
-        source={require("../../assets/woodbg.png")}
-        contentFit="fill"
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "absolute",
-          zIndex: -10,
-        }}
-      />
-      <Stack f={1}>
+      <Stack f={1} bg={"$gray6"}>
         <SafeAreaView style={{ flex: 1 }}>
           <YStack pt={40} f={1} ai="center" jc="center">
             <XStack my={10}>

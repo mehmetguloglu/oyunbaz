@@ -58,7 +58,6 @@ const ContinuousNovelGame = () => {
     setLastSentence("");
     setFinishNovel(false);
   };
-
   return (
     <>
       <ImageBackground
@@ -78,13 +77,19 @@ const ContinuousNovelGame = () => {
             <YStack f={1} mx={15} ai="center" jc="center">
               <ScrollView mt={width * 0.1}>
                 <Stack
-                  shadowColor={"#000"}
-                  shadowOffset={{ height: 1, width: 0 }}
-                  shadowOpacity={0.22}
-                  shadowRadius={2.22}
-                  elevationAndroid={2}
+                  borderWidth={2}
+                  boc={
+                    newSentence == ""
+                      ? "gray"
+                      : newSentence.length > 500
+                      ? buttonRed
+                      : buttonBlue
+                  }
+                  br={10}
                 >
                   <TextArea
+                    disabled={true}
+                    f={1}
                     placeholder="Yazmaya Başla"
                     onChangeText={(e) => setNewSentence(e)}
                     value={newSentence}

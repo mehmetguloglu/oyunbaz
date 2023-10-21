@@ -199,14 +199,14 @@ const HomeScreen = () => {
                     text={"Sudoku"}
                   />
                 </Stack>
-                {/* <Stack mb={width * 0.04}>
+                <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#777777a0"}
                     onPress={() => router.push("/carkifelek")}
                     source={require("../assets/home-page/carkifelek.png")}
                     text={"Çevir ve İç!"}
                   />
-                </Stack> */}
+                </Stack>
                 <Stack mb={width * 0.04}>
                   <ImageButtonReactangle
                     bgcolor={"#666666a0"}

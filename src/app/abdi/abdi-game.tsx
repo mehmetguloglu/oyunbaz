@@ -69,7 +69,7 @@ const AbdiGame = () => {
 
   const ImageRotateY = useSharedValue(180);
   const StackRotateY = useSharedValue("90deg");
-  const ImageLeft = useSharedValue(-60);
+  const ImageLeft = useSharedValue(-40);
   const ImageTop = useSharedValue(height / 2 - 180);
   const ImageZIndex = useSharedValue(11);
   const TextStackScale = useSharedValue(0);
@@ -111,7 +111,7 @@ const AbdiGame = () => {
 
     StackRotateY.value = "90deg";
     ImageRotateY.value = 180;
-    ImageLeft.value = -60;
+    ImageLeft.value = -40;
     TextStackScale.value = 0;
     ImageRotateY.value = withTiming(90, { duration: 500 });
 
@@ -138,35 +138,11 @@ const AbdiGame = () => {
             <SafeAreaView style={{ flex: 1 }}>
               <ExitButton />
               <Stack f={1} />
-              {/* <XStack jc="flex-end" ai="flex-end" mr={20}>
-                <MaterialIcons name="local-drink" size={12} color="darkblue" />
-                <MaterialIcons name="local-drink" size={12} color="darkblue" />
-                <MaterialIcons name="local-drink" size={12} color="darkblue" />
-                <MaterialIcons name="local-drink" size={12} color="darkblue" />
-                <Entypo
-                  style={{ marginHorizontal: 2 }}
-                  name="drink"
-                  size={22}
-                  color="darkorange"
-                />
-                <FontAwesome5
-                  style={{ marginHorizontal: 2 }}
-                  name="wine-glass-alt"
-                  size={22}
-                  color="darkred"
-                />
-                <FontAwesome5
-                  style={{ marginHorizontal: 2 }}
-                  name="beer"
-                  size={22}
-                  color="orange"
-                />
-              </XStack> */}
               <AnimatedStack
                 p={15}
                 br={10}
                 mx={15}
-                mb={15}
+                mb={10}
                 bg={"white"}
                 shac={"#000"}
                 shadowOffset={{
@@ -264,7 +240,7 @@ const AbdiGame = () => {
                   </Text>
                 </Button>
               )}
-              <Stack pos="absolute" right={15} top={30} zIndex={12}>
+              <Stack pos="absolute" right={15} top={10} zIndex={12}>
                 <XStack ai="flex-end">
                   <Entypo
                     style={{ marginHorizontal: 2 }}
@@ -309,7 +285,7 @@ const AbdiGame = () => {
                 <View
                   key={index}
                   style={{
-                    left: -60,
+                    left: -40,
                     top:
                       height / 2 -
                       unusedCard.current.length * 1 -
@@ -348,7 +324,7 @@ const AbdiGame = () => {
               </AnimatedStack>
             ) : null}
             <AnimatedImage
-              source={require("../../assets/defaultCard.png")}
+              source={require("../../assets/abdi/abdiCard.png")}
               style={[
                 ImageStyle,
                 {
@@ -363,16 +339,17 @@ const AbdiGame = () => {
             />
             {unusedCard.current.length != 0 ? (
               <Image
-                source={require("../../assets/defaultCard.png")}
+                source={require("../../assets/abdi/abdiCard.png")}
                 style={[
                   {
                     top: height / 2 - 180,
-                    left: -60,
+                    left: -40,
                     height: 180,
                     width: 120,
                     position: "absolute",
                     borderRadius: 15,
                     zIndex: 9,
+                    transform: [{ rotateY: "180deg" }],
                   },
                 ]}
                 contentFit="fill"
