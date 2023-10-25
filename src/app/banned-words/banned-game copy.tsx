@@ -17,14 +17,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import ExitButton from "./../../components/ExitButton";
 import BannerAds from "../../components/google-ads/BannerAds";
 import { buttonBlue, buttonRed, modalMaxWidth } from "../../utils/colors";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
 const { width, height } = Dimensions.get("window");
-const AnimatedYStack = Animated.createAnimatedComponent(YStack);
 const BannedWordsGame = () => {
   const router = useRouter();
   const [openModal, setOpenModal] = useState(true);
@@ -95,19 +88,6 @@ const BannedWordsGame = () => {
     randomWord();
     showWords.current = [];
   };
-
-  const rotate = useSharedValue("0deg");
-  const left = useSharedValue(width / 20);
-  const bottom = useSharedValue<string | number>(0);
-  const scale = useSharedValue(1);
-  const AnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ rotate: rotate.value }, { scale: scale.value }],
-      left: left.value,
-      bottom: bottom.value == 0 ? "auto" : bottom.value,
-    };
-  });
-
   return (
     <>
       <Modal animationType="slide" transparent={false} visible={openModal}>
@@ -401,14 +381,7 @@ const BannedWordsGame = () => {
       <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
         {!openModal && !scoreModal ? (
           <>
-            <Stack
-              style={{ bottom: "" }}
-              bg={"white"}
-              f={1}
-              ai="center"
-              jc="center"
-              mt={5}
-            >
+            <Stack bg={"white"} f={1} ai="center" jc="center">
               <CountdownTimer
                 fos={24}
                 sow={8}
@@ -418,90 +391,68 @@ const BannedWordsGame = () => {
                   handleOnComplete();
                 }}
               />
-              <Stack width={width} f={1} ai="center" jc="center">
-                <AnimatedYStack
-                  style={AnimatedStyle}
-                  pos={"absolute"}
-                  width={"90%"}
-                  // maxWidth={766}
-                  bg={"white"}
-                  // m={15}
-                  br={20}
-                  shadowColor={"#000"}
-                  shadowOffset={{
-                    width: 0,
-                    height: 12,
-                  }}
-                  shadowOpacity={0.58}
-                  shadowRadius={16.0}
-                  elevation={Platform.OS == "android" ? 24 : 0}
-                  pb={10}
+              <YStack
+                width={"90%"}
+                maxWidth={766}
+                bg={"white"}
+                m={15}
+                br={20}
+                shadowColor={"#000"}
+                shadowOffset={{
+                  width: 0,
+                  height: 12,
+                }}
+                shadowOpacity={0.58}
+                shadowRadius={16.0}
+                elevation={Platform.OS == "android" ? 24 : 0}
+                pb={10}
+              >
+                <Stack
+                  borderTopLeftRadius={20}
+                  borderTopRightRadius={20}
+                  width={"100%"}
+                  bg={team == "Mavi" ? buttonBlue : buttonRed}
+                  p={15}
+                  ai="center"
                 >
-                  <Stack
-                    borderTopLeftRadius={20}
-                    borderTopRightRadius={20}
-                    width={"100%"}
-                    bg={team == "Mavi" ? buttonBlue : buttonRed}
-                    p={15}
-                    ai="center"
-                  >
-                    <Text ta="center" color={"white"} fow={"600"} fontSize={21}>
-                      {Word[index].spokenWord}
-                    </Text>
-                  </Stack>
-                  <Separator
-                    my={1}
-                    borderColor={team == "Mavi" ? buttonBlue : buttonRed}
-                  />
-                  <Separator
-                    my={0}
-                    borderColor={team == "Mavi" ? buttonBlue : buttonRed}
-                  />
-                  <Separator
-                    my={1}
-                    borderColor={team == "Mavi" ? buttonBlue : buttonRed}
-                  />
-                  <YStack>
-                    <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                      {Word[index].forbiddenWords[0]}
-                    </Text>
-                    <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                      {Word[index].forbiddenWords[1]}
-                    </Text>
-                    <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                      {Word[index].forbiddenWords[2]}
-                    </Text>
-                    <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                      {Word[index].forbiddenWords[3]}
-                    </Text>
-                    <Text my={10} ta="center" fontSize={17} fow={"600"}>
-                      {Word[index].forbiddenWords[4]}
-                    </Text>
-                  </YStack>
-                </AnimatedYStack>
-              </Stack>
-
+                  <Text ta="center" color={"white"} fow={"600"} fontSize={21}>
+                    {Word[index].spokenWord}
+                  </Text>
+                </Stack>
+                <Separator
+                  my={1}
+                  borderColor={team == "Mavi" ? buttonBlue : buttonRed}
+                />
+                <Separator
+                  my={0}
+                  borderColor={team == "Mavi" ? buttonBlue : buttonRed}
+                />
+                <Separator
+                  my={1}
+                  borderColor={team == "Mavi" ? buttonBlue : buttonRed}
+                />
+                <YStack>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[0]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[1]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[2]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[3]}
+                  </Text>
+                  <Text my={10} ta="center" fontSize={17} fow={"600"}>
+                    {Word[index].forbiddenWords[4]}
+                  </Text>
+                </YStack>
+              </YStack>
               <XStack mx={15} jc="center">
                 <YStack maxWidth={250} mr={4} f={1}>
                   <Button
-                    onPress={() => {
-                      rotate.value = withTiming("20deg", {
-                        duration: 500,
-                      });
-                      left.value = withTiming(-1 * width - 50, {
-                        duration: 500,
-                        easing: Easing.inOut(Easing.back(3)),
-                      });
-                      setTimeout(() => {
-                        left.value = width + 50;
-                        rotate.value = "0deg";
-                        falseButtonPress();
-                        left.value = withTiming(width / 20, {
-                          duration: 500,
-                          easing: Easing.inOut(Easing.back(3)),
-                        });
-                      }, 500);
-                    }}
+                    onPress={falseButtonPress}
                     bg={"red"}
                     fd="column"
                     size={"$6"}
@@ -526,30 +477,7 @@ const BannedWordsGame = () => {
 
                 <YStack maxWidth={250} f={1} mx={4}>
                   <Button
-                    onPress={() => {
-                      rotate.value = withTiming("20deg", {
-                        duration: 500,
-                      });
-                      bottom.value = withTiming(-height, {
-                        duration: 500,
-                        easing: Easing.inOut(Easing.back(3)),
-                      });
-                      scale.value = withTiming(0, {
-                        duration: 500,
-                      });
-                      setTimeout(() => {
-                        bottom.value = height;
-                        rotate.value = "0deg";
-                        passButtonPress();
-                        scale.value = withTiming(1, {
-                          duration: 500,
-                        });
-                        bottom.value = withTiming(0, {
-                          duration: 500,
-                          easing: Easing.inOut(Easing.back(3)),
-                        });
-                      }, 500);
-                    }}
+                    onPress={passButtonPress}
                     bg={pas == 0 ? "gray" : "$yellow8Light"}
                     fd="column"
                     size={"$6"}
@@ -580,24 +508,7 @@ const BannedWordsGame = () => {
 
                 <YStack maxWidth={250} ml={4} f={1}>
                   <Button
-                    onPress={() => {
-                      rotate.value = withTiming("-20deg", {
-                        duration: 500,
-                      });
-                      left.value = withTiming(width + 50, {
-                        duration: 500,
-                        easing: Easing.inOut(Easing.back(3)),
-                      });
-                      setTimeout(() => {
-                        left.value = -1 * width;
-                        rotate.value = "0deg";
-                        trueButtonPress();
-                        left.value = withTiming(width / 20, {
-                          duration: 500,
-                          easing: Easing.inOut(Easing.back(3)),
-                        });
-                      }, 500);
-                    }}
+                    onPress={trueButtonPress}
                     bg={"$green9Light"}
                     fd="column"
                     size={"$6"}
